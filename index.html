@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudyMart - Your Learning Journey Starts Here</title>
+<script>try{var __sm_t=localStorage.getItem('sm_theme')||'light';if(__sm_t==='dark'){document.documentElement.classList.add('sm-dark');document.documentElement.style.colorScheme='dark';}}catch(e){}</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { inter: ['Inter','sans-serif'] },
+      colors: { primary: '#1A56FF', navy: '#0F2043' }
+    }
+  }
+}
+</script>
+<style>
+*{font-family:'Inter',sans-serif}
+.scrollbar-hide::-webkit-scrollbar{display:none}
+.scrollbar-hide{-ms-overflow-style:none; scrollbar-width:none}
+.hero-bg{background: linear-gradient(135deg, #F3F0FF 0%, #EEF2FF 45%, #F0F4FF 100%);}
+html.sm-loading #secHero,html.sm-loading #secCategories,html.sm-loading #secEbookCategory,html.sm-loading #secPopular,html.sm-loading #secFeatured,html.sm-loading #secEbooks,html.sm-loading #secPopularEbooks,html.sm-loading #secHowToBuy{opacity:0!important}
+html.sm-loading #siteLogoImg,html.sm-loading #siteLogoFallback,html.sm-loading [data-sm-desk-logo],html.sm-loading [data-sm-desk-logo-fb],html.sm-loading #siteNameDisplay,html.sm-loading #siteFooterNameDisplay,html.sm-loading #siteFooterLogoImg,html.sm-loading #siteFooterLogoFallback,html.sm-loading #siteTaglineDisplay,html.sm-loading #siteFooterTaglineDisplay{opacity:0!important}
+html.sm-loading #noticeBar{display:none!important}
+html.sm-ready #secHero,html.sm-ready #secCategories,html.sm-ready #secEbookCategory,html.sm-ready #secPopular,html.sm-ready #secFeatured,html.sm-ready #secEbooks,html.sm-ready #secPopularEbooks,html.sm-ready #secHowToBuy,html.sm-ready #siteLogoImg,html.sm-ready #siteLogoFallback,html.sm-ready #siteNameDisplay,html.sm-ready #siteFooterNameDisplay,html.sm-ready #siteTaglineDisplay,html.sm-ready #siteFooterTaglineDisplay{opacity:1;transition:opacity .18s ease}
+/* Popular cards */
+.card-physics{background: linear-gradient(135deg, #1E0E62 0%, #2D1B8A 50%, #1E135E 100%);}
+.card-chemistry{background: linear-gradient(135deg, #0B3D2E 0%, #14532D 50%, #0F4C3A 100%);}
+.card-math{background: linear-gradient(135deg, #0B2E7A 0%, #0F3DAA 50%, #123A8A 100%);}
+.card-biology{background: linear-gradient(135deg, #0C4A4A 0%, #0F5E5E 50%, #115E59 100%);}
+/* Latest cards */
+.latest-physics{background: linear-gradient(135deg, #3B1F00 0%, #5A2E00 50%, #7A3D00 100%);}
+.latest-english{background: linear-gradient(135deg, #2A0A4A 0%, #3D1268 50%, #4C1D95 100%);}
+.latest-chem{background: linear-gradient(135deg, #0A1E3A 0%, #0F2A52 50%, #1E3A6E 100%);}
+.latest-medical{background: linear-gradient(135deg, #4A2000 0%, #6B2F00 50%, #8B3D00 100%);}
+.ebook-green{background: linear-gradient(135deg, #0F5C3A 0%, #147A4A 50%, #0B6B3A 100%);}
+.ebook-blue{background: linear-gradient(135deg, #0B3A8A 0%, #1550C0 50%, #0F3DAA 100%);}
+.course-scroll{scroll-snap-type:x mandatory;scroll-behavior:smooth}
+.course-scroll > div,.course-scroll > button{scroll-snap-align:start}
+/* Desktop paging: grid-e sudhu current page er card dekhabe (mobile-e sob, swipe + auto scroll) */
+@media (min-width:640px){
+  #popularScroll > .pop-off{ display:none; }
+  #ebooksGrid > .pop-off{ display:none; }
+  #popularEbooksGrid > .pop-off{ display:none; }
+}
+/* Right-to-left page slide (professional): sudhu notun card slide-in hobe, staggered */
+@keyframes smSlideR{
+  from{transform:translateX(56px);opacity:.3}
+  to{transform:translateX(0);opacity:1}
+}
+@keyframes smSlideL{
+  from{transform:translateX(-56px);opacity:.3}
+  to{transform:translateX(0);opacity:1}
+}
+.sm-enter{animation:smSlideR .55s cubic-bezier(.22,.61,.21,1) both;animation-delay:calc(var(--sm-i,0)*70ms)}
+.sm-enter-l{animation:smSlideL .55s cubic-bezier(.22,.61,.21,1) both;animation-delay:calc(var(--sm-i,0)*70ms)}
+@media (prefers-reduced-motion:reduce){
+  .sm-enter,.sm-enter-l{animation:none!important}
+  .course-scroll{scroll-behavior:auto}
+}
+</style>
+</head>
+<body class="bg-[#F8F9FD] text-slate-900 antialiased">
+
+<!-- Notice Bar (Nav er upore - Settings theke control) -->
+<div id="noticeBar" class="hidden relative z-[60] text-[13px] font-semibold py-2.5 px-10 flex items-center justify-center gap-3 shadow-sm" style="background:linear-gradient(90deg,#1A56FF 0%,#4F46E5 50%,#7C3AED 100%);color:#fff">
+  <span class="inline-flex items-center gap-2 text-center leading-tight">
+    <i class="fa-solid fa-bullhorn text-[#FACC15] text-[14px]"></i>
+    <span id="noticeText"></span>
+  </span>
+  <a id="noticeLinkBtn" href="#" target="_blank" class="hidden ml-1 px-3 py-1 rounded-full bg-white text-[#1A56FF] text-[11px] font-extrabold hover:bg-[#F8F9FD] transition">View <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i></a>
+  <button id="noticeClose" class="hidden absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition"><i class="fa-solid fa-xmark text-[12px]"></i></button>
+</div>
+
+<!-- Header: phone view unchanged (lg:hidden) + desktop pic-like bar (hidden lg:flex) -->
+<link rel="stylesheet" href="assets/navbar.css">
+<header class="sticky top-0 z-50 bg-white border-b border-slate-100 shadow-sm">
+  <!-- ===== Desktop bar (pic-like) ===== -->
+  <div class="hidden lg:block border-b border-slate-100">
+    <div class="max-w-[1400px] mx-auto px-6 h-[68px] flex items-center gap-4">
+      <button data-sm-desk-menu-btn class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 transition flex-shrink-0" aria-label="Menu">
+        <i class="fa-solid fa-bars text-[20px] text-[#0F2043]"></i>
+      </button>
+      <a href="index.html" class="flex items-center gap-2 flex-shrink-0">
+        <img data-sm-desk-logo src="" alt="Logo" class="hidden w-10 h-10 object-contain rounded-lg">
+        <div data-sm-desk-logo-fb class="w-10 h-10 flex items-center justify-center">
+          <svg width="40" height="40" viewBox="0 0 44 44" fill="none">
+            <path d="M22 6 C16 10 8 12 8 20 C8 28 16 30 22 34 C28 30 36 28 36 20 C36 12 28 10 22 6Z" fill="url(#gDesk1)" />
+            <path d="M12 28 L22 38 L32 28" stroke="#1A56FF" stroke-width="2.5" fill="none" opacity="0.9"/>
+            <path d="M14 31 L22 38 L30 31" stroke="#7C3AED" stroke-width="2" fill="none" opacity="0.9"/>
+            <g><path d="M22 2 L32 7 L22 12 L12 7 Z" fill="#0F2043"/><rect x="21" y="7" width="2" height="8" fill="#FACC15"/><circle cx="23" cy="16" r="1.5" fill="#FACC15"/></g>
+            <defs><linearGradient id="gDesk1" x1="8" y1="6" x2="36" y2="34" gradientUnits="userSpaceOnUse"><stop stop-color="#1A56FF"/><stop offset="1" stop-color="#7C3AED"/></linearGradient></defs>
+          </svg>
+        </div>
+        <span class="text-[22px] font-extrabold tracking-tight leading-none"><span class="text-[#0F2043]">Study</span><span class="text-[#1A56FF]">Mart</span></span>
+      </a>
+      <nav class="flex items-center gap-6 text-[14px] font-semibold flex-shrink-0 ml-2">
+        <a data-sm-nav="home" href="index.html" class="sm-desk-nav-link" data-i18n="home">Home</a>
+        <a data-sm-nav="courses" href="courses.html" class="sm-desk-nav-link" data-i18n="courses">Courses</a>
+        <a data-sm-nav="ebooks" href="ebooks.html" class="sm-desk-nav-link" data-i18n="ebooks">Ebooks</a>
+        <!-- <a data-sm-nav="free" href="courses.html?q=" class="sm-desk-nav-link" data-i18n="free">Free Resources</a> -->
+        <a data-sm-nav="telegram" href="#" data-sm-telegram class="sm-desk-nav-link" data-i18n="telegram">Telegram</a>
+      </nav>
+      <div class="flex-1"></div>
+      <div class="sm-desk-search w-[280px] xl:w-[320px] flex-shrink-0">
+        <i class="fa-solid fa-magnifying-glass text-slate-400 text-[14px]"></i>
+        <input data-sm-desk-search data-i18n-ph="searchPh" type="text" placeholder="Search courses, subjects, ebooks...">
+        <button data-sm-desk-search-btn class="text-slate-400 hover:text-[#1A56FF]" aria-label="Search"><i class="fa-solid fa-arrow-right text-[12px]"></i></button>
+      </div>
+      <div class="sm-desk-drop flex-shrink-0">
+        <button data-sm-desk-lang-btn class="sm-desk-pill"><i class="fa-solid fa-globe text-[15px] text-slate-500"></i><span data-i18n="lang">বাংলা/English</span></button>
+        <!-- <div data-sm-desk-lang-menu class="sm-desk-menu hidden">
+          <button type="button" class="sm-mi" data-sm-lang-pick="bn">বাংলা (Bangla)</button>
+          <button type="button" class="sm-mi" data-sm-lang-pick="en">English</button>
+        </div> -->
+      </div>
+      <button data-sm-theme-btn class="sm-desk-pill flex-shrink-0"><i data-sm-theme-icon class="fa-solid fa-sun text-[15px] text-[#F59E0B]"></i><span data-i18n="theme">Theme</span></button>
+      <div class="sm-desk-drop flex-shrink-0">
+        <button data-sm-desk-account-btn class="sm-desk-pill"><i class="fa-regular fa-user text-[15px] text-slate-600"></i><span data-i18n="account">Account</span></button>
+        <div data-sm-desk-account-menu class="sm-desk-menu hidden"></div>
+      </div>
+    </div>
+  </div>
+  <!-- ===== Desktop drawer ===== -->
+  <div id="smDeskDrawer" class="hidden">
+    <div class="sm-backdrop"></div>
+    <div class="sm-panel">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-[18px] font-extrabold"><span class="text-[#0F2043]">Study</span><span class="text-[#1A56FF]">Mart</span></span>
+        <button data-sm-drawer-close class="w-9 h-9 rounded-lg hover:bg-slate-100"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <nav class="flex flex-col gap-1 text-[14px] font-semibold">
+        <a href="index.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Home</a>
+        <a href="courses.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Courses</a>
+        <a href="ebooks.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Ebooks</a>
+        <!-- <a href="courses.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Free Resources</a> -->
+        <a href="#" data-sm-telegram class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Telegram</a>
+        <a href="dashboard.html" data-account-link class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Dashboard</a>
+        <a href="cart.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Cart (<span data-sm-cart-count>0</span>)</a>
+      </nav>
+    </div>
+  </div>
+  <!-- ===== Phone bar (image-style labeled icon nav) ===== -->
+  <div class="lg:hidden max-w-[1280px] mx-auto px-2.5 sm:px-6 h-[58px] sm:h-[64px] flex items-center justify-between gap-1">
+    <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
+      <button id="menuBtn" class="lg:hidden w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 transition flex-shrink-0" aria-label="Menu">
+        <i class="fa-solid fa-bars text-[18px] sm:text-[22px] text-[#0F2043]"></i>
+      </button>
+      <a href="index.html" class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+        <img id="siteLogoImg" src="" alt="Logo" class="hidden w-8 h-8 sm:w-11 sm:h-11 object-contain rounded-lg flex-shrink-0">
+        <div id="siteLogoFallback" class="w-8 h-8 sm:w-11 sm:h-11 flex items-center justify-center flex-shrink-0">
+          <svg width="100%" height="100%" viewBox="0 0 44 44" fill="none">
+            <path d="M22 6 C16 10 8 12 8 20 C8 28 16 30 22 34 C28 30 36 28 36 20 C36 12 28 10 22 6Z" fill="url(#g1)" />
+            <path d="M12 28 L22 38 L32 28" stroke="#1A56FF" stroke-width="2.5" fill="none" opacity="0.9"/>
+            <path d="M14 31 L22 38 L30 31" stroke="#7C3AED" stroke-width="2" fill="none" opacity="0.9"/>
+            <g><path d="M22 2 L32 7 L22 12 L12 7 Z" fill="#0F2043"/><rect x="21" y="7" width="2" height="8" fill="#FACC15"/><circle cx="23" cy="16" r="1.5" fill="#FACC15"/></g>
+            <defs><linearGradient id="g1" x1="8" y1="6" x2="36" y2="34" gradientUnits="userSpaceOnUse"><stop stop-color="#1A56FF"/><stop offset="1" stop-color="#7C3AED"/></linearGradient></defs>
+          </svg>
+        </div>
+        <span class="leading-none">
+          <span id="siteNameDisplay" class="block text-[15px] sm:text-[22px] font-extrabold tracking-tight"><span class="text-[#0F2043]">Study</span><span class="text-[#1A56FF]">Mart</span></span>
+          <span id="siteTaglineDisplay" class="hidden sm:block text-[9px] tracking-[0.18em] text-slate-500 font-semibold -mt-1"></span>
+        </span>
+      </a>
+    </div>
+
+    <nav data-sm-mob-nav class="sm-mob-nav" aria-label="Mobile">
+      <a data-sm-nav="courses" href="courses.html" aria-label="Courses"><i class="fa-solid fa-book-open"></i><span class="t">Courses</span></a>
+      <a data-sm-nav="ebooks" href="ebooks.html" aria-label="Ebook"><i class="fa-solid fa-file-lines"></i><span class="t">Ebook</span></a>
+      <button data-sm-mob-search-btn aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i><span class="t">Search</span></button>
+      <a href="#" data-sm-telegram aria-label="Telegram"><i class="fa-brands fa-telegram"></i><span class="t">Telegram</span></a>
+      <a href="cart.html" aria-label="Cart"><i class="fa-solid fa-cart-shopping"></i><span class="t">Cart</span><span data-sm-cart-count class="cbadge">0</span></a>
+      <a href="dashboard.html" data-account-link aria-label="Dashboard"><i class="fa-regular fa-circle-user"></i><span class="t">Dashboard</span></a>
+    </nav>
+  </div>
+  <!-- Mobile Drawer -->
+  <div id="mobileMenu" class="hidden border-t bg-white absolute w-full left-0 shadow-lg lg:hidden">
+    <nav class="px-4 py-4 flex flex-col gap-1 text-[14px] font-medium">
+      <a href="courses.html" class="px-3 py-3 rounded-xl hover:bg-slate-50">Courses</a>
+      <a href="courses.html" class="px-3 py-3 rounded-xl hover:bg-slate-50">Categories</a>
+      <a href="courses.html" class="px-3 py-3 rounded-xl hover:bg-slate-50">Offers</a>
+      <a href="course.html" class="px-3 py-3 rounded-xl hover:bg-slate-50">How to Buy</a>
+      <a href="dashboard.html" class="px-3 py-3 rounded-xl hover:bg-slate-50">Contact Us</a>
+    </nav>
+  </div>
+</header>
+
+<main class="max-w-[1280px] mx-auto px-3 sm:px-6 lg:px-8 pb-6">
+
+  <!-- Hero Banner (controlled by Admin -> Home Page) -->
+  <section id="secHero" class="hero-bg rounded-[18px] sm:rounded-[24px] mt-3 sm:mt-6 overflow-hidden relative border border-[#E8E8FF]">
+    <div class="absolute top-[-30px] right-[20px] sm:right-[80px] w-[180px] h-[180px] sm:w-[280px] sm:h-[280px] bg-[#DDD6FF]/40 rounded-full pointer-events-none"></div>
+    <div class="absolute top-[20px] right-[140px] sm:right-[260px] w-[90px] h-[90px] sm:w-[160px] sm:h-[160px] bg-[#E0D8FF]/30 rounded-full pointer-events-none hidden sm:block"></div>
+
+    <div class="relative grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-2 sm:gap-6 items-center px-4 sm:px-8 lg:px-10 py-6 sm:py-7 lg:py-8">
+      <div>
+        <span id="hpBadge" class="inline-flex items-center px-3 py-1.5 rounded-full bg-[#EDE9FF] text-[#4F46E5] text-[11px] sm:text-[12px] font-semibold tracking-wide">
+          Smart Learning, Better Future
+        </span>
+        <h1 class="mt-3 text-[27px] sm:text-[40px] lg:text-[42px] font-extrabold leading-[1.05] text-[#0F2043]">
+          <span id="hpTitle1">Your Learning</span><br>
+          <span id="hpTitle2">Journey</span> <span id="hpHighlight" class="text-[#1A56FF]">Starts Here</span>
+        </h1>
+        <p id="hpDesc" class="mt-3 text-[12.5px] sm:text-[13.5px] leading-[1.6] text-slate-600 max-w-[360px]">
+          Explore our wide range of academic, admission<br class="hidden sm:block"> and skill development courses.
+        </p>
+        <!-- Search bar - desktop -->
+        <div class="hidden sm:flex mt-5 items-center gap-2 bg-white rounded-[10px] shadow-[0_2px_12px_rgba(0,0,0,0.06)] border border-slate-100 px-3 py-2.5 max-w-[420px] relative">
+          <i class="fa-solid fa-magnifying-glass text-slate-400 text-[13px]"></i>
+          <input id="hpSearchInput" type="text" autocomplete="off" placeholder="Search for courses, subjects or topics..." class="flex-1 outline-none text-[13px] placeholder:text-slate-400 bg-transparent min-w-0">
+          <button id="hpSearchBtn" class="w-8 h-8 rounded-full bg-[#1A56FF] text-white flex items-center justify-center flex-shrink-0 hover:bg-[#1445D6] transition" aria-label="Search"><i class="fa-solid fa-arrow-right text-[11px]"></i></button>
+          <div id="hpSearchSug" class="hidden absolute left-0 right-0 top-[calc(100%+8px)] bg-white border border-slate-200 rounded-[12px] shadow-[0_16px_40px_rgba(15,32,67,0.16)] overflow-hidden z-50 max-h-[340px] overflow-y-auto text-left"></div>
+        </div>
+        <!-- CTA buttons: Explore Courses + Browse Ebooks -->
+        <div class="sm:hidden flex flex-wrap items-center gap-3 mt-4">
+          <a id="hpCtaBtn" href="courses.html" class="inline-flex items-center gap-2 bg-[#1A56FF] text-white font-semibold text-[13px] px-5 py-2.5 rounded-full shadow-[0_8px_20px_rgba(26,86,255,0.3)] hover:bg-[#1445D6] transition">
+            <span id="hpCtaText">Explore Courses</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+          <a href="ebooks.html" class="hero-ebook-btn inline-flex items-center gap-2 bg-white border border-slate-200 text-[#334155] font-semibold text-[13px] px-5 py-2.5 rounded-full shadow-sm hover:bg-slate-50 transition">
+            <i class="fa-solid fa-book-open-reader text-[15px] text-[#1A56FF]"></i> Browse Ebooks
+          </a>
+        </div>
+        <div class="hidden sm:flex flex-wrap items-center gap-3 mt-5">
+          <a id="hpCtaBtnDesktop" href="courses.html" class="inline-flex items-center gap-2 bg-[#1A56FF] text-white font-semibold text-[13px] px-5 py-2.5 rounded-full shadow-[0_8px_20px_rgba(26,86,255,0.3)] hover:bg-[#1445D6] transition">
+            <span id="hpCtaTextDesktop">Explore Courses</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+          <a href="ebooks.html" class="hero-ebook-btn inline-flex items-center gap-2 bg-white border border-slate-200 text-[#334155] font-semibold text-[13px] px-5 py-2.5 rounded-full shadow-sm hover:bg-slate-50 transition">
+            <i class="fa-solid fa-book-open-reader text-[15px] text-[#1A56FF]"></i> Browse Ebooks
+          </a>
+        </div>
+      </div>
+
+      <div class="relative flex items-center justify-center lg:justify-end mt-1 sm:mt-0">
+        <img id="hpHeroImage" src="" alt="Hero" class="hidden max-w-[360px] lg:max-w-[420px] w-full h-auto object-contain rounded-[16px] shadow-sm">
+        <div id="hpDefaultVisual" class="relative w-[250px] sm:w-[360px] lg:w-[420px] h-[150px] sm:h-[200px] lg:h-[220px] flex items-end justify-center">
+          <div class="absolute left-[16%] bottom-[18px] flex flex-col items-center">
+            <div class="relative">
+              <div class="w-[13px] h-[26px] bg-[#4CAF50] rounded-full rotate-[-20deg] absolute -left-3 -top-2"></div>
+              <div class="w-[15px] h-[30px] bg-[#2E7D32] rounded-full absolute left-1 -top-3"></div>
+              <div class="w-[12px] h-[24px] bg-[#66BB6A] rounded-full rotate-[20deg] absolute left-4 -top-1"></div>
+            </div>
+            <div class="w-[48px] sm:w-[58px] h-[34px] sm:h-[38px] bg-white rounded-b-[16px] border border-slate-200 shadow-sm mt-[16px] relative z-10"></div>
+          </div>
+          <div class="relative z-10 flex flex-col items-center -ml-1">
+            <div class="relative">
+              <div class="absolute -top-[22px] left-1/2 -translate-x-1/2 z-20">
+                <div class="w-[68px] sm:w-[84px] h-[18px] sm:h-[20px] bg-[#0F172A] rotate-[-3deg] rounded-[3px] shadow-md relative">
+                  <div class="absolute -right-1 top-1 w-[12px] h-[12px] bg-[#FACC15] rounded-full border-2 border-[#EAB308]"></div>
+                  <div class="w-[2px] h-[18px] bg-[#EAB308] absolute -right-0.5 top-2"></div>
+                </div>
+                <div class="w-[56px] sm:w-[68px] h-[4px] bg-[#1E293B] mx-auto -mt-1 opacity-80"></div>
+              </div>
+              <div class="w-[142px] sm:w-[180px] h-[24px] sm:h-[30px] bg-[#4F46E5] rounded-[4px] border-l-[5px] border-[#312E81] shadow-md flex items-center"><div class="ml-2 w-[80%] h-[2px] bg-white/30 rounded"></div></div>
+              <div class="w-[150px] sm:w-[190px] h-[26px] sm:h-[32px] bg-[#7C3AED] rounded-[4px] border-l-[5px] border-[#4C1D95] shadow-md -mt-[1px] mx-[-4px]"><div class="ml-3 mt-[8px] w-[78%] h-[2px] bg-white/30 rounded"></div></div>
+              <div class="w-[144px] sm:w-[184px] h-[28px] sm:h-[34px] bg-[#4338CA] rounded-[4px] border-l-[5px] border-[#1E1B4B] shadow-md -mt-[1px]"><div class="ml-3 mt-[10px] w-[75%] h-[2px] bg-white/20 rounded"></div></div>
+            </div>
+          </div>
+          <div class="absolute right-[8%] bottom-[12px] flex flex-col items-center">
+            <div class="flex gap-[2px] items-end -mb-1 z-10">
+              <div class="w-[4px] h-[26px] bg-[#FACC15] rounded-t-sm"></div>
+              <div class="w-[4px] h-[34px] bg-[#1A56FF] rounded-t-sm"></div>
+              <div class="w-[4px] h-[30px] bg-[#EF4444] rounded-t-sm"></div>
+              <div class="w-[4px] h-[28px] bg-[#22C55E] rounded-t-sm"></div>
+            </div>
+            <div class="w-[40px] sm:w-[48px] h-[44px] sm:h-[52px] bg-[#0F172A] rounded-[6px] border border-slate-800"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories - 1 line equal height + Arrow + Home Page control -->
+  <section id="secCategories" class="mt-4 sm:mt-6 relative">
+    <div class="mb-3">
+      <h2 class="text-[16px] sm:text-[20px] font-extrabold text-[#0F2043]">Courses Category</h2>
+    </div>
+    <div class="relative">
+      <button id="catPrev" onclick="scrollCategories(-300)" class="hidden absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.12)] border border-slate-100 sm:flex items-center justify-center hover:bg-slate-50" aria-label="Previous"><i class="fa-solid fa-chevron-left text-xs text-slate-600"></i></button>
+      <button id="catNext" onclick="scrollCategories(300)" class="hidden absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-8 h-8 bg-white rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.12)] border border-slate-100 sm:flex items-center justify-center hover:bg-slate-50" aria-label="Next"><i class="fa-solid fa-chevron-right text-xs text-slate-600"></i></button>
+      <div id="categoriesContainer" class="flex gap-3 sm:gap-4 overflow-x-auto scrollbar-hide course-scroll pb-2 -mx-3 px-3 sm:mx-0 sm:px-0 snap-x snap-mandatory">
+        <!-- Populated by JS - equal height, Android same -->
+      </div>
+    </div>
+    <!-- mobile arrows -->
+    <div id="catMobileArrows" class="flex sm:hidden justify-center gap-2 mt-2">
+      <button onclick="scrollCategories(-300)" class="w-8 h-8 bg-white rounded-full shadow border border-slate-100 flex items-center justify-center"><i class="fa-solid fa-chevron-left text-xs text-slate-600"></i></button>
+      <button onclick="scrollCategories(300)" class="w-8 h-8 bg-white rounded-full shadow border border-slate-100 flex items-center justify-center"><i class="fa-solid fa-chevron-right text-xs text-slate-600"></i></button>
+    </div>
+  </section>
+
+  <!-- E-Book Category (E-Book Batch — Popular Courses-er upore) -->
+  <section id="secEbookCategory" class="mt-4 sm:mt-6">
+    <div class="flex items-center justify-between mb-3">
+      <div>
+        <h2 id="secEbookCategoryTitle" class="text-[16px] sm:text-[20px] font-extrabold text-[#0F2043]">E-Book Category</h2>
+        <p id="secEbookCategorySub" class="text-[12px] text-slate-500" style="display:none"></p>
+      </div>
+    </div>
+    <div id="ebookBatchGrid" class="flex gap-3 sm:gap-4 overflow-x-auto scrollbar-hide course-scroll pb-2 sm:grid sm:grid-cols-4 sm:overflow-visible">
+      <p class="min-w-full text-center text-[13px] text-slate-400 py-10 sm:col-span-4"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Loading e-book batches...</p>
+    </div>
+  </section>
+
+  <!-- Popular Courses -->
+  <div id="popular" class="scroll-mt-20"></div>
+  <section id="secPopular" class="mt-6 sm:mt-8 relative">
+    <div class="flex items-center justify-between mb-3">
+      <h2 id="secPopularTitle" class="text-[16px] sm:text-[20px] font-extrabold text-[#0F2043]">Popular Courses</h2>
+      <a href="courses.html" class="text-[#1A56FF] font-bold text-[12px] sm:text-[13px] flex items-center gap-1">View All <i class="fa-solid fa-arrow-right text-[11px]"></i></a>
+    </div>
+
+    <div class="relative" id="popularWrap">
+      <button data-pop-arrow onclick="scrollCourses('popularScroll', -300)" class="hidden sm:flex absolute -left-3 top-[42%] -translate-y-1/2 z-10 w-8 h-8 bg-white rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.12)] border border-slate-100 items-center justify-center hover:bg-slate-50"><i class="fa-solid fa-chevron-left text-xs text-slate-600"></i></button>
+      <button data-pop-arrow onclick="scrollCourses('popularScroll', 300)" class="hidden sm:flex absolute -right-3 top-[42%] -translate-y-1/2 z-10 w-8 h-8 bg-white rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.12)] border border-slate-100 items-center justify-center hover:bg-slate-50"><i class="fa-solid fa-chevron-right text-xs text-slate-600"></i></button>
+
+      <div id="popularScroll" class="flex gap-3 sm:gap-4 overflow-x-auto scrollbar-hide course-scroll pb-2 sm:grid sm:grid-cols-4 sm:overflow-visible">
+        <p class="min-w-full text-center text-[13px] text-slate-400 py-10 sm:col-span-4"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Loading courses...</p>
+      </div>
+    </div>
+    <div id="popularDots" class="flex justify-center gap-1.5 mt-3">
+      <span class="w-5 h-1.5 bg-[#1A56FF] rounded-full"></span>
+      <span class="w-1.5 h-1.5 bg-slate-200 rounded-full"></span>
+      <span class="w-1.5 h-1.5 bg-slate-200 rounded-full"></span>
+    </div>
+  </section>
+
+
+
+  <!-- ===== Live data from Admin Panel ===== -->
+  <section id="secFeatured" class="mt-6 sm:mt-8">
+    <div class="flex items-center justify-between mb-3">
+      <div>
+        <h2 id="secFeaturedTitle" class="text-[18px] sm:text-[20px] font-extrabold text-[#0F2043]">Featured Courses</h2>
+        <p id="secFeaturedSub" class="text-[12px] text-slate-500">Hand-picked by the StudyMart team</p>
+      </div>
+      <a href="courses.html" class="text-[#1A56FF] font-bold text-[12px] sm:text-[13px]">View All <i class="fa-solid fa-arrow-right text-[11px] ml-1"></i></a>
+    </div>
+    <div data-sm-courses data-sm-featured="true" data-sm-limit="8">
+      <p class="text-[13px] text-slate-400 text-center py-8"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Loading courses...</p>
+    </div>
+  </section>
+
+  <!-- Ebooks -->
+  <section id="secEbooks" class="mt-6 sm:mt-8 relative">
+    <div class="flex items-center justify-between mb-3">
+      <h2 id="secEbooksTitle" class="text-[16px] sm:text-[20px] font-extrabold text-[#0F2043]">Ebooks</h2>
+      <a href="ebooks.html" class="text-[#1A56FF] font-bold text-[12px] sm:text-[13px] flex items-center gap-1">View All <i class="fa-solid fa-arrow-right text-[11px]"></i></a>
+    </div>
+    <div class="relative" id="ebooksWrap">
+      <button data-eb-arrow onclick="scrollCourses('ebooksGrid', -300)" class="hidden sm:flex absolute -left-3 top-[42%] -translate-y-1/2 z-10 w-8 h-8 bg-white rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.12)] border border-slate-100 items-center justify-center hover:bg-slate-50"><i class="fa-solid fa-chevron-left text-xs text-slate-600"></i></button>
+      <button data-eb-arrow onclick="scrollCourses('ebooksGrid', 300)" class="hidden sm:flex absolute -right-3 top-[42%] -translate-y-1/2 z-10 w-8 h-8 bg-white rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.12)] border border-slate-100 items-center justify-center hover:bg-slate-50"><i class="fa-solid fa-chevron-right text-xs text-slate-600"></i></button>
+      <div id="ebooksGrid" class="flex gap-3 sm:gap-4 overflow-x-auto scrollbar-hide course-scroll pb-2 sm:grid sm:grid-cols-4 sm:overflow-visible">
+        <p class="min-w-full text-center text-[13px] text-slate-400 py-10 sm:col-span-4"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Loading e-books...</p>
+      </div>
+    </div>
+    <div id="ebooksDots" class="flex justify-center gap-1.5 mt-3"></div>
+  </section>
+
+  <!-- Popular Ebooks (most downloaded) -->
+  <section id="secPopularEbooks" class="mt-6 sm:mt-8 relative">
+    <div class="flex items-center justify-between mb-3">
+      <h2 id="secPopularEbooksTitle" class="text-[16px] sm:text-[20px] font-extrabold text-[#0F2043]">Popular Ebooks</h2>
+      <a href="ebooks.html?sort=popular" class="text-[#1A56FF] font-bold text-[12px] sm:text-[13px] flex items-center gap-1">View All <i class="fa-solid fa-arrow-right text-[11px]"></i></a>
+    </div>
+    <div class="relative" id="popularEbooksWrap">
+      <button data-peb-arrow onclick="scrollCourses('popularEbooksGrid', -300)" class="hidden sm:flex absolute -left-3 top-[42%] -translate-y-1/2 z-10 w-8 h-8 bg-white rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.12)] border border-slate-100 items-center justify-center hover:bg-slate-50"><i class="fa-solid fa-chevron-left text-xs text-slate-600"></i></button>
+      <button data-peb-arrow onclick="scrollCourses('popularEbooksGrid', 300)" class="hidden sm:flex absolute -right-3 top-[42%] -translate-y-1/2 z-10 w-8 h-8 bg-white rounded-full shadow-[0_2px_10px_rgba(0,0,0,0.12)] border border-slate-100 items-center justify-center hover:bg-slate-50"><i class="fa-solid fa-chevron-right text-xs text-slate-600"></i></button>
+      <div id="popularEbooksGrid" class="flex gap-3 sm:gap-4 overflow-x-auto scrollbar-hide course-scroll pb-2 sm:grid sm:grid-cols-4 sm:overflow-visible">
+        <p class="min-w-full text-center text-[13px] text-slate-400 py-10 sm:col-span-4"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Loading popular e-books...</p>
+      </div>
+    </div>
+    <div id="popularEbooksDots" class="flex justify-center gap-1.5 mt-3"></div>
+  </section>
+
+
+
+
+
+
+
+  <!-- How To Buy (Admin -> Pages -> Home Page theke control) -->
+  <section id="secHowToBuy" class="mt-6 sm:mt-8 scroll-mt-20">
+    <div class="bg-white rounded-[18px] sm:rounded-[24px] border border-slate-100 shadow-[0_2px_14px_rgba(0,0,0,0.05)] overflow-hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-2">
+        <div class="p-5 sm:p-8 flex flex-col justify-center">
+          <span class="w-fit inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#EDE9FF] text-[#4F46E5] text-[11px] sm:text-[12px] font-bold"><i class="fa-solid fa-circle-play text-[12px]"></i> Easy Steps</span>
+          <h2 id="hbTitle" class="mt-3 text-[20px] sm:text-[26px] font-extrabold text-[#0F2043] leading-tight">How To Buy</h2>
+          <p id="hbSub" class="mt-1 text-[12.5px] sm:text-[13.5px] font-semibold text-[#1A56FF]">Course kinar sohoj niyom</p>
+          <div id="hbDesc" class="mt-3 text-[13px] sm:text-[14px] leading-[1.8] text-slate-600"></div>
+          <a id="hbBtn" href="courses.html" class="mt-5 inline-flex w-fit items-center gap-2 bg-[#1A56FF] hover:bg-[#1445D6] text-white font-bold text-[13px] px-5 py-2.5 rounded-full shadow-[0_8px_20px_rgba(26,86,255,0.3)] transition"><span id="hbBtnText">Browse Courses</span> <i class="fa-solid fa-arrow-right text-xs"></i></a>
+        </div>
+        <div class="relative bg-[#0F2043] min-h-[220px] sm:min-h-[260px] lg:min-h-full flex items-center justify-center overflow-hidden">
+          <div id="hbVideoWrap" class="absolute inset-0"></div>
+          <div id="hbVideoPh" class="relative text-center px-6 py-10">
+            <span class="mx-auto w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/10 border border-white/20 backdrop-blur flex items-center justify-center"><i class="fa-solid fa-play text-white text-[18px] sm:text-[20px] ml-1"></i></span>
+            <p class="mt-3 text-white/80 text-[12.5px] sm:text-[13px] font-semibold">Video coming soon</p>
+            <p class="text-white/50 text-[11px] mt-1">Admin Panel theke YouTube link add korun</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="mt-8 bg-[#F3F4F8] border-t border-slate-100">
+  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6">
+    <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr] gap-8">
+      <!-- Brand -->
+      <div class="col-span-2 lg:col-span-1">
+        <a href="index.html" class="flex items-center gap-2">
+          <img id="siteFooterLogoImg" src="" alt="Logo" class="hidden w-9 h-9 object-contain rounded-lg flex-shrink-0">
+          <div id="siteFooterLogoFallback" class="w-9 h-9 flex items-center justify-center flex-shrink-0">
+            <svg width="38" height="38" viewBox="0 0 44 44" fill="none">
+              <path d="M22 6 C16 10 8 12 8 20 C8 28 16 30 22 34 C28 30 36 28 36 20 C36 12 28 10 22 6Z" fill="url(#g2)" />
+              <path d="M12 28 L22 38 L32 28" stroke="#1A56FF" stroke-width="2.5" fill="none" opacity="0.9"/>
+              <g><path d="M22 2 L32 7 L22 12 L12 7 Z" fill="#0F2043"/><rect x="21" y="7" width="2" height="8" fill="#FACC15"/></g>
+              <defs><linearGradient id="g2" x1="8" y1="6" x2="36" y2="34" gradientUnits="userSpaceOnUse"><stop stop-color="#1A56FF"/><stop offset="1" stop-color="#7C3AED"/></linearGradient></defs>
+            </svg>
+          </div>
+          <span class="leading-none">
+            <span id="siteFooterNameDisplay" class="block text-[18px] font-extrabold tracking-tight"><span class="text-[#0F2043]">Study</span><span class="text-[#1A56FF]">Mart</span></span>
+            <span id="siteFooterTaglineDisplay" class="block text-[9px] tracking-[0.16em] text-slate-500 font-semibold -mt-0.5">Learn • Prepare • Grow</span>
+          </span>
+        </a>
+        <div class="flex items-center gap-2.5 mt-4">
+          <a href="#" class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-[#1A56FF] hover:bg-[#1A56FF] hover:text-white hover:border-[#1A56FF] transition shadow-sm">
+            <i class="fa-solid fa-paper-plane text-[13px]"></i>
+          </a>
+          <a href="#" class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-[#FF0000] hover:bg-[#FF0000] hover:text-white hover:border-[#FF0000] transition shadow-sm">
+            <i class="fa-brands fa-youtube text-[13px]"></i>
+          </a>
+          <a href="#" class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-[#1877F2] hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] transition shadow-sm">
+            <i class="fa-brands fa-facebook-f text-[12px]"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Explore -->
+      <div>
+        <h4 class="text-[13px] font-extrabold text-[#0F2043] mb-3">Explore</h4>
+        <ul class="space-y-2 text-[12.5px] text-slate-600">
+          <li><a href="#" class="hover:text-[#1A56FF] transition">All Courses</a></li>
+          <li><a href="#" class="hover:text-[#1A56FF] transition">HSC Courses</a></li>
+          <li><a href="#" class="hover:text-[#1A56FF] transition">SSC Courses</a></li>
+          <li><a href="#" class="hover:text-[#1A56FF] transition">Admission</a></li>
+          <li><a href="#" class="hover:text-[#1A56FF] transition">Skill Development</a></li>
+        </ul>
+      </div>
+
+      <!-- Support -->
+      <div>
+        <h4 class="text-[13px] font-extrabold text-[#0F2043] mb-3">Support</h4>
+        <ul class="space-y-2 text-[12.5px] text-slate-600">
+          <li><a href="#" class="hover:text-[#1A56FF] transition">FAQ</a></li>
+          <li><a href="dashboard.html" class="hover:text-[#1A56FF] transition">Contact Us</a></li>
+          <li><a href="course.html" class="hover:text-[#1A56FF] transition">How to Buy</a></li>
+          <li><a href="#" class="hover:text-[#1A56FF] transition">Refund Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h4 class="text-[13px] font-extrabold text-[#0F2043] mb-3">Company</h4>
+        <ul class="space-y-2 text-[12.5px] text-slate-600">
+          <li><a href="#" class="hover:text-[#1A56FF] transition">About Us</a></li>
+          <li><a href="#" class="hover:text-[#1A56FF] transition">Terms of Use</a></li>
+          <li><a href="#" class="hover:text-[#1A56FF] transition">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-8 pt-4 border-t border-slate-200 flex items-center justify-end">
+      <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-[#1A56FF] hover:text-white hover:border-[#1A56FF] transition shadow-sm">
+        <i class="fa-solid fa-arrow-up text-[12px]"></i>
+      </button>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile bottom nav removed -->
+<script>
+(function(){
+  try{
+    // Smart Account routing: guest -> auth page, logged-in -> dashboard
+    var hasTok=function(){ try{return !!(localStorage.getItem('sm_user_token')||sessionStorage.getItem('sm_user_token'));}catch(x){return false;} };
+    if(!hasTok()) document.querySelectorAll('[data-account-link]').forEach(function(a){ a.href='auth.html?next='+encodeURIComponent('dashboard.html'); });
+  }catch(e){}
+  // click-time re-check (token may change without reload)
+  document.addEventListener('click',function(e){
+    var a=e.target&&e.target.closest?e.target.closest('[data-account-link]'):null;
+    if(!a) return;
+    var t=''; try{t=localStorage.getItem('sm_user_token')||sessionStorage.getItem('sm_user_token')||'';}catch(x){}
+    if(!t){ e.preventDefault(); location.href='auth.html?next='+encodeURIComponent('dashboard.html'); }
+  });
+})();
+</script>
+
+<script>
+document.documentElement.classList.add('sm-loading');
+document.getElementById('menuBtn').addEventListener('click', ()=>{
+  document.getElementById('mobileMenu').classList.toggle('hidden');
+});
+function scrollCourses(id, amt){
+  const el=document.getElementById(id);
+  if(!el) return;
+  // Desktop-e grid (overflow nai) — arrow page bodlabe, mobile-e swipe scroll
+  try{
+    if(window.matchMedia('(min-width:640px)').matches){
+      if(id==='popularScroll' && typeof window.popNav==='function'){ window.popNav(amt>0?1:-1); return; }
+      if(id==='ebooksGrid' && typeof window.ebNav==='function'){ window.ebNav(amt>0?1:-1); return; }
+      if(id==='popularEbooksGrid' && typeof window.popEbNav==='function'){ window.popEbNav(amt>0?1:-1); return; }
+    }
+  }catch(e){}
+  el.scrollBy({left: amt, behavior:'smooth'});
+}
+function scrollCategories(amt){
+  const el=document.getElementById('categoriesContainer');
+  if(el) el.scrollBy({left: amt, behavior:'smooth'});
+}
+// HomePage dynamic loader (Admin -> Home Page) - bootstrap first, no blink
+// YouTube watch / youtu.be / shorts / embed / raw ID -> embed URL
+function ytEmbedUrl(input){
+  var s = String(input||'').trim();
+  if(!s) return '';
+  var id = '';
+  var m = s.match(/[?&]v=([A-Za-z0-9_-]{6,})/); if(m) id = m[1];
+  if(!id){ m = s.match(/youtu\.be\/([A-Za-z0-9_-]{6,})/); if(m) id = m[1]; }
+  if(!id){ m = s.match(/\/(?:embed|shorts|live)\/([A-Za-z0-9_-]{6,})/); if(m) id = m[1]; }
+  if(!id && /^[A-Za-z0-9_-]{6,}$/.test(s)) id = s;
+  return id ? 'https://www.youtube-nocookie.com/embed/'+id+'?rel=0' : '';
+}
+// How To Buy video: uploaded file (Admin upload) hole direct <video>, nahole YouTube embed
+function hbVideoFileUrl(input){
+  var s = String(input||'').trim();
+  if(!s) return '';
+  if(s.indexOf('data:video/') === 0) return s;
+  if(s.indexOf('/uploads/videos/') === 0) return s;
+  var low = s.split('?')[0].split('#')[0].toLowerCase();
+  if(/\.mp4$|\.webm$|\.mov$|\.ogg$|\.ogv$/.test(low)) return s;
+  return '';
+}
+function escAttr(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function applyHomePageData(hp){
+    if(!hp) return;
+    try{ window.__SM_HP__ = hp; }catch(e){}
+    const hero = hp.hero || {};
+    const sec = hp.sections || {};
+    const secHero = document.getElementById('secHero');
+    if(secHero && hero.enabled === false) secHero.style.display = 'none'; else if(secHero) secHero.style.display = '';
+    const setText = (id, val)=>{ const e=document.getElementById(id); if(e && val!==undefined) e.textContent=val; };
+    const setHTML = (id, val)=>{ const e=document.getElementById(id); if(e && val!==undefined) e.innerHTML=val; };
+    setText('hpBadge', hero.badge);
+    setText('hpTitle1', hero.titleLine1);
+    setText('hpTitle2', hero.titleLine2);
+    setText('hpHighlight', hero.highlight);
+    setHTML('hpDesc', hero.description);
+    const si=document.getElementById('hpSearchInput'); if(si && hero.searchPlaceholder!==undefined) si.placeholder=hero.searchPlaceholder;
+    setText('hpCtaText', hero.ctaText);
+    setText('hpCtaTextDesktop', hero.ctaText);
+    const ca=document.getElementById('hpCtaBtn'); if(ca && hero.ctaLink!==undefined) ca.href=hero.ctaLink;
+    const cb=document.getElementById('hpCtaBtnDesktop'); if(cb && hero.ctaLink!==undefined) cb.href=hero.ctaLink;
+    const img=document.getElementById('hpHeroImage');
+    const def=document.getElementById('hpDefaultVisual');
+    if(hero.imageUrl && String(hero.imageUrl).trim()!==''){
+      if(img){ img.src=hero.imageUrl; img.alt=hero.imageAlt||'Hero'; img.classList.remove('hidden'); }
+      if(def) def.classList.add('hidden');
+    } else {
+      if(img) img.classList.add('hidden');
+      if(def) def.classList.remove('hidden');
+    }
+    function toggleSec(id, enabled){ const el=document.getElementById(id); if(el) el.style.display=enabled===false?'none':''; }
+    // render categories as Batch - Batch Manage theke auto asbe
+    (async function(){
+      const catCfg = sec.categories || {};
+      const container = document.getElementById('categoriesContainer');
+      const prevBtn = document.getElementById('catPrev');
+      const nextBtn = document.getElementById('catNext');
+      const mobileWrap = document.getElementById('catMobileArrows');
+      if (!container) return;
+      if (catCfg.enabled===false) { toggleSec('secCategories', false); return; }
+      const esc = s => String(s==null?'':s).replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+      const toItems = (batches)=>{
+        let list = (batches||[]).filter(b=> (b.status||'active')==='active');
+        list = list.slice().sort((a,b)=> ((Number(a.order)||999)-(Number(b.order)||999)) || (Number(a.id)-Number(b.id)));
+        if (Array.isArray(catCfg.batchIds) && catCfg.batchIds.length>0){
+          const ids = catCfg.batchIds.map(String);
+          list = list.filter(b=> ids.includes(String(b.id)));
+        }
+        return list.map(b=> ({
+          id: b.id,
+          name: b.name,
+          icon: b.icon || 'fa-layer-group',
+          iconUrl: b.iconUrl || '',
+          color: b.color || '#6366F1',
+          bg: (b.color || '#6366F1') + '22',
+          link: 'batch.html?batch=' + encodeURIComponent(b.slug || b.id),
+          enabled: true
+        }));
+      };
+      const cols = Math.max(2, Math.min(6, parseInt(catCfg.cols,10) || 4));
+      const limit = (function(){ var lim=parseInt(catCfg.limit,10); if(lim>0) return Math.max(1, Math.min(100, lim)); var r=parseInt(catCfg.rows,10); if(r>0) return Math.max(1, Math.min(100, r*cols)); return 50; })();
+      const display = 'grid';
+      const showArrows = false;
+      const render = (items)=>{
+        if (items.length===0) { container.innerHTML='<p class="text-[12px] text-slate-400 py-4">No batches yet — Batch Manage e batch create korun</p>'; return; }
+        if (display === 'grid') {
+          container.className = 'grid gap-3 sm:gap-4 pb-2 -mx-3 px-3 sm:mx-0 sm:px-0';
+          container.style.display = 'grid';
+          // FIX: phone e always 2 col bug — ekhon admin Column setting phone+desktop duitai use hobe, responsive auto
+          container.style.gridTemplateColumns = `repeat(${cols}, minmax(0,1fr))`;
+          if(!container._smColsBound){
+            container._smColsBound = true;
+            window.addEventListener('resize', ()=>{
+              if(display !== 'grid') return;
+              container.style.gridTemplateColumns = `repeat(${cols}, minmax(0,1fr))`;
+            });
+          }
+          if (prevBtn) { prevBtn.classList.add('hidden'); prevBtn.style.display='none'; }
+          if (nextBtn) { nextBtn.classList.add('hidden'); nextBtn.style.display='none'; }
+          if (mobileWrap) mobileWrap.classList.add('hidden');
+        } else {
+          // scroll mode: 1 row horizontal scroll unlimited
+          if (items.length <= cols) {
+            container.className = 'grid gap-3 sm:gap-4 pb-2 -mx-3 px-3 sm:mx-0 sm:px-0';
+            container.style.gridTemplateColumns = `repeat(${Math.min(items.length, cols)}, minmax(0,1fr))`;
+            const shouldShow = showArrows;
+            if (prevBtn) { if(shouldShow){ prevBtn.classList.remove('hidden'); prevBtn.style.display='flex'; } else { prevBtn.classList.add('hidden'); } }
+            if (nextBtn) { if(shouldShow){ nextBtn.classList.remove('hidden'); nextBtn.style.display='flex'; } else { nextBtn.classList.add('hidden'); } }
+            if (mobileWrap) { if(shouldShow) mobileWrap.classList.remove('hidden'); else mobileWrap.classList.add('hidden'); }
+          } else {
+            container.className = 'flex gap-3 sm:gap-4 overflow-x-auto scrollbar-hide course-scroll pb-2 -mx-3 px-3 sm:mx-0 sm:px-0 snap-x snap-mandatory';
+            container.style.gridTemplateColumns = '';
+            const shouldShow = showArrows;
+            if (prevBtn) { if(shouldShow){ prevBtn.classList.remove('hidden'); prevBtn.style.display='flex'; } else { prevBtn.classList.add('hidden'); } }
+            if (nextBtn) { if(shouldShow){ nextBtn.classList.remove('hidden'); nextBtn.style.display='flex'; } else { nextBtn.classList.add('hidden'); } }
+            if (mobileWrap) { if(shouldShow) mobileWrap.classList.remove('hidden'); else mobileWrap.classList.add('hidden'); }
+          }
+        }
+        const isGrid = (display==='grid') || (display==='scroll' && items.length <= cols);
+        container.innerHTML = items.map(it=>`
+          <a href="${esc(it.link||'courses.html')}" class="${isGrid ? 'min-w-0' : 'flex-shrink-0 w-[110px] sm:w-auto snap-start'} bg-white rounded-[14px] border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] p-3 sm:p-4 flex flex-col items-center justify-center gap-2 hover:shadow-md hover:-translate-y-0.5 transition min-h-[86px] sm:min-h-[110px] h-auto">
+            <div class="w-[44px] h-[44px] rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden" style="background:${esc(it.bg||'#EEF2FF')}">
+              ${it.iconUrl ? `<img src="${esc(it.iconUrl)}" alt="${esc(it.name)}" class="w-full h-full object-contain p-1.5">` : `<i class="fa-solid ${esc(it.icon||'fa-layer-group')} text-[18px]" style="color:${esc(it.color||'#6366F1')}"></i>`}
+            </div>
+            <span class="text-[11px] sm:text-[12px] font-bold text-[#0F2043] text-center leading-tight">${esc(it.name)}</span>
+          </a>
+        `).join('');
+        return JSON.stringify(items.map(it=>it.id||it.name));
+      };
+      // 1) INSTANT: bootstrap catalog theke songe songe paint (zero network, no flash)
+      let paintedKey = '';
+      try{
+        const bootCat = window.__SM_BOOTSTRAP__ && window.__SM_BOOTSTRAP__.catalog;
+        if (Array.isArray(catCfg.batchIds) && bootCat && Array.isArray(bootCat.batches) && bootCat.batches.length){
+          let quick = toItems(bootCat.batches).slice(0, limit);
+          if (quick.length===0 && catCfg.items && catCfg.items.length) quick = catCfg.items.filter(it=> it.enabled!==false).slice(0, limit);
+          if (quick.length) paintedKey = render(quick);
+        } else if (!Array.isArray(catCfg.batchIds)){
+          const quick = (catCfg.items || []).filter(it=> it.enabled!==false).slice(0, limit);
+          if (quick.length) paintedKey = render(quick);
+        }
+      }catch(e){}
+      // 2) BACKGROUND revalidate — sudhu change hole re-paint (flash nei)
+      if (Array.isArray(catCfg.batchIds)) {
+        try{
+          const res = await fetch('/api/public/batches');
+          const json = await res.json();
+          let fresh = toItems(json.data||[]);
+          if (fresh.length===0 && catCfg.items && catCfg.items.length) {
+            fresh = catCfg.items.filter(it=> it.enabled!==false);
+          }
+          fresh = fresh.slice(0, limit);
+          if (JSON.stringify(fresh.map(it=>it.id||it.name)) !== paintedKey) render(fresh);
+        }catch(e){
+          if (!paintedKey) render((catCfg.items||[]).filter(it=> it.enabled!==false).slice(0, limit));
+        }
+      } else if (!paintedKey) {
+        render((catCfg.items || []).filter(it=> it.enabled!==false).slice(0, limit));
+      }
+    })();
+    toggleSec('secCategories', sec.categories && sec.categories.enabled);
+    toggleSec('secEbookCategory', sec.ebookCategory && sec.ebookCategory.enabled);
+    toggleSec('secPopular', sec.popular && sec.popular.enabled);
+    toggleSec('secLatest', sec.latest && sec.latest.enabled);
+    toggleSec('secEbooks', sec.ebooks && sec.ebooks.enabled);
+    toggleSec('secPopularEbooks', sec.popularEbooks && sec.popularEbooks.enabled);
+    toggleSec('secFeatured', sec.featured && sec.featured.enabled);
+    toggleSec('secBrowseCategory', sec.browseCategory && sec.browseCategory.enabled);
+    toggleSec('secStats', sec.stats && sec.stats.enabled);
+    toggleSec('secBatches', sec.batchesSection && sec.batchesSection.enabled);
+    toggleSec('secHowToBuy', sec.howToBuy && sec.howToBuy.enabled);
+    // How To Buy: text + video (YouTube link BA uploaded MP4 — Admin -> Home Page)
+    if(sec.howToBuy){
+      var hb = sec.howToBuy;
+      if(hb.title) setText('hbTitle', hb.title);
+      if(hb.subtitle!==undefined){ var hbS=document.getElementById('hbSub'); if(hbS){ hbS.textContent=hb.subtitle||''; hbS.style.display=hb.subtitle?'':'none'; } }
+      if(hb.description!==undefined){ var hbD=document.getElementById('hbDesc'); if(hbD) hbD.innerHTML=hb.description||''; }
+      if(hb.btnText!==undefined) setText('hbBtnText', hb.btnText||'');
+      var hbB=document.getElementById('hbBtn');
+      if(hbB){ if(hb.btnLink) hbB.href=hb.btnLink; hbB.style.display=(hb.btnText||hb.btnLink)?'':'none'; }
+      var hbW=document.getElementById('hbVideoWrap'), hbP=document.getElementById('hbVideoPh');
+      var fileUrl = hbVideoFileUrl(hb.videoUrl||'');
+      var emb = fileUrl ? '' : ytEmbedUrl(hb.videoUrl||'');
+      if(fileUrl && hbW){ hbW.innerHTML='<video src="'+escAttr(fileUrl)+'" class="absolute inset-0 w-full h-full object-cover bg-black" controls playsinline preload="metadata"></video>'; if(hbP) hbP.style.display='none'; }
+      else if(emb && hbW){ hbW.innerHTML='<iframe src="'+emb+'" title="How To Buy" class="absolute inset-0 w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>'; if(hbP) hbP.style.display='none'; }
+      else { if(hbW) hbW.innerHTML=''; if(hbP) hbP.style.display=''; }
+    }
+    if(sec.ebookCategory && sec.ebookCategory.title) setText('secEbookCategoryTitle', sec.ebookCategory.title);
+    if(sec.ebookCategory && sec.ebookCategory.subtitle){ var ebS=document.getElementById('secEbookCategorySub'); if(ebS){ ebS.textContent=sec.ebookCategory.subtitle||''; ebS.style.display=sec.ebookCategory.subtitle?'':'none'; } }
+    if(sec.popular && sec.popular.title) setText('secPopularTitle', sec.popular.title);
+    if(sec.latest && sec.latest.title) setText('secLatestTitle', sec.latest.title);
+    if(sec.ebooks && sec.ebooks.title) setText('secEbooksTitle', sec.ebooks.title);
+    if(sec.popularEbooks && sec.popularEbooks.title) setText('secPopularEbooksTitle', sec.popularEbooks.title);
+    if(sec.featured){
+      if(sec.featured.title) setText('secFeaturedTitle', sec.featured.title);
+      if(sec.featured.subtitle){ const e=document.getElementById('secFeaturedSub'); if(e) e.textContent=sec.featured.subtitle; }
+    }
+    if(sec.browseCategory && sec.browseCategory.title) setText('secBrowseCategoryTitle', sec.browseCategory.title);
+    if(sec.stats && sec.stats.title) setText('secStatsTitle', sec.stats.title);
+    if(sec.batchesSection && sec.batchesSection.title) setText('secBatchesTitle', sec.batchesSection.title);
+    try{ if(typeof window.__smMarkReady==='function') window.__smMarkReady('homepage'); else { document.documentElement.classList.remove('sm-loading'); document.documentElement.classList.add('sm-ready'); } }catch(e){ document.documentElement.classList.remove('sm-loading'); document.documentElement.classList.add('sm-ready'); }
+}
+(function(){
+  try{
+    if(window.__SM_BOOTSTRAP__ && window.__SM_BOOTSTRAP__.homePage){
+      applyHomePageData(window.__SM_BOOTSTRAP__.homePage);
+      return;
+    }
+    // fallback: fetch (no bootstrap, e.g. file://)
+    (async function(){
+      const res = await fetch('/api/public/homepage');
+      const json = await res.json();
+      if(!json.success || !json.data) { try{ if(typeof window.__smMarkReady==='function') window.__smMarkReady('homepage'); else { document.documentElement.classList.remove('sm-loading'); document.documentElement.classList.add('sm-ready'); } }catch(x){} return; }
+      applyHomePageData(json.data);
+    })();
+  }catch(e){ try{ if(typeof window.__smMarkReady==='function') window.__smMarkReady('homepage'); else { document.documentElement.classList.remove('sm-loading'); document.documentElement.classList.add('sm-ready'); } }catch(x){} console.warn('homepage load failed', e.message); }
+})();
+</script>
+<script>
+// Admin -> Home Page -> Row/Limit/Cols setting (unlimited 100, row*cols)
+function smHpLimit(secKey, defLimit){
+  try{
+    var hp = (window.__SM_BOOTSTRAP__ && window.__SM_BOOTSTRAP__.homePage) || window.__SM_HP__ || null;
+    var cfg = hp && hp.sections ? hp.sections[secKey] : null;
+    if(cfg){
+      var lim = parseInt(cfg.limit, 10);
+      if(lim > 0) return Math.min(100, lim);
+      var rows = parseInt(cfg.rows, 10);
+      var cols = parseInt(cfg.cols, 10) || 4;
+      if(rows > 0) return Math.min(100, rows * cols);
+    }
+  }catch(e){}
+  return defLimit;
+}
+// Popular Courses - live from Admin Panel (same card design, real data)
+// Desktop-e 4 ta dekhabe, 1 ta kore simple slide hobe (3s auto, right-to-left, no blink). Mobile-e swipe + auto scroll 1 ta kore
+var popList = [], popPage = 0;
+var POP_VISIBLE = 4, POP_STEP = 1;
+var SM_AUTO_MS = 3000;
+function smStepCount(n, step){ n = n || 0; step = step || 2; if(n <= 4) return 1; return Math.max(1, Math.ceil(n / step)); }
+function smWindowSet(start, visible, total){
+  var s = {};
+  if(total <= 0) return s;
+  if(total <= visible){ for(var k = 0; k < total; k++) s[k] = 1; return s; }
+  for(var j = 0; j < visible; j++) s[(start + j) % total] = 1;
+  return s;
+}
+function smIsDesktop(){ try{ return window.matchMedia('(min-width:640px)').matches; }catch(e){ return window.innerWidth >= 640; } }
+/* Professional slide: page bodlale sudhu notun dhoka card right-to-left (ba left-to-right) staggered slide-in.
+ * Ager moto sob card eksathe jump korbe na — tai smooth/professional lagbe. */
+window.__smPrevVis = window.__smPrevVis || {};
+function smAnimateEnter(boxId, vis, dir){
+  try{
+    var box = document.getElementById(boxId);
+    if(!box){ window.__smPrevVis[boxId] = Object.assign({}, vis); return; }
+    var prev = window.__smPrevVis[boxId] || {};
+    var kids = box.children, n = 0;
+    var cls = (dir && dir < 0) ? 'sm-enter-l' : 'sm-enter';
+    for(var i = 0; i < kids.length; i++){
+      var el = kids[i];
+      if(!el.classList) continue;
+      var nowVis = !!vis[i], wasVis = !!prev[i];
+      el.classList.remove('sm-enter', 'sm-enter-l');
+      if(nowVis && !wasVis && smIsDesktop()){
+        void el.offsetWidth;
+        el.style.setProperty('--sm-i', n++);
+        el.classList.add(cls);
+      } else {
+        el.style.removeProperty('--sm-i');
+      }
+    }
+    window.__smPrevVis[boxId] = Object.assign({}, vis);
+  }catch(e){}
+}
+/* Manual arrow/dot click-er por 6s auto-play hold (click vs auto fight korbe na) */
+function smManual(key){ try{ window.__smManualT = window.__smManualT || {}; window.__smManualT[key] = Date.now(); }catch(e){} }
+function smManualHold(key, ms){ try{ var t = (window.__smManualT || {})[key] || 0; return (Date.now() - t) < (ms || 6000); }catch(e){ return false; } }
+function smMobileStep(boxId){
+  // Mobile: 1 ta card right-to-left smooth scroll; seshe instant wrap (rewind animation nei)
+  var box = document.getElementById(boxId);
+  if(!box || smIsDesktop() || document.hidden) return false;
+  if(box.scrollWidth <= box.clientWidth + 10) return false;
+  var card = box.querySelector(':scope > div, :scope > button');
+  var step = card ? (card.getBoundingClientRect().width + 12) : 180;
+  var nearEnd = (box.scrollLeft + box.clientWidth) >= (box.scrollWidth - 20);
+  if(nearEnd){ box.scrollTo({left: 0, behavior: 'auto'}); }
+  else { box.scrollBy({left: step, behavior: 'smooth'}); }
+  return true;
+}
+function smBindPause(wrapId, boxId, key){
+  // Hover/touch-e auto pause, chere dile resume
+  try{
+    var wrap = document.getElementById(wrapId);
+    var box = document.getElementById(boxId);
+    if(!wrap && !box) return;
+    var target = wrap || box;
+    window.__smPause = window.__smPause || {};
+    target.addEventListener('mouseenter', function(){ window.__smPause[key] = true; });
+    target.addEventListener('mouseleave', function(){ window.__smPause[key] = false; });
+    if(box){
+      ['touchstart','pointerdown','wheel'].forEach(function(ev){
+        box.addEventListener(ev, function(){ window.__smPause[key] = true; clearTimeout(box._smResumeT); }, {passive:true});
+      });
+      ['touchend','pointerup','mouseleave'].forEach(function(ev){
+        box.addEventListener(ev, function(){ clearTimeout(box._smResumeT); box._smResumeT = setTimeout(function(){ window.__smPause[key] = false; }, 4000); }, {passive:true});
+      });
+    }
+  }catch(e){}
+}
+window.popNav = function(dir, auto){
+  var pages = smStepCount(popList.length, POP_STEP);
+  popPage = (popPage + dir + pages) % pages;
+  if(!auto) smManual('popular');
+  applyPopPage(true, dir);
+};
+window.popGo = function(p){
+  var pages = smStepCount(popList.length, POP_STEP);
+  var dir = p >= popPage ? 1 : -1;
+  popPage = Math.max(0, Math.min(pages - 1, p));
+  smManual('popular');
+  applyPopPage(true, dir);
+};
+function applyPopPage(animate, dir){
+  var box = document.getElementById('popularScroll');
+  if(!box || !popList.length) return;
+  var pages = smStepCount(popList.length, POP_STEP);
+  if(popPage > pages - 1) popPage = pages - 1;
+  if(popPage < 0) popPage = 0;
+  var start = (popPage * POP_STEP) % popList.length;
+  var vis = smWindowSet(start, POP_VISIBLE, popList.length);
+  var kids = box.children;
+  for(var i = 0; i < kids.length; i++){
+    if(kids[i].classList) kids[i].classList.toggle('pop-off', !vis[i]);
+  }
+  if(animate) smAnimateEnter('popularScroll', vis, dir);
+  else { try{ window.__smPrevVis['popularScroll'] = Object.assign({}, vis); }catch(e){} }
+  var showAr = pages > 1;
+  document.querySelectorAll('[data-pop-arrow]').forEach(function(b){ b.style.display = showAr ? '' : 'none'; });
+  var dots = document.getElementById('popularDots');
+  if(dots){
+    dots.style.display = showAr ? '' : 'none';
+    var html = '';
+    for(var d = 0; d < pages; d++){
+      html += '<button onclick="window.popGo('+d+')" aria-label="Page '+(d+1)+'" class="'+(d===popPage ? 'w-5 bg-[#1A56FF]' : 'w-1.5 bg-slate-200 hover:bg-slate-300')+' h-1.5 rounded-full transition-all"></button>';
+    }
+    dots.innerHTML = html;
+  }
+}
+(async function loadPopular(){
+  const box = document.getElementById('popularScroll');
+  if (!box) return;
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+  const icons = { academic: 'fa-atom', admission: 'fa-building-columns', revision: 'fa-rotate', skill: 'fa-laptop-code', ebook: 'fa-book' };
+  function paintPopular(list) {
+    popList = list || [];
+    popPage = 0;
+    if (!list.length) {
+      box.innerHTML = '<p class="min-w-full text-center text-[13px] text-slate-400 py-10 sm:col-span-4">No courses yet — Admin Panel থেকে course add করুন</p>';
+      box._smKey = 'empty';
+      document.querySelectorAll('[data-pop-arrow]').forEach(function(b){ b.style.display = 'none'; });
+      var dz = document.getElementById('popularDots');
+      if(dz) dz.style.display = 'none';
+      return;
+    }
+    box.innerHTML = list.map(c => {
+      const color = c.batchColor || '#4F46E5';
+      const icon = icons[String(c.categorySlug || '').toLowerCase()] || 'fa-book-open';
+      const cover = c.thumbnail
+        ? `<img src="${esc(c.thumbnail)}" alt="${esc(c.title)}" class="w-full h-full object-cover" loading="lazy">`
+        : `<div class="w-full h-full flex items-center justify-center" style="background:linear-gradient(135deg,${esc(color)} 0%,#0F2043 100%)"><i class="fa-solid ${icon} text-white/25 text-[30px] sm:text-[44px]"></i></div>`;
+      const off = c.discount ? `<span class="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 px-1.5 sm:px-2 py-0.5 rounded-full bg-[#16A34A] text-white text-[9px] sm:text-[10px] font-bold shadow">-${c.discount}%</span>` : '';
+      const oldP = (c.oldPrice && Number(c.oldPrice) > Number(c.price)) ? `<span class="hidden sm:inline text-[11px] text-slate-400 line-through font-semibold">৳${esc(c.oldPrice)}</span>` : '';
+      const sub = c.teacher ? ('By ' + c.teacher) : (c.platformName || c.categoryName || '');
+      return `
+      <div onclick="window.location.href='course.html?id=${c.id}'" class="min-w-[160px] max-w-[160px] sm:min-w-0 sm:max-w-none snap-start flex-shrink-0 bg-white rounded-[12px] sm:rounded-[14px] overflow-hidden border border-slate-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-lg hover:-translate-y-0.5 transition flex flex-col cursor-pointer">
+        <div class="relative aspect-video overflow-hidden bg-[#0F2043]">
+          ${cover}
+          <span class="absolute top-1.5 left-1.5 sm:top-2 sm:left-2 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full bg-black/45 backdrop-blur border border-white/25 text-white text-[9px] sm:text-[10px] font-bold truncate max-w-[calc(100%-16px)]">${esc(c.batchName || 'Course')}</span>
+          ${off}
+        </div>
+        <div class="p-2.5 sm:p-3 flex flex-col flex-1">
+          <div class="flex items-center gap-1 sm:gap-1.5 mb-1 sm:mb-1.5">
+            ${c.categoryName ? `<span class="px-1.5 sm:px-2 py-0.5 rounded-full bg-[#EDE9FF] text-[#4F46E5] text-[9px] sm:text-[10px] font-bold truncate">${esc(c.categoryName)}</span>` : ''}
+            ${c.platformName ? `<span class="hidden sm:inline px-2 py-0.5 rounded-full bg-[#E6F4EA] text-[#16A34A] text-[10px] font-bold">${esc(c.platformName)}</span>` : ''}
+          </div>
+          <h3 class="text-[12px] sm:text-[13px] font-bold text-[#0F2043] leading-snug line-clamp-2 min-h-[32px] sm:min-h-[36px]">${esc(c.title)}</h3>
+          <p class="text-[10px] sm:text-[11px] text-slate-500 mt-0.5 sm:mt-1 truncate">${esc(sub)}</p>
+          <div class="mt-auto pt-2 sm:pt-2.5 flex items-center justify-between gap-1.5 sm:gap-2">
+            <div class="flex items-baseline gap-1 min-w-0">
+              <span class="text-[#1A56FF] font-extrabold text-[13px] sm:text-[15px] truncate">৳${esc(c.price)}</span>${oldP}
+            </div>
+            <div class="flex items-center gap-1 sm:gap-1.5 flex-shrink-0">
+              <button data-sm-add="${c.id}" onclick="event.stopPropagation()" title="Add to cart" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#EEF2FF] flex items-center justify-center hover:bg-[#1A56FF] hover:text-white text-[#1A56FF] transition flex-shrink-0"><i class="fa-solid fa-cart-shopping text-[11px] sm:text-[12px]"></i></button>
+              <button data-sm-buy="${c.id}" onclick="event.stopPropagation()" class="px-2 sm:px-3 py-1.5 rounded-full bg-[#1A56FF] hover:bg-[#1445D6] text-white text-[10px] sm:text-[11px] font-bold transition whitespace-nowrap">Buy Now</button>
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+    box._smKey = JSON.stringify(list.map(c => c.id));
+    applyPopPage(false);
+  }
+  try {
+    var popLimit = smHpLimit('popular', 8);
+    // instant: server-injected catalog (zero network), then background revalidate
+    try {
+      var __cat = window.__SM_BOOTSTRAP__ && window.__SM_BOOTSTRAP__.catalog;
+      if (__cat && Array.isArray(__cat.courses) && __cat.courses.length) paintPopular(__cat.courses.slice(0, popLimit));
+    } catch (e) {}
+    const r = await fetch('/api/public/courses?limit=' + popLimit);
+    const j = await r.json();
+    let list = (j.data || []).slice(0, popLimit);
+    if (box._smKey !== JSON.stringify(list.map(c => c.id))) paintPopular(list);
+  } catch (e) {
+    if (!box._smKey) box.innerHTML = '<p class="min-w-full text-center text-[13px] text-slate-400 py-10 sm:col-span-4">Could not load courses</p>';
+  }
+})();
+// Popular auto: 3s por por right-to-left smooth slide (desktop 1 ta kore, mobile 1-card scroll)
+(function smPopularAuto(){
+  smBindPause('popularWrap', 'popularScroll', 'popular');
+  setInterval(function(){
+    try{
+      if(document.hidden) return;
+      if(window.__smPause && window.__smPause.popular) return;
+      if(smManualHold('popular')) return;
+      if(smIsDesktop()){
+        if(smStepCount(popList.length, POP_STEP) > 1) window.popNav(1, true);
+      } else {
+        smMobileStep('popularScroll');
+      }
+    }catch(e){}
+  }, SM_AUTO_MS);
+})();
+</script>
+<script>
+// E-Book Category batch cards + shared e-book card renderer
+window.smEsc = window.smEsc || (s => String(s == null ? '' : s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m])));
+window.smRenderEbookCards = function(box, list, emptyMsg) {
+  const esc = window.smEsc;
+  const grads = [
+    'linear-gradient(135deg,#0F5C3A 0%,#147A4A 60%,#0B6B3A 100%)',
+    'linear-gradient(135deg,#0B3A8A 0%,#1550C0 60%,#0F3DAA 100%)',
+    'linear-gradient(135deg,#6D28D9 0%,#8B5CF6 60%,#5B21B6 100%)',
+    'linear-gradient(135deg,#B45309 0%,#D97706 60%,#92400E 100%)'
+  ];
+  if (!list.length) {
+    box.innerHTML = '<p class="min-w-full text-center text-[13px] text-slate-400 py-10 sm:col-span-4">' + esc(emptyMsg || 'No e-books yet — Admin Panel থেকে add করুন') + '</p>';
+    return;
+  }
+  box.innerHTML = list.map((b, i) => {
+      const price = Number(b.price) || 0, old = Number(b.oldPrice) || 0;
+      const off = old > price && price > 0 ? Math.round(((old - price) / old) * 100) : 0;
+      const cover = b.cover
+        ? `<img src="${esc(b.cover)}" alt="${esc(b.title)}" class="absolute inset-0 w-full h-full object-contain" loading="lazy">`
+        : `<div class="absolute inset-0 flex items-center justify-center" style="background:${grads[i % grads.length]}"><i class="fa-solid fa-book-open text-white/30 text-[30px] sm:text-[44px]"></i></div>`;
+      const priceRow = price > 0
+        ? `<span class="text-[#1A56FF] font-extrabold text-[13px] sm:text-[15px]">৳${price}</span>${old > price ? `<span class="text-[10px] sm:text-[11px] text-slate-400 line-through font-semibold">৳${old}</span>` : ''}`
+        : `<span class="text-[#16A34A] font-extrabold text-[12px] sm:text-[13px]">FREE</span>`;
+      return `
+      <div onclick="window.location.href='ebook.html?id=${b.id}'" class="min-w-[148px] max-w-[148px] sm:min-w-0 sm:max-w-none snap-start flex-shrink-0 bg-white rounded-[12px] sm:rounded-[14px] overflow-hidden border border-slate-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-lg hover:-translate-y-0.5 transition flex flex-col cursor-pointer">
+        <div class="block relative h-[104px] sm:h-auto sm:aspect-[4/3] overflow-hidden bg-[#F1F5F9]">
+          ${cover}
+          ${off ? `<span class="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 px-1.5 sm:px-2 py-0.5 rounded-full bg-[#16A34A] text-white text-[9px] sm:text-[10px] font-bold shadow">-${off}%</span>` : ''}
+          ${price <= 0 ? `<span class="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 px-1.5 sm:px-2 py-0.5 rounded-full bg-[#16A34A] text-white text-[9px] sm:text-[10px] font-bold shadow">FREE</span>` : ''}
+          ${b.downloads ? `<span class="absolute bottom-1.5 right-1.5 sm:bottom-2 sm:right-2 px-1.5 sm:px-2 py-0.5 rounded-full bg-black/45 backdrop-blur border border-white/25 text-white text-[9px] sm:text-[10px] font-bold"><i class="fa-solid fa-download mr-0.5"></i>${b.downloads}</span>` : ''}
+        </div>
+        <div class="p-2.5 sm:p-3 flex flex-col flex-1">
+          ${b.batchName ? `<div class="flex items-center gap-1.5 flex-wrap mb-1 sm:mb-1.5"><span class="px-1.5 sm:px-2 py-0.5 rounded-full bg-[#E6F0FF] text-[#1A56FF] text-[9px] sm:text-[10px] font-bold truncate max-w-[110px]">${esc(b.batchName)}</span></div>` : ''}
+          <h4 class="text-[12px] sm:text-[13px] font-bold text-[#0F2043] leading-snug line-clamp-2 min-h-[32px] sm:min-h-[36px]">${esc(b.title)}</h4>
+          <p class="text-[10px] sm:text-[11px] text-slate-500 mt-0.5 sm:mt-1 truncate">${esc(b.author ? 'By ' + b.author : (b.details || ''))}</p>
+          <div class="mt-auto pt-2 sm:pt-2.5 flex items-center justify-between gap-1.5 sm:gap-2">
+            <div class="flex items-baseline gap-1 min-w-0">${priceRow}</div>
+            ${price > 0
+              ? `<div class="flex items-center gap-1 sm:gap-1.5 flex-shrink-0"><button data-sm-add="${b.id}" data-sm-kind="ebook" onclick="event.stopPropagation()" title="Add to cart" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#EEF2FF] flex items-center justify-center hover:bg-[#1A56FF] hover:text-white text-[#1A56FF] transition flex-shrink-0"><i class="fa-solid fa-cart-shopping text-[11px] sm:text-[12px]"></i></button><button data-sm-buy="${b.id}" data-sm-kind="ebook" onclick="event.stopPropagation()" class="px-2 sm:px-3 py-1.5 rounded-full bg-[#1A56FF] hover:bg-[#1445D6] text-white text-[10px] sm:text-[11px] font-bold transition whitespace-nowrap">Buy Now</button></div>`
+              : `<a href="/api/public/ebooks/${b.id}/download" onclick="event.stopPropagation()" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#EEF2FF] flex items-center justify-center hover:bg-[#1A56FF] hover:text-white text-[#1A56FF] transition flex-shrink-0" title="Download"><i class="fa-solid fa-download text-[11px] sm:text-[12px]"></i></a>`}
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  };
+
+// Ebooks paging + dots (desktop 4/page, mobile swipe) — Popular-er moto
+var ebList = [], ebPage = 0, popEbList = [], popEbPage = 0;
+var EB_VISIBLE = 4, EB_STEP = 1;
+function smApplyEbPage(boxId, dotsId, arrowSel, list, page, animate, goFnName, dir){
+  var box = document.getElementById(boxId);
+  if(!box || !list.length) return page;
+  var pages = smStepCount(list.length, EB_STEP);
+  if(page > pages - 1) page = pages - 1;
+  if(page < 0) page = 0;
+  var start = (page * EB_STEP) % list.length;
+  var vis = smWindowSet(start, EB_VISIBLE, list.length);
+  var kids = box.children;
+  for(var i = 0; i < kids.length; i++){
+    if(kids[i].classList) kids[i].classList.toggle('pop-off', !vis[i]);
+  }
+  if(animate) smAnimateEnter(boxId, vis, dir);
+  else { try{ window.__smPrevVis[boxId] = Object.assign({}, vis); }catch(e){} }
+  var showAr = pages > 1;
+  document.querySelectorAll('[' + arrowSel + ']').forEach(function(b){ b.style.display = showAr ? '' : 'none'; });
+  var dots = document.getElementById(dotsId);
+  if(dots){
+    dots.style.display = showAr ? '' : 'none';
+    var html = '';
+    for(var d = 0; d < pages; d++){
+      html += '<button onclick="window.' + goFnName + '(' + d + ')" aria-label="Page ' + (d+1) + '" class="' + (d===page ? 'w-5 bg-[#1A56FF]' : 'w-1.5 bg-slate-200 hover:bg-slate-300') + ' h-1.5 rounded-full transition-all"></button>';
+    }
+    dots.innerHTML = html;
+  }
+  return page;
+}
+window.ebNav = function(dir, auto){
+  var pages = smStepCount(ebList.length, EB_STEP);
+  ebPage = (ebPage + dir + pages) % pages;
+  if(!auto) smManual('ebooks');
+  ebPage = smApplyEbPage('ebooksGrid', 'ebooksDots', 'data-eb-arrow', ebList, ebPage, true, 'ebGo', dir);
+};
+window.ebGo = function(p){
+  var pages = smStepCount(ebList.length, EB_STEP);
+  var dir = p >= ebPage ? 1 : -1;
+  ebPage = Math.max(0, Math.min(pages - 1, p));
+  smManual('ebooks');
+  ebPage = smApplyEbPage('ebooksGrid', 'ebooksDots', 'data-eb-arrow', ebList, ebPage, true, 'ebGo', dir);
+};
+window.popEbNav = function(dir, auto){
+  var pages = smStepCount(popEbList.length, EB_STEP);
+  popEbPage = (popEbPage + dir + pages) % pages;
+  if(!auto) smManual('popEbooks');
+  popEbPage = smApplyEbPage('popularEbooksGrid', 'popularEbooksDots', 'data-peb-arrow', popEbList, popEbPage, true, 'popEbGo', dir);
+};
+window.popEbGo = function(p){
+  var pages = smStepCount(popEbList.length, EB_STEP);
+  var dir = p >= popEbPage ? 1 : -1;
+  popEbPage = Math.max(0, Math.min(pages - 1, p));
+  smManual('popEbooks');
+  popEbPage = smApplyEbPage('popularEbooksGrid', 'popularEbooksDots', 'data-peb-arrow', popEbList, popEbPage, true, 'popEbGo', dir);
+};
+function smAfterEbPaint(boxId, dotsId, arrowSel, list, goFnName){
+  var box = document.getElementById(boxId);
+  if(!box) return;
+  if(!list.length){
+    document.querySelectorAll('[' + arrowSel + ']').forEach(function(b){ b.style.display = 'none'; });
+    var dz = document.getElementById(dotsId);
+    if(dz) dz.style.display = 'none';
+    return;
+  }
+  if(boxId === 'ebooksGrid'){ ebPage = 0; ebPage = smApplyEbPage(boxId, dotsId, arrowSel, list, ebPage, false, goFnName); }
+  else { popEbPage = 0; popEbPage = smApplyEbPage(boxId, dotsId, arrowSel, list, popEbPage, false, goFnName); }
+}
+
+// E-Books - live from Admin Panel (E-Book Manage) - Row/Limit Admin theke
+(async function loadEbooks(){
+  const box = document.getElementById('ebooksGrid');
+  if (!box) return;
+  try {
+    var ebLimit = smHpLimit('ebooks', 4);
+    // instant: server-injected catalog (zero network), then background revalidate
+    try {
+      var __catEb = window.__SM_BOOTSTRAP__ && window.__SM_BOOTSTRAP__.catalog;
+      if (__catEb && Array.isArray(__catEb.ebooks) && __catEb.ebooks.length) {
+        ebList = __catEb.ebooks.slice(0, ebLimit);
+        window.smRenderEbookCards(box, ebList);
+        box._smKey = JSON.stringify(ebList.map(b => b.id));
+        smAfterEbPaint('ebooksGrid', 'ebooksDots', 'data-eb-arrow', ebList, 'ebGo');
+      }
+    } catch (e) {}
+    const r = await fetch('/api/public/ebooks?limit=' + ebLimit);
+    const j = await r.json();
+    var list = (j.data || []).slice(0, ebLimit);
+    if (box._smKey !== JSON.stringify(list.map(b => b.id))) {
+      ebList = list;
+      window.smRenderEbookCards(box, list);
+      box._smKey = JSON.stringify(list.map(b => b.id));
+      smAfterEbPaint('ebooksGrid', 'ebooksDots', 'data-eb-arrow', ebList, 'ebGo');
+    }
+  } catch (e) {
+    if (!box._smKey) box.innerHTML = '<p class="min-w-full text-center text-[13px] text-slate-400 py-10 sm:col-span-4">Could not load e-books</p>';
+  }
+})();
+
+// Popular Ebooks (most downloaded) - Row/Limit Admin theke
+(async function loadPopularEbooks(){
+  const box = document.getElementById('popularEbooksGrid');
+  if (!box) return;
+  const byDl = (a, b) => (Number(b.downloads) || 0) - (Number(a.downloads) || 0);
+  try {
+    var popEbLimit = smHpLimit('popularEbooks', 4);
+    // instant: server-injected catalog (zero network), then background revalidate
+    try {
+      var __catPop = window.__SM_BOOTSTRAP__ && window.__SM_BOOTSTRAP__.catalog;
+      if (__catPop && Array.isArray(__catPop.ebooks) && __catPop.ebooks.length) {
+        var quick = __catPop.ebooks.slice().sort(byDl).slice(0, popEbLimit);
+        popEbList = quick;
+        window.smRenderEbookCards(box, quick);
+        box._smKey = JSON.stringify(quick.map(b => b.id));
+        smAfterEbPaint('popularEbooksGrid', 'popularEbooksDots', 'data-peb-arrow', popEbList, 'popEbGo');
+      }
+    } catch (e) {}
+    const r = await fetch('/api/public/ebooks?sort=popular&limit=' + popEbLimit);
+    const j = await r.json();
+    var list = (j.data || []).slice(0, popEbLimit);
+    if (box._smKey !== JSON.stringify(list.map(b => b.id))) {
+      popEbList = list;
+      window.smRenderEbookCards(box, list);
+      box._smKey = JSON.stringify(list.map(b => b.id));
+      smAfterEbPaint('popularEbooksGrid', 'popularEbooksDots', 'data-peb-arrow', popEbList, 'popEbGo');
+    }
+  } catch (e) {
+    if (!box._smKey) box.innerHTML = '<p class="min-w-full text-center text-[13px] text-slate-400 py-10 sm:col-span-4">Could not load popular e-books</p>';
+  }
+})();
+
+// Ebooks + Popular Ebooks auto: 3s por por right-to-left smooth slide (desktop page, mobile 1-card scroll)
+(function smEbooksAuto(){
+  smBindPause('ebooksWrap', 'ebooksGrid', 'ebooks');
+  smBindPause('popularEbooksWrap', 'popularEbooksGrid', 'popEbooks');
+  setInterval(function(){
+    try{
+      if(document.hidden) return;
+      if(!(window.__smPause && window.__smPause.ebooks)){
+        if(smManualHold('ebooks')) return;
+        if(smIsDesktop()){
+          if(smStepCount(ebList.length, EB_STEP) > 1) window.ebNav(1, true);
+        } else {
+          smMobileStep('ebooksGrid');
+        }
+      }
+    }catch(e){}
+  }, (typeof SM_AUTO_MS !== 'undefined' ? SM_AUTO_MS : 3000));
+  setInterval(function(){
+    try{
+      if(document.hidden) return;
+      if(!(window.__smPause && window.__smPause.popEbooks)){
+        if(smManualHold('popEbooks')) return;
+        if(smIsDesktop()){
+          if(smStepCount(popEbList.length, EB_STEP) > 1) window.popEbNav(1, true);
+        } else {
+          smMobileStep('popularEbooksGrid');
+        }
+      }
+    }catch(e){}
+  }, (typeof SM_AUTO_MS !== 'undefined' ? SM_AUTO_MS : 3000) + 400);
+})();
+
+// E-Book Category batches (Popular-er upore) — Row/Limit Admin theke, click korle ebooks.html page-e PDF list khulbe
+(async function loadEbookBatches(){
+  const box = document.getElementById('ebookBatchGrid');
+  if (!box) return;
+  const esc = window.smEsc;
+  function getEbbCols(){
+    try{
+      var hp = (window.__SM_BOOTSTRAP__ && window.__SM_BOOTSTRAP__.homePage) || window.__SM_HP__ || null;
+      var cfg = hp && hp.sections ? hp.sections.ebookCategory : null;
+      var c = parseInt(cfg && cfg.cols,10);
+      if(c>=2 && c<=6) return c;
+    }catch(e){}
+    return 4;
+  }
+  function applyEbbGrid(){
+    var cols = getEbbCols();
+    box.className = 'grid gap-3 sm:gap-4 pb-2';
+    box.style.display = 'grid';
+    box.style.gridTemplateColumns = `repeat(${cols}, minmax(0,1fr))`;
+  }
+  function paintEbb(batches, ebooks) {
+    if (!batches.length) {
+      box.innerHTML = '<p class="min-w-full text-center text-[13px] text-slate-400 py-10 sm:col-span-4">No e-book batches yet — Admin Panel → E-Book Batch থেকে create করুন</p>';
+      box._smKey = 'empty';
+      return;
+    }
+    applyEbbGrid();
+    if(!box._smEbbBound){
+      box._smEbbBound=true;
+      window.addEventListener('resize', applyEbbGrid);
+    }
+    box.innerHTML = batches.map(b => {
+      return `
+      <button data-ebb="${b.id}" class="bg-white rounded-[14px] border border-slate-100 shadow-[0_2px_10px_rgba(0,0,0,0.04)] p-3 sm:p-4 flex flex-col items-center justify-center gap-2 hover:shadow-md hover:-translate-y-0.5 transition min-h-[96px] sm:min-h-[110px]">
+        <div class="w-[44px] h-[44px] rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden" style="background:${esc(b.color || '#E0F2FE')}22">
+          ${b.iconUrl ? `<img src="${esc(b.iconUrl)}" alt="${esc(b.name)}" class="w-full h-full object-contain p-1.5">` : `<i class="fa-solid ${esc(b.icon || 'fa-book-open')} text-[18px]" style="color:${esc(b.color || '#0EA5E9')}"></i>`}
+        </div>
+        <span class="text-[11px] sm:text-[12px] font-bold text-[#0F2043] text-center leading-tight">${esc(b.name)}</span>
+      </button>`;
+    }).join('');
+    box._smKey = JSON.stringify(batches.map(b => b.id));
+    box.querySelectorAll('[data-ebb]').forEach(a => {
+      // Category button-e click korle alada page-e PDF list khulbe
+      a.addEventListener('click', () => {
+        window.location.href = 'ebooks.html?ebookBatch=' + encodeURIComponent(a.dataset.ebb);
+      });
+    });
+  }
+  try {
+    var catLimit = smHpLimit('ebookCategory', 8);
+    // instant: server-injected catalog (zero network)
+    try {
+      var __catEb2 = window.__SM_BOOTSTRAP__ && window.__SM_BOOTSTRAP__.catalog;
+      if (__catEb2 && Array.isArray(__catEb2.ebookBatches) && __catEb2.ebookBatches.length) {
+        paintEbb(__catEb2.ebookBatches.slice(0, catLimit), __catEb2.ebooks || []);
+      }
+    } catch (e) {}
+    const [bRes, eRes] = await Promise.all([fetch('/api/public/ebook-batches'), fetch('/api/public/ebooks?limit=200')]);
+    const bj = await bRes.json();
+    const ej = await eRes.json();
+    let batches = (bj.data || []).slice(0, catLimit);
+    const ebooks = ej.data || [];
+    if (box._smKey !== JSON.stringify(batches.map(b => b.id))) paintEbb(batches, ebooks);
+  } catch (e) {
+    if (!box._smKey) box.innerHTML = '<p class="min-w-full text-center text-[13px] text-slate-400 py-10 sm:col-span-4">Could not load e-book batches</p>';
+  }
+})();
+</script>
+<script>
+/* Hero search: Enter -> courses.html?q= + live course/ebook suggestions */
+(function(){
+  var input = document.getElementById('hpSearchInput');
+  if(!input) return;
+  var box = document.getElementById('hpSearchSug');
+  var btn = document.getElementById('hpSearchBtn');
+  // Hero section overflow-hidden — dropdown kete jeto. Tai box body-te fixed kore input-er niche bosai
+  if(box && !box._moved){
+    try{
+      document.body.appendChild(box);
+      box._moved = true;
+      box.style.position = 'fixed';
+      box.style.zIndex = '90';
+    }catch(e){}
+  }
+  function placeBox(){
+    if(!box || !input) return;
+    try{
+      var r = input.getBoundingClientRect();
+      box.style.left = r.left + 'px';
+      box.style.width = r.width + 'px';
+      box.style.top = (r.bottom + 8) + 'px';
+      box.style.maxHeight = Math.max(180, Math.min(340, window.innerHeight - r.bottom - 24)) + 'px';
+    }catch(e){}
+  }
+  function goSearch(v){ location.href = 'courses.html' + (v ? '?q=' + encodeURIComponent(v) : ''); }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]); }); }
+  var timer = null, active = -1, urls = [];
+  function hide(){ if(!box) return; box.classList.add('hidden'); box.innerHTML=''; urls=[]; active=-1; }
+  function paintActive(){ if(!box) return; box.querySelectorAll('[data-hp-sug]').forEach(function(r,i){ r.style.background = (i===active) ? '#EEF2FF' : ''; }); }
+  function rowHtml(o){
+    var thumb = o.img ? '<img src="'+esc(o.img)+'" alt="" style="width:100%;height:100%;object-fit:cover">' : '<i class="fa-solid '+(o.type==='ebook'?'fa-book-open':'fa-book')+' text-[#1A56FF] text-[13px]"></i>';
+    var price = (Number(o.price)>0) ? '<span style="font-size:11px;font-weight:800;color:#0F2043;white-space:nowrap">৳'+esc(o.price)+'</span>' : '<span style="font-size:10px;font-weight:800;color:#16A34A;white-space:nowrap">FREE</span>';
+    return '<div style="width:34px;height:34px;border-radius:8px;background:#EEF2FF;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0">'+thumb+'</div>'
+      + '<div style="min-width:0;flex:1"><div style="font-size:12.5px;font-weight:700;color:#0F2043;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+esc(o.title)+'</div>'
+      + '<div style="font-size:10.5px;color:#64748B;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+esc(o.sub||'')+'</div></div>' + price;
+  }
+  function render(courses, ebooks, q){
+    urls = [];
+    var html = '';
+    function addRow(o){
+      urls.push(o.url);
+      return '<div data-hp-sug="'+(urls.length-1)+'" style="display:flex;align-items:center;gap:10px;padding:8px 12px;cursor:pointer">'+rowHtml(o)+'</div>';
+    }
+    if(courses && courses.length){
+      html += '<div style="padding:8px 12px 2px;font-size:10px;font-weight:800;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em">Courses</div>';
+      courses.forEach(function(c){ html += addRow({ url:'course.html?id='+c.id, type:'course', img:c.thumbnail, title:c.title, sub:(c.teacher||c.batchName||c.categoryName||''), price:Number(c.price)||0 }); });
+    }
+    if(ebooks && ebooks.length){
+      html += '<div style="padding:8px 12px 2px;font-size:10px;font-weight:800;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em">E-Books</div>';
+      ebooks.forEach(function(b){ html += addRow({ url:'ebook.html?id='+b.id, type:'ebook', img:b.cover, title:b.title, sub:(b.author?('By '+b.author):(b.ebookBatchName||b.batchName||'E-Book')), price:Number(b.price)||0 }); });
+    }
+    if(!urls.length){
+      html = '<div style="padding:14px;text-align:center;font-size:12px;color:#94A3B8">"'+esc(q)+'" — কিছু পাওয়া যায়নি</div>'
+        + '<button type="button" data-hp-all style="width:100%;padding:10px;font-size:12px;font-weight:800;color:#1A56FF;border-top:1px solid #F1F5F9">Try full search <i class="fa-solid fa-arrow-right" style="font-size:10px"></i></button>';
+    } else {
+      html += '<button type="button" data-hp-all style="width:100%;padding:10px;font-size:12px;font-weight:800;color:#1A56FF;border-top:1px solid #F1F5F9">See all results for "'+esc(q)+'" <i class="fa-solid fa-arrow-right" style="font-size:10px"></i></button>';
+    }
+    box.innerHTML = html;
+    active = -1;
+    box.classList.remove('hidden');
+    placeBox();
+    box.querySelectorAll('[data-hp-sug]').forEach(function(r){
+      r.addEventListener('mousedown', function(e){ e.preventDefault(); var u = urls[Number(r.getAttribute('data-hp-sug'))]; if(u) location.href = u; });
+      r.addEventListener('mousemove', function(){ active = Number(r.getAttribute('data-hp-sug')); paintActive(); });
+    });
+    var all = box.querySelector('[data-hp-all]');
+    if(all) all.addEventListener('mousedown', function(e){ e.preventDefault(); goSearch(q); });
+  }
+  async function lookup(q){
+    try{
+      var res = await Promise.all([
+        fetch('/api/public/courses?q='+encodeURIComponent(q)+'&limit=5').then(function(r){ return r.json(); }),
+        fetch('/api/public/ebooks?q='+encodeURIComponent(q)+'&limit=4').then(function(r){ return r.json(); })
+      ]);
+      if(input.value.trim() !== q) return;
+      render(res[0].data||[], res[1].data||[], q);
+    }catch(e){ hide(); }
+  }
+  input.addEventListener('input', function(){
+    var q = input.value.trim();
+    if(timer) clearTimeout(timer);
+    if(q.length < 2){ hide(); return; }
+    timer = setTimeout(function(){ lookup(q); }, 220);
+  });
+  input.addEventListener('focus', function(){ var q = input.value.trim(); if(q.length >= 2) lookup(q); });
+  input.addEventListener('blur', function(){ setTimeout(hide, 150); });
+  input.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){
+      if(active >= 0 && urls[active] && !box.classList.contains('hidden')){ e.preventDefault(); location.href = urls[active]; return; }
+      e.preventDefault(); goSearch(input.value.trim());
+    } else if(e.key === 'Escape'){ hide(); }
+    else if(e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+      if(box.classList.contains('hidden')) return;
+      var n = box.querySelectorAll('[data-hp-sug]').length;
+      if(!n) return;
+      e.preventDefault();
+      active = (e.key === 'ArrowDown') ? (active+1)%n : (active-1+n)%n;
+      paintActive();
+    }
+  });
+  if(btn) btn.addEventListener('click', function(){ goSearch(input.value.trim()); });
+  window.addEventListener('scroll', function(){ hide(); }, true);
+  window.addEventListener('resize', function(){ hide(); });
+  document.addEventListener('click', function(e){ if(!box || box.classList.contains('hidden')) return; try{ if(e.target.closest && (e.target.closest('#hpSearchSug') || e.target.closest('#hpSearchBtn') || e.target === input)) return; }catch(x){} hide(); });
+})();
+</script>
+<script src="assets/navbar.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

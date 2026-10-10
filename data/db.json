@@ -1,0 +1,2878 @@
+{
+  "settings": {
+    "emailEnabled": false,
+    "emailProvider": "smtp",
+    "senderName": "StudyMart",
+    "senderEmail": "",
+    "smtpHost": "smtp.gmail.com",
+    "smtpPort": "587",
+    "smtpSecure": false,
+    "smtpUser": "",
+    "smtpPass": "",
+    "sendgridApiKey": "",
+    "brevoApiKey": "",
+    "adminNotifyEnabled": false,
+    "adminNotifyEmail": "",
+    "maintenanceEnabled": false,
+    "maintenanceTitle": "Maintenance cholche ??",
+    "maintenanceMessage": "Amra site update korchi. Kichukkhon por abar aso.",
+    "maintenanceEta": "Get Back Tonight 11AM",
+    "siteName": "StudyMart",
+    "tagline": "",
+    "currency": "৳",
+    "telegram": "https://t.me/studymart",
+    "phone": "+8801700000000",
+    "email": "support@studymart.com",
+    "address": "Dhaka, Bangladesh",
+    "footerText": "",
+    "logoUrl": "/uploads/media/logo-1789977045736-074cfc905d45.jpg",
+    "logoAlt": "StudyMart Logo",
+    "noticeEnabled": true,
+    "noticeText": "Enroll Now & Get 20% Off!",
+    "noticeLink": "courses.html",
+    "noticeBg": "#3655ec",
+    "noticeColor": "#ffffff",
+    "noticeDismissible": true,
+    "googleLoginEnabled": true,
+    "googleClientId": "12313213211.apps.googleusercontent.com",
+    "piprapayEnabled": false,
+    "piprapayApiKey": "",
+    "piprapayBaseUrl": "",
+    "botToken": "8977778359:AAGOn-LfnMxEGOJ8sCgNlwzIFHh_LOqjkOY",
+    "telegramLinks": [
+      {
+        "label": "Group 1",
+        "url": "https://t.me/studymart"
+      },
+      {
+        "label": "Group 2",
+        "url": "https://t.me/studymart2"
+      }
+    ],
+    "referralEnabled": true,
+    "referralFriendOff": "10",
+    "referralCommission": "10",
+    "referralMinWithdraw": "100"
+  },
+  "homePage": {
+    "hero": {
+      "enabled": true,
+      "badge": "Smart Learning, Better Future",
+      "titleLine1": "Your Learning",
+      "titleLine2": "Journey",
+      "highlight": "Starts Here",
+      "description": "Explore our wide range of academic, admission<br> and skill development courses.",
+      "searchPlaceholder": "Search for courses, subjects or topics...",
+      "ctaText": "Explore Courses",
+      "ctaLink": "courses.html",
+      "imageUrl": "/uploads/media/hero-1789977045739-fce0efef65cf.png",
+      "imageAlt": "StudyMart Hero Image"
+    },
+    "sections": {
+      "categories": {
+        "enabled": true,
+        "title": "",
+        "limit": 26,
+        "cols": 4,
+        "rows": 0,
+        "layout": "grid",
+        "display": "grid",
+        "showArrows": true,
+        "equalHeight": true,
+        "batchIds": [],
+        "items": [
+          {
+            "id": "hsc26",
+            "name": "HSC 26",
+            "icon": "fa-graduation-cap",
+            "color": "#6366F1",
+            "bg": "#EEF2FF",
+            "link": "batch.html?batch=hsc26",
+            "enabled": true
+          },
+          {
+            "id": "hsc27",
+            "name": "HSC 27",
+            "icon": "fa-graduation-cap",
+            "color": "#6366F1",
+            "bg": "#EEF2FF",
+            "link": "batch.html?batch=hsc27",
+            "enabled": true
+          },
+          {
+            "id": "hsc28",
+            "name": "HSC 28",
+            "icon": "fa-graduation-cap",
+            "color": "#6366F1",
+            "bg": "#EEF2FF",
+            "link": "batch.html?batch=hsc28",
+            "enabled": true
+          },
+          {
+            "id": "ssc",
+            "name": "SSC",
+            "icon": "fa-book-open",
+            "color": "#6366F1",
+            "bg": "#EEF2FF",
+            "link": "batch.html?batch=ssc26",
+            "enabled": true
+          },
+          {
+            "id": "skill",
+            "name": "Skill Development",
+            "icon": "fa-briefcase",
+            "color": "#6366F1",
+            "bg": "#EEF2FF",
+            "link": "batch.html?batch=skill-development",
+            "enabled": true
+          }
+        ]
+      },
+      "ebookCategory": {
+        "enabled": true,
+        "title": "E-Book Category",
+        "subtitle": "",
+        "limit": 4,
+        "cols": 2,
+        "rows": 0
+      },
+      "popular": {
+        "enabled": true,
+        "title": "Popular Courses",
+        "subtitle": "",
+        "limit": 9,
+        "rows": 1
+      },
+      "latest": {
+        "enabled": false,
+        "title": "Latest Courses",
+        "subtitle": "",
+        "limit": 8,
+        "rows": 2
+      },
+      "ebooks": {
+        "enabled": true,
+        "title": "Ebooks",
+        "subtitle": "",
+        "limit": 8,
+        "rows": 2
+      },
+      "popularEbooks": {
+        "enabled": false,
+        "title": "Popular Ebooks",
+        "subtitle": "",
+        "limit": 8,
+        "rows": 2
+      },
+      "featured": {
+        "enabled": false,
+        "title": "Featured Courses",
+        "subtitle": "Hand-picked by the StudyMart team"
+      },
+      "howToBuy": {
+        "enabled": true,
+        "title": "How To Buy",
+        "subtitle": "How To Buy Course And PDF",
+        "description": "1. Pochonder course select kore <b>Buy Now</b> chap dao<br>2. bKash / Nagad / Rocket diye payment complete koro<br>3. Admin confirm korlei course tomar <b>Dashboard</b> e peye jabe",
+        "videoUrl": "https://youtu.be/DZ0ZGakAKsA",
+        "btnText": "Browse Courses",
+        "btnLink": "courses.html"
+      },
+      "stats": {
+        "enabled": true,
+        "title": "StudyMart at a Glance"
+      },
+      "batchesSection": {
+        "enabled": true,
+        "title": "Our Batches"
+      },
+      "browseCategory": {
+        "enabled": true,
+        "title": "Browse by Category"
+      },
+      "categoryTabs": {
+        "tabOrder": [
+          "academic",
+          "admission",
+          "revision"
+        ],
+        "cols": 3,
+        "perBatch": {
+          "c:1": [
+            "academic",
+            "revision",
+            "admission"
+          ],
+          "c:2": [
+            "admission",
+            "academic"
+          ]
+        }
+      }
+    }
+  },
+  "emailTemplates": {
+    "welcome": {
+      "name": "Welcome (new student)",
+      "enabled": true,
+      "subject": "Welcome to {{siteName}}, {{name}}!",
+      "body": "Hi {{name}},\nYour account has been created successfully.\nLog in to view your courses from the Dashboard.\n\n- {{siteName}} Team"
+    },
+    "order_pending": {
+      "name": "Order received (pending)",
+      "enabled": true,
+      "subject": "Order {{orderNo}} received - {{siteName}}",
+      "body": "Hi {{name}},\nWe have received your order {{orderNo}} ({{total}}).\nItems: {{items}}\nOnce your payment is confirmed, your courses will appear on the Dashboard.\n\n- {{siteName}} Team"
+    },
+    "order_confirmed": {
+      "name": "Order confirmed",
+      "enabled": true,
+      "subject": "Order {{orderNo}} confirmed!",
+      "body": "Hi {{name}},\nGreat news! Your order {{orderNo}} has been confirmed.\nItems: {{items}}\nStart learning right now from your Dashboard.\n\n- {{siteName}} Team"
+    },
+    "order_completed": {
+      "name": "Order completed",
+      "enabled": true,
+      "subject": "Order {{orderNo}} completed - enjoy!",
+      "body": "Hi {{name}},\nYour order {{orderNo}} is now complete.\nItems: {{items}}\nHappy learning!\n\n- {{siteName}} Team"
+    },
+    "order_cancelled": {
+      "name": "Order cancelled",
+      "enabled": false,
+      "subject": "Order {{orderNo}} cancelled",
+      "body": "Hi {{name}},\nYour order {{orderNo}} has been cancelled.\nPlease contact support if you think this is a mistake.\n\n- {{siteName}} Team"
+    },
+    "new_order_admin": {
+      "name": "Admin alert (new order)",
+      "enabled": true,
+      "subject": "New order {{orderNo}} - {{total}} ({{siteName}})",
+      "body": "A new order has arrived!\n\nOrder No: {{orderNo}}\nCustomer: {{name}} ({{phone}}, {{email}})\nItems: {{items}}\nTotal: {{total}}\nPayment: {{payment}}\nStatus: {{status}}\n\nPlease confirm it from Admin Panel > Orders.\n\n- {{siteName}}"
+    }
+  },
+  "admins": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "8d8ab056092a6dc11196e861f16c0ddc:5d916d3dcd21a34d8a7da25085e42c24b8f408ef234c154005ea110eb48b86fe",
+      "name": "Super Admin",
+      "role": "superadmin"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "createdAt": "2026-09-16T20:25:53.529Z",
+      "name": "Test Student",
+      "email": "student@test.com",
+      "phone": "01700000000",
+      "password": "ed70a1669160e22ff7fca6decf79431a:d4cc75d97c71cd37328bb7833d2d171c20c2e971241438487afdc263a9fb4a21",
+      "role": "student",
+      "status": "active",
+      "referralCode": "RUXYGU",
+      "walletBalance": 0,
+      "updatedAt": "2026-10-07T09:01:31.017Z"
+    },
+    {
+      "id": 2,
+      "createdAt": "2026-09-17T11:41:10.365Z",
+      "name": "Verify Test",
+      "email": "verify4652@test.com",
+      "phone": "",
+      "password": "b774a56959fad21f5f25d1f1de6d08c3:615f63985e87d33f4808fcd14f5ea79889989a7caf4f6c5672e84fdb00c712b0",
+      "role": "student",
+      "status": "active",
+      "updatedAt": "2026-10-07T09:01:31.021Z",
+      "referralCode": "FZUSDR",
+      "walletBalance": 0
+    },
+    {
+      "id": 3,
+      "createdAt": "2026-09-17T16:32:46.620Z",
+      "name": "fdgdfsg dfsgdfs",
+      "email": "shariourahmedx@gmail.com",
+      "phone": "",
+      "password": "2afed449dec175a80e50ba4d08b75a18:e7834dcea67f6603065e6c9ced0d34144fa5def4a99b5b94ecb558900131f1b4",
+      "role": "student",
+      "status": "active",
+      "referralCode": "U4RHE6",
+      "walletBalance": 0,
+      "updatedAt": "2026-10-07T09:01:31.023Z"
+    },
+    {
+      "id": 4,
+      "createdAt": "2026-09-17T17:04:47.424Z",
+      "name": "user",
+      "email": "user@gmail.com",
+      "phone": "",
+      "password": "ff25da2d63a7ef410073bc49084c0d6e:df11c23aa7be0694faee6a6ddc22dcbd4be4a909444b54b91f231ca0772ebde6",
+      "role": "student",
+      "status": "active",
+      "enrolledCourses": [
+        "5"
+      ],
+      "revokedCourses": [
+        "14",
+        "19",
+        "18",
+        "17",
+        "3"
+      ],
+      "updatedAt": "2026-10-07T14:32:37.756Z",
+      "referralCode": "5H4MYP",
+      "walletBalance": 3301
+    },
+    {
+      "id": 5,
+      "createdAt": "2026-09-22T08:34:52.040Z",
+      "name": "user1",
+      "email": "user1@gmail.com",
+      "phone": "",
+      "password": "1f4e459bdf4ab0ff03c23200a58613f8:29050c8dd9871bd8da3f23325dbe1adcebc28f113c7586890ecf0862febd8582",
+      "role": "student",
+      "status": "active",
+      "referralCode": "TMUHBU",
+      "walletBalance": 0,
+      "updatedAt": "2026-10-07T09:01:31.028Z"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "createdAt": "2026-09-17T06:49:10.946Z",
+      "title": "মেডিকেল এ্যাডমিশন প্রোগ্রাম - ২০২৬",
+      "batchId": 1,
+      "categoryId": 3,
+      "platformId": 4,
+      "teacher": "",
+      "price": 5000,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 60,
+      "thumbnail": "/uploads/media/course-1-1789977045742-c50414caeea3.jpg",
+      "description": "🏫 অফলাইন ক্লাস: ৪০টি\n💻 অনলাইন ক্লাস: ৩১১ টি\n\n🔸 অনলাইন রেকর্ডেড Special Concept Clearing Class - ৮০ টি\n🔸 সহায়ক বইয়ের উপর Extra Book Info Class - ৩২ টি\n🔸 Text Book MCQ Solve Class - ৪০ টি\n🔸 লেকচারভিত্তিক ইংলিশ & জিকে ভিডিও - ৬৪ টি\n🔸 মেডিকেল রিলেটেড লাইভ ম্যাথ ক্লাস - ৮ টি\n🔸 মডেল টেস্ট প্রোগ্রাম সলভ ক্লাস - ২৭ টি\n🔸মেডিকেল প্রশ্নব্যাংক সলভ ক্লাস - ৬০ টি",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "https://t.me/+blfm2NGR-01jZjM1",
+      "previewVideoId": "",
+      "slug": "-",
+      "features": "",
+      "tags": "",
+      "updatedAt": "2026-09-24T10:00:02.162Z",
+      "bannerColor": "#6cf745",
+      "groupId": 1,
+      "subjectId": 1,
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "createdAt": "2026-09-17T07:22:56.636Z",
+      "title": "এইচএসসি'২6 ম্যাথ অনলাইন প্রোগ্রাম (১ম বর্ষ)",
+      "batchId": 1,
+      "categoryId": 1,
+      "platformId": 4,
+      "teacher": "",
+      "price": 2000,
+      "oldPrice": 3000,
+      "duration": "",
+      "totalClass": 0,
+      "thumbnail": "/uploads/media/course-2-1789977045751-b188ff0e662d.jpg",
+      "description": "৭১ টি লাইভ ক্লাস\n১০ টি CQ মাস্টার ক্লাস\n৭০+ টি আর্কাইভ ক্লাস\n৭১ টি ক্লাস টেস্ট\n১০ টি চ্যাপ্টার ফাইনাল (CQ+MCQ)\nপর্যাপ্ত গাইডলাইন সেশন ও সার্বক্ষণিক Q & A সার্ভিস\n\nকোর্সের বৈশিষ্ট্য:\n\n১. লাইভ ক্লাস: BUET, DU ও Medical-এর অভিজ্ঞ মেন্টর প্যানেলের মাধ্যমে নিয়মিত স্মার্টবোর্ড লাইভ ক্লাস পরিচালিত হবে। বোর্ড পরীক্ষার গুরুত্বপূর্ণ CQ-গুলো সহজভাবে বুঝিয়ে, প্রশ্ন সমাধানের কৌশল ও উত্তর লেখার সঠিক পদ্ধতি শেখানোর মাধ্যমে পুরো সিলেবাসের কার্যকর রিভিশন সম্পন্ন করা হবে।\n\n২. ক্লাস টেস্ট: প্রতিটি ক্লাসের ওপর পরবর্তী ক্লাসের আগে নিয়মিত ক্লাস টেস্ট নেওয়া হবে, যাতে শিক্ষার্থীরা নিজের প্রস্তুতি মূল্যায়ন করে দুর্বল দিকগুলো দ্রুত উন্নত করতে পারে।\n\n৩. ক্লাস নোট: প্রতিটি ক্লাসের জন্য সংক্ষিপ্ত, সুসংগঠিত ও সহজে রিভাইজযোগ্য কালারফুল ক্লাস নোট প্রদান করা হবে।\n\n৪. সার্বক্ষণিক Q&A সার্ভিস: যেকোনো একাডেমিক সমস্যায় এক্সপার্ট মেন্টরদের মাধ্যমে দ্রুত ডাউট সলভিং সাপোর্ট প্রদান করা হবে। ভর্তি হওয়ার পর থেকেই এই সুবিধা চালু থাকবে।\n\n৫. পর্যাপ্ত গাইডলাইন সেশন: বোর্ড ও ভর্তি পরীক্ষাকে সামনে রেখে নিয়মিত গাইডেন্স ও স্ট্র্যাটেজি সেশন পরিচালনা করা হবে, যাতে শিক্ষার্থীরা সঠিক দিকনির্দেশনা অনুসরণ করে আত্মবিশ্বাসের সঙ্গে কাঙ্ক্ষিত প্রস্তুতি সম্পন্ন করতে পারে।",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "",
+      "previewVideoId": "",
+      "slug": "6-",
+      "groupId": 1,
+      "subjectId": 4,
+      "updatedAt": "2026-09-24T10:00:48.922Z",
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "createdAt": "2026-09-17T15:59:38.027Z",
+      "title": "কাব্য ভাইয়ার টাইপভিত্তিক ম্যাথ ১ম পত্র HSC-2028",
+      "batchId": 1,
+      "categoryId": 2,
+      "platformId": 2,
+      "teacher": "",
+      "price": 0,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 0,
+      "thumbnail": "/uploads/media/course-3-1789977045754-988ccdcaa988.webp",
+      "description": "কাব্য ভাইয়ার সাথে তোমার কলেজ লাইফ থেকে এডমিশন জার্নি পর্যন্ত টাইপভিত্তিক ভাবে সকল সমস্যার সমাধান পাবে এই একটি কোর্সেই। গতানুগতিক ক্লাস থেকে বের হয়ে এসে টাইপভিত্তিক ভাবে পড়াশোনা করার জন্যই এই কোর্সটির সাথে কাব্য ভাইয়ার ম্যাথ ট্রিকস ১ম পত্র এবং CQ Book সম্পূর্ণ ফ্রি পাচ্ছো। এতে তোমার বাইরে থেকে বই কেনার কোনো প্রয়োজন পড়বে না। কোর্সে যা যা পড়ানো হবে: 1. প্রতিটি চ্যাপ্টার টাইপভিত্তিক ভাবে সমাধান 2. প্রতিটি ক্লাসে থাকবে MCQ Solve & Home work 3. Home Work থাকবে কাব্য ভাইয়ার বই থেকে, যা তোমাকে ফ্রিতে কুরিয়ার করা হবে 4. প্রতিটি চ্যাপ্টার শেষে থাকবে CQ Solve & Home work 5. Home Work থাকবে কাব্য ভাইয়ার CQ বই থেকে, যা তোমাকে ফ্রিতে কুরিয়ার করা হবে 6. প্রতিটি চ্যাপ্টার শেষে থাকবে MCQ Exam & CQ Exam 7. সকল ক্লাস হবে webapp এ। 8. Doubt solve থাকবে 24/7 with Ai 9. ক্লাস সংখ্যা ৭০ টি",
+      "featured": true,
+      "status": "active",
+      "telegramLink": "",
+      "previewVideoId": "",
+      "features": "",
+      "tags": "",
+      "bannerColor": "#f2b636",
+      "slug": "-hsc-2028",
+      "updatedAt": "2026-10-06T09:07:57.730Z",
+      "groupId": 2,
+      "subjectId": 2,
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ],
+      "nodeResources": [
+        {
+          "path": {
+            "section": "General"
+          },
+          "resources": [
+            {
+              "label": "Lecture Sheet",
+              "url": "/uploads/resources/sheet-1791277564401-2295369ad332c94e.webp",
+              "kind": "lecture"
+            }
+          ]
+        },
+        {
+          "path": {
+            "section": "General",
+            "chapter": "ম্যাট্রিক্স ও নির্ণায়ক পর্ব (৬ টি ক্লাস)"
+          },
+          "resources": [
+            {
+              "label": "Lecture Sheet",
+              "url": "/uploads/resources/sheet-1791277676564-0df6d5654d302b62.png",
+              "kind": "lecture"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "createdAt": "2026-09-17T16:05:31.241Z",
+      "title": "ACS Varsity + GST Special Private Programme 2026",
+      "batchId": 2,
+      "categoryId": 3,
+      "platformId": 1,
+      "teacher": "",
+      "price": 0,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 0,
+      "thumbnail": "/uploads/media/course-4-1789977045756-59bb8e227520.jpg",
+      "description": "২২, ২৩, ২৪, ২৫ ব্যাচের দারুণ সাফল্যের পর এবার ACS-এর লক্ষ্য ২৬ ব্যাচকে স্বপ্নের গন্তব্যে পৌঁছে দেওয়া। ACS তৈরি তোমার প্রতিটি প্রশ্নের উত্তর দিতে। তুমি শুধু সাহস নিয়ে এসো বাকিটা আমরা দেখবো।",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "https://t.me/+3XFsA7zjrCYwYmRl",
+      "previewVideoId": "",
+      "features": "",
+      "tags": "",
+      "bannerColor": "#5745f7",
+      "slug": "acs-varsity-gst-special-private-programme-2026",
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "createdAt": "2026-09-17T16:09:06.329Z",
+      "title": "৩০ দিনে বায়োলজি খতম | BH",
+      "batchId": 2,
+      "categoryId": 1,
+      "platformId": 2,
+      "teacher": "",
+      "price": 0,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 0,
+      "thumbnail": "/uploads/media/course-5-1789977045758-e3ca5b6be604.webp",
+      "description": "১) টার্গেট: সময় ৩০ দিন, টোটাল অধ্যায়: ২৪ টা!  ২) ব্যাচ: HSC 27 এবং HSC 26 ব্যাচের জন্য ডেডিকেটেড কোর্স।  ৩) বায়োলজিতে প্রস্তুতি একদম শূন্য হোক কিংবা মাঝারি—৩০ দিনের এই জার্নি শেষে স্মুথলি বায়োলজিতে A+ সিকিওর করতে পারবে।  ৪) প্রতিটি অধ্যায়ের গুরুত্বপূর্ণ কনসেপ্ট ক্লিয়ার করার পাশাপাশি CQ এবং MCQ সলভিং স্কিল ডেভেলপ করা হবে।  ৫) প্রোপারলি অ্যানালাইসিস করে বের করা গুরুত্বপূর্ণ CQ, MCQ প্রশ্ন ক্লাসেই সলভ করা হবে।  ৬) অধ্যায়ভিত্তিক MCQ এক্সাম: পরীক্ষায় যা আসবে কিংবা আসতে পারে—সেগুলোই এক্সামের প্রশ্নে থাকবে।  ৭) প্রতিটি ক্লাস শেষে স্পেশালাইজড হোয়াটসঅ্যাপ গ্রুপে লেকচার স্লাইড এবং CQ শিট প্রোভাইড করা হবে।  ৮) ২৪/৭ স্টুডেন্ট সাপোর্ট : স্পেশালাইজড হোয়াটসঅ্যাপ গ্রুপে।",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "",
+      "previewVideoId": "P5RufMLlQrc",
+      "features": "",
+      "tags": "",
+      "bannerColor": "#5745f7",
+      "slug": "-bh",
+      "stepLabels": {
+        "topic": "Module"
+      },
+      "updatedAt": "2026-10-07T05:11:09.711Z",
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ],
+      "emptyStructure": [
+        {
+          "path": {
+            "chapter": "Chapter Cut"
+          }
+        },
+        {
+          "path": {
+            "chapter": "SSSSSS"
+          }
+        }
+      ],
+      "nodeResources": [
+        {
+          "path": {
+            "section": "General",
+            "chapter": "Chapter But"
+          },
+          "resources": [
+            {
+              "label": "Lecture Sheet",
+              "url": "/uploads/resources/sheet-1791339762936-99a0516e6aeb8a5b.webp",
+              "kind": "lecture"
+            }
+          ]
+        },
+        {
+          "path": {
+            "section": "General",
+            "chapter": "Chapter FFuck"
+          },
+          "resources": [
+            {
+              "label": "Lecture Sheet",
+              "url": "/uploads/resources/sheet-1791342469552-233e745c7af624ad.jpg",
+              "kind": "lecture"
+            }
+          ]
+        }
+      ],
+      "sectionTg": {},
+      "chapterTg": {}
+    },
+    {
+      "id": 6,
+      "createdAt": "2026-09-18T04:13:44.305Z",
+      "title": "HSC 29 Physics Cycle 1",
+      "batchId": 7,
+      "categoryId": 1,
+      "platformId": 1,
+      "teacher": "",
+      "price": 100,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 50,
+      "thumbnail": "/uploads/media/course-6-1789977045761-7d389a1761f5.jpg",
+      "description": "ACS Physics Cycle 1 | HSC 28\n﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌﹌\n\nইন্সস্ট্রাক্টর - \n     🖍মাশরুর ভাইয়া  🖍অপূর্ব ভাইয়া\n\nযে সকল অর্ধ্যায় পড়ানো হবে—\n     📖অধ্যায় ১: ভৌত জগৎ ও পরিমাপ \n     📖অধ্যায় ২: ভেক্টর\n     📖অধ্যায় ৩: গতিবিদ্যা\n\n    •• কোর্সের সাথে যা যা পাবে  •• \n═════════•°• ⚔️ •°•═════════\n🛡ইউটিউব + টেলিগ্রাম (HD class)\n🛡টপিক ভিক্তিক ক্লাস \n🛡লেকচার শীট+প্রাকটিস শীট\n🛡বাড়ির কাজের পিডিএফ \n🛡Doubt Solve class\n🛡লাইফটাইম এক্সেস পাবে\n🛡আইডি নষ্ট হলে নতুন আইডি এড হতে পারবে\n🛡আর্কাইভ হিসেবে থাকবে ২৭ ব্যাচের কোর্স।",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "",
+      "previewVideoId": "",
+      "features": "",
+      "tags": "Bangla",
+      "bannerColor": "#5745f7",
+      "slug": "hsc-29-physics-cycle-1",
+      "updatedAt": "2026-10-06T09:14:11.666Z",
+      "pinned": true,
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ],
+      "nodeResources": []
+    },
+    {
+      "id": 7,
+      "createdAt": "2026-09-19T04:04:54.502Z",
+      "title": "SSC Telegram Group test",
+      "batchId": 6,
+      "categoryId": 1,
+      "platformId": 1,
+      "teacher": "",
+      "price": 500,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 2,
+      "thumbnail": "/uploads/media/course-7-1789977045764-7cb664ec1b24.jpg",
+      "description": "",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "",
+      "telegramLinks": [],
+      "telegramChatIds": [
+        {
+          "label": "Join LINK TEST G3",
+          "chatId": "-1004487467168"
+        }
+      ],
+      "previewVideoId": "",
+      "features": "",
+      "tags": "",
+      "bannerColor": "#5745f7",
+      "slug": "ssc-telegram-group-test",
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "createdAt": "2026-09-19T04:57:48.030Z",
+      "title": "SSC Telegram Group test",
+      "batchId": 1,
+      "categoryId": 1,
+      "platformId": 1,
+      "teacher": "",
+      "price": 500,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 2,
+      "thumbnail": "/uploads/media/course-8-1789977045770-b0703d41e963.jpg",
+      "description": "",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "",
+      "telegramLinks": [],
+      "telegramChatIds": [
+        {
+          "label": "Join LINK TEST G3",
+          "chatId": "-1004487467168"
+        }
+      ],
+      "previewVideoId": "",
+      "features": "",
+      "tags": "",
+      "bannerColor": "#5745f7",
+      "slug": "ssc-telegram-group-test-copy",
+      "groupId": 3,
+      "subjectId": 3,
+      "updatedAt": "2026-09-24T10:00:23.080Z",
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "createdAt": "2026-09-21T11:12:09.584Z",
+      "title": "সেকেন্ড টাইম মেডিকেল প্রিপারেশন ২০২৬",
+      "batchId": 1,
+      "categoryId": 3,
+      "platformId": 11,
+      "teacher": "",
+      "price": 3000,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 0,
+      "thumbnail": "/uploads/media/courses-1789989129580-b36970bdf5ce.jpg",
+      "description": "মেডিকোর সেরা আয়োজন: ক্লাস লিস্ট\n\n প্ল্যান-১ প্রিপারেশন: ৫৭টি (অফলাইন ক্লাস; কোর্স প্ল্যান অনুযায়ী; মেডিকোর ব্রাঞ্চে)\n\n প্ল্যান-২ ইনটেনসিভ কোর্স : ১৯টি (অনলাইন লাইভ ক্লাস: Zoom)\n\n ইংরেজি ও সাধারণ জ্ঞান রিভিশন ক্লাস: ২০টি (অনলাইন লাইভ ক্লাস: Zoom)\n\n বায়োলজি স্পেশাল ক্লাস: ২৪টি (রেকর্ডেড ক্লাস; মেডিকোর সার্ভারে)\n\n Study Plan & Exam Technique: ৪টি (অনলাইন লাইভ ক্লাস: Zoom)\n\n সর্বমোট ক্লাস ১২৪টি",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "",
+      "telegramLinks": [],
+      "telegramChatIds": [],
+      "previewVideoId": "",
+      "features": "",
+      "tags": "",
+      "bannerColor": "#5745f7",
+      "slug": "-",
+      "groupId": 1,
+      "subjectId": 5,
+      "updatedAt": "2026-09-24T10:00:37.502Z",
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "createdAt": "2026-09-22T05:34:31.779Z",
+      "title": "সেকেন্ড টাইম মেডিকেল প্রিপারেশন ২০২৬",
+      "batchId": 7,
+      "categoryId": 1,
+      "platformId": 11,
+      "teacher": "",
+      "price": 3000,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 0,
+      "thumbnail": "/uploads/media/courses-1789989129580-b36970bdf5ce.jpg",
+      "description": "মেডিকোর সেরা আয়োজন: ক্লাস লিস্ট\n\n প্ল্যান-১ প্রিপারেশন: ৫৭টি (অফলাইন ক্লাস; কোর্স প্ল্যান অনুযায়ী; মেডিকোর ব্রাঞ্চে)\n\n প্ল্যান-২ ইনটেনসিভ কোর্স : ১৯টি (অনলাইন লাইভ ক্লাস: Zoom)\n\n ইংরেজি ও সাধারণ জ্ঞান রিভিশন ক্লাস: ২০টি (অনলাইন লাইভ ক্লাস: Zoom)\n\n বায়োলজি স্পেশাল ক্লাস: ২৪টি (রেকর্ডেড ক্লাস; মেডিকোর সার্ভারে)\n\n Study Plan & Exam Technique: ৪টি (অনলাইন লাইভ ক্লাস: Zoom)\n\n সর্বমোট ক্লাস ১২৪টি",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "",
+      "telegramLinks": [],
+      "telegramChatIds": [],
+      "previewVideoId": "",
+      "features": "",
+      "tags": "",
+      "bannerColor": "#5745f7",
+      "slug": "-copy",
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "createdAt": "2026-09-22T05:37:31.356Z",
+      "title": "সেকেন্ড টাইম মেডিকেল প্রিপারেশন ২০২৬",
+      "batchId": 5,
+      "categoryId": 1,
+      "platformId": 11,
+      "teacher": "",
+      "price": 3000,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 0,
+      "thumbnail": "/uploads/media/courses-1789989129580-b36970bdf5ce.jpg",
+      "description": "মেডিকোর সেরা আয়োজন: ক্লাস লিস্ট\n\n প্ল্যান-১ প্রিপারেশন: ৫৭টি (অফলাইন ক্লাস; কোর্স প্ল্যান অনুযায়ী; মেডিকোর ব্রাঞ্চে)\n\n প্ল্যান-২ ইনটেনসিভ কোর্স : ১৯টি (অনলাইন লাইভ ক্লাস: Zoom)\n\n ইংরেজি ও সাধারণ জ্ঞান রিভিশন ক্লাস: ২০টি (অনলাইন লাইভ ক্লাস: Zoom)\n\n বায়োলজি স্পেশাল ক্লাস: ২৪টি (রেকর্ডেড ক্লাস; মেডিকোর সার্ভারে)\n\n Study Plan & Exam Technique: ৪টি (অনলাইন লাইভ ক্লাস: Zoom)\n\n সর্বমোট ক্লাস ১২৪টি",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "",
+      "telegramLinks": [],
+      "telegramChatIds": [],
+      "previewVideoId": "",
+      "features": "",
+      "tags": "",
+      "bannerColor": "#5745f7",
+      "slug": "-copy-2",
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ],
+      "pinnedLessons": true,
+      "updatedAt": "2026-10-07T16:19:01.513Z"
+    },
+    {
+      "id": 12,
+      "createdAt": "2026-09-22T06:01:51.073Z",
+      "title": "সেকেন্ড টাইম মেডিকেল প্রিপারেশন ২০২৬",
+      "batchId": 3,
+      "categoryId": 1,
+      "platformId": 11,
+      "teacher": "",
+      "price": 3000,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 0,
+      "thumbnail": "/uploads/media/courses-1789989129580-b36970bdf5ce.jpg",
+      "description": "মেডিকোর সেরা আয়োজন: ক্লাস লিস্ট\n\n প্ল্যান-১ প্রিপারেশন: ৫৭টি (অফলাইন ক্লাস; কোর্স প্ল্যান অনুযায়ী; মেডিকোর ব্রাঞ্চে)\n\n প্ল্যান-২ ইনটেনসিভ কোর্স : ১৯টি (অনলাইন লাইভ ক্লাস: Zoom)\n\n ইংরেজি ও সাধারণ জ্ঞান রিভিশন ক্লাস: ২০টি (অনলাইন লাইভ ক্লাস: Zoom)\n\n বায়োলজি স্পেশাল ক্লাস: ২৪টি (রেকর্ডেড ক্লাস; মেডিকোর সার্ভারে)\n\n Study Plan & Exam Technique: ৪টি (অনলাইন লাইভ ক্লাস: Zoom)\n\n সর্বমোট ক্লাস ১২৪টি",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "",
+      "telegramLinks": [],
+      "telegramChatIds": [],
+      "previewVideoId": "",
+      "features": "",
+      "tags": "",
+      "bannerColor": "#5745f7",
+      "slug": "-copy-3",
+      "updatedAt": "2026-10-02T03:37:01.621Z",
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "createdAt": "2026-09-22T08:26:13.569Z",
+      "title": "Telegram Upload Classes (Group)",
+      "batchId": 8,
+      "categoryId": 6,
+      "platformId": 1,
+      "teacher": "",
+      "price": 900,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 0,
+      "thumbnail": "/uploads/media/courses-1790065573567-a86159ac2487.jpg",
+      "description": "this is course description",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "",
+      "telegramLinks": [],
+      "telegramChatIds": [
+        {
+          "label": "Course G2 ",
+          "chatId": "-1004420913843"
+        },
+        {
+          "label": "Course G3",
+          "chatId": "-1003711018628"
+        },
+        {
+          "label": "cHANEL",
+          "chatId": "-1004350783065"
+        }
+      ],
+      "previewVideoId": "",
+      "features": "",
+      "tags": "",
+      "bannerColor": "#5745f7",
+      "slug": "telegram-upload-classes-group",
+      "updatedAt": "2026-10-02T08:15:09.214Z",
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ],
+      "pinned": false
+    },
+    {
+      "id": 14,
+      "createdAt": "2026-09-24T17:14:19.641Z",
+      "title": "Youtube Classes",
+      "batchId": 8,
+      "categoryId": 2,
+      "platformId": 1,
+      "groupId": 1,
+      "subjectId": 3,
+      "teacher": "",
+      "price": 798,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 0,
+      "thumbnail": "/uploads/media/courses-1790270059635-f64824db8b15.webp",
+      "description": "",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "",
+      "telegramLinks": [],
+      "telegramChatIds": [],
+      "previewVideoId": "",
+      "features": "",
+      "tags": "",
+      "bannerColor": "#5745f7",
+      "slug": "youtube-classes",
+      "emptyStructure": [],
+      "updatedAt": "2026-10-02T07:39:01.400Z",
+      "steps": [
+        {
+          "id": "section",
+          "name": "Paper"
+        },
+        {
+          "id": "subsection",
+          "name": "Set"
+        },
+        {
+          "id": "chapter",
+          "name": "Module"
+        },
+        {
+          "id": "c3",
+          "name": "Topic Adddd From Step"
+        },
+        {
+          "id": "c1",
+          "name": "ASAS"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "createdAt": "2026-09-25T09:30:14.156Z",
+      "title": "Biology Combo (Botany+Zoology)",
+      "batchId": 1,
+      "categoryId": 6,
+      "platformId": 10,
+      "groupId": 1,
+      "subjectId": 4,
+      "teacher": "",
+      "price": 800,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 0,
+      "thumbnail": "/uploads/media/courses-1790328614120-48efbd0801ed.jpg",
+      "description": "160+ লাইভ ক্লাসক্লাস লেকচারের PDFআমাদের ওয়েবঅ্যাপে এক্সাম দেওয়ার সুবিধাসাপ্তাহিক এক্সাম, অধ্যায়ভিত্তিক এক্সাম, ফুল বুক এক্সাম নিয়ে টোটাল 90+ পরীক্ষাপ্রতিটা এক্সামের জন্য সলভ পিডিএফওয়েবসাইটে কোয়েশ্চেন-আন্সার সুবিধাডেডিকেটেড টেলিগ্রাম ডিসকাশন গ্রুপওয়েবসাইটে ক্লাসের রেকর্ডেড ভার্সনমেন্টরিং সুবিধা",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "",
+      "telegramLinks": [],
+      "telegramChatIds": [],
+      "previewVideoId": "",
+      "features": "160+ লাইভ ক্লাস\nক্লাস লেকচারের PDF\nআমাদের ওয়েবঅ্যাপে এক্সাম দেওয়ার সুবিধা\nসাপ্তাহিক এক্সাম, অধ্যায়ভিত্তিক এক্সাম, ফুল বুক এক্সাম নিয়ে টোটাল 90+ পরীক্ষা\nপ্রতিটা এক্সামের জন্য সলভ পিডিএফ\nওয়েবসাইটে কোয়েশ্চেন-আন্সার সুবিধা\nডেডিকেটেড টেলিগ্রাম ডিসকাশন গ্রুপ\nওয়েবসাইটে ক্লাসের রেকর্ডেড ভার্সন\nমেন্টরিং সুবিধা",
+      "tags": "",
+      "bannerColor": "#5745f7",
+      "slug": "biology-combo-botanyzoology",
+      "updatedAt": "2026-10-06T11:01:53.501Z",
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "createdAt": "2026-09-30T05:56:49.792Z",
+      "title": "SSC26 Course Add",
+      "batchId": 3,
+      "categoryId": 2,
+      "platformId": 1,
+      "groupId": 1,
+      "subjectId": 0,
+      "teacher": "",
+      "price": 499,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 0,
+      "thumbnail": "/uploads/media/courses-1790747809791-8ad0191ba2d7.jpg",
+      "description": "",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "",
+      "telegramLinks": [],
+      "telegramChatIds": [],
+      "previewVideoId": "",
+      "features": "",
+      "tags": "",
+      "bannerColor": "#5745f7",
+      "slug": "ssc26-course-add",
+      "sectionTg": {},
+      "chapterTg": {},
+      "emptyStructure": [],
+      "updatedAt": "2026-10-02T03:37:20.450Z",
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "createdAt": "2026-10-02T08:08:54.201Z",
+      "title": "Course Add Testing",
+      "batchId": 8,
+      "categoryId": 4,
+      "platformId": 1,
+      "groupId": 0,
+      "subjectId": 0,
+      "teacher": "",
+      "price": 700,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 0,
+      "thumbnail": "/uploads/media/courses-1790928534170-b8fe0043f259.gif",
+      "description": "",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "",
+      "telegramLinks": [],
+      "telegramChatIds": [],
+      "previewVideoId": "",
+      "features": "",
+      "tags": "",
+      "bannerColor": "#5745f7",
+      "slug": "course-add-testing",
+      "pinned": true,
+      "sectionTg": {},
+      "chapterTg": {},
+      "updatedAt": "2026-10-02T08:38:34.591Z",
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ],
+      "emptyStructure": []
+    },
+    {
+      "id": 18,
+      "createdAt": "2026-10-06T03:16:00.449Z",
+      "title": "Combo ACS HSC 28 Higher Math 1st + 2nd Paper",
+      "batchId": 1,
+      "categoryId": 1,
+      "platformId": 1,
+      "groupId": 1,
+      "subjectId": 0,
+      "teacher": "",
+      "price": 5000,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 0,
+      "thumbnail": "/uploads/media/courses-1791256560448-723d6ccf2157.jpg",
+      "description": "",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "",
+      "telegramLinks": [],
+      "telegramChatIds": [],
+      "previewVideoId": "",
+      "features": "",
+      "tags": "",
+      "bannerColor": "#5745f7",
+      "slug": "combo-acs-hsc-28-higher-math-1st-2nd-paper",
+      "pinned": false,
+      "sectionTg": {},
+      "chapterTg": {},
+      "updatedAt": "2026-10-06T03:24:53.391Z",
+      "emptyStructure": [
+        {
+          "path": {
+            "section": "Combo 2 Cycle 4,5,6"
+          }
+        },
+        {
+          "path": {
+            "section": "Combo 1 Cycle 1,2,3",
+            "subsection": "Cycle 2 প্রথম পত্র - অধ্যায় (৫, ৬, ৭, ৮)"
+          }
+        },
+        {
+          "path": {
+            "section": "Combo 1 Cycle 1,2,3",
+            "subsection": "Cycle 3 প্রথম পত্র - অধ্যায় (৯, ১০)"
+          }
+        },
+        {
+          "path": {
+            "section": "Combo 2 Cycle 4,5,6",
+            "subsection": "Cycle 4 দ্বিতীয় পত্র - অধ্যায় (১, ২, ৩, ৪)"
+          }
+        },
+        {
+          "path": {
+            "section": "Combo 2 Cycle 4,5,6",
+            "subsection": "Cycle 5 দ্বিতীয় পত্র - অধ্যায় (৫, ৬, ৭)"
+          }
+        },
+        {
+          "path": {
+            "section": "Combo 2 Cycle 4,5,6",
+            "subsection": "Cycle 6 দ্বিতীয় পত্র - অধ্যায় (৮, ৯, ১০)"
+          }
+        }
+      ],
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "createdAt": "2026-10-06T11:20:27.740Z",
+      "title": "PDF ADD CHEKER",
+      "batchId": 8,
+      "categoryId": 6,
+      "platformId": 1,
+      "groupId": 0,
+      "subjectId": 0,
+      "teacher": "",
+      "price": 300,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 0,
+      "thumbnail": "/uploads/media/courses-1791285627738-28e6fb5c2b43.jpg",
+      "description": "",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "",
+      "telegramLinks": [],
+      "telegramChatIds": [],
+      "previewVideoId": "",
+      "features": "",
+      "tags": "",
+      "bannerColor": "#5745f7",
+      "slug": "pdf-add-cheker",
+      "pinned": false,
+      "sectionTg": {},
+      "chapterTg": {},
+      "emptyStructure": [],
+      "updatedAt": "2026-10-06T17:49:26.606Z",
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ],
+      "nodeResources": [
+        {
+          "path": {
+            "section": "General",
+            "chapter": "Chapter12322"
+          },
+          "resources": [
+            {
+              "label": "Lecture Sheet",
+              "url": "/uploads/resources/sheet-1791308965485-e057bc54e24d0ae8.jpg",
+              "kind": "lecture"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "createdAt": "2026-10-07T04:52:14.604Z",
+      "title": "Editz",
+      "batchId": 8,
+      "categoryId": 0,
+      "platformId": 0,
+      "groupId": 0,
+      "subjectId": 0,
+      "teacher": "",
+      "price": 300,
+      "oldPrice": 0,
+      "duration": "",
+      "totalClass": 0,
+      "thumbnail": "",
+      "description": "",
+      "featured": false,
+      "status": "active",
+      "telegramLink": "",
+      "telegramLinks": [],
+      "telegramChatIds": [],
+      "previewVideoId": "",
+      "features": "",
+      "tags": "",
+      "bannerColor": "#5745f7",
+      "slug": "editz",
+      "pinned": true,
+      "sectionTg": {},
+      "chapterTg": {},
+      "steps": [
+        {
+          "id": "section",
+          "name": "Section"
+        },
+        {
+          "id": "subsection",
+          "name": "Sub-Section"
+        },
+        {
+          "id": "chapter",
+          "name": "Chapter"
+        }
+      ],
+      "emptyStructure": [],
+      "updatedAt": "2026-10-07T16:18:46.484Z"
+    }
+  ],
+  "lessons": [
+    {
+      "id": 1,
+      "createdAt": "2026-09-17T07:22:56.656Z",
+      "courseId": 2,
+      "section": "as",
+      "title": "SS",
+      "videoId": "UJ5J0cFZZTE",
+      "duration": "40Min",
+      "isFree": false,
+      "order": 1,
+      "status": "active",
+      "steps": {
+        "section": "",
+        "subsection": "",
+        "chapter": "as",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 2,
+      "createdAt": "2026-09-17T15:59:38.068Z",
+      "courseId": 3,
+      "section": "ম্যাট্রিক্স ও নির্ণায়ক পর্ব (৬ টি ক্লাস)",
+      "title": "ম্যাট্রিক্স ও নির্ণায়ক পর্ব 01",
+      "videoId": "xI3m_KWhJto",
+      "duration": "",
+      "isFree": false,
+      "order": 1,
+      "status": "active",
+      "updatedAt": "2026-10-06T09:04:01.447Z",
+      "steps": {
+        "section": "General",
+        "subsection": "",
+        "chapter": "ম্যাট্রিক্স ও নির্ণায়ক পর্ব (৬ টি ক্লাস)",
+        "topic": "",
+        "subtopic": ""
+      },
+      "subject": "General",
+      "subjectId": 0,
+      "subsection": "",
+      "chapter": "ম্যাট্রিক্স ও নির্ণায়ক পর্ব (৬ টি ক্লাস)",
+      "topic": "",
+      "subtopic": "",
+      "resources": [
+        {
+          "label": "Lecture Sheet",
+          "url": "/uploads/resources/sheet-1791277424155-c3a64793efeb1493.webp",
+          "kind": "lecture"
+        },
+        {
+          "label": "Practice Sheet",
+          "url": "/uploads/resources/sheet-1791277440023-f7fa6c0f4e2cd752.webp",
+          "kind": "practice"
+        }
+      ],
+      "videoType": "youtube",
+      "videoUrl": ""
+    },
+    {
+      "id": 3,
+      "createdAt": "2026-09-17T15:59:38.094Z",
+      "courseId": 3,
+      "section": "Class Section ম্যাট্রিক্স ও নির্ণায়ক পর্ব 01",
+      "title": "ম্যাট্রিক্স ও নির্ণায়ক পর্ব 02 Class Tittle",
+      "videoId": "P5RufMLlQrc",
+      "duration": "",
+      "isFree": false,
+      "order": 2,
+      "status": "active",
+      "updatedAt": "2026-09-18T04:58:11.856Z",
+      "steps": {
+        "section": "",
+        "subsection": "",
+        "chapter": "Class Section ম্যাট্রিক্স ও নির্ণায়ক পর্ব 01",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 4,
+      "createdAt": "2026-09-18T04:13:44.524Z",
+      "courseId": 6,
+      "section": "",
+      "title": "class 1",
+      "videoId": "Z0SsWFI4Cl4",
+      "duration": "",
+      "isFree": true,
+      "order": 1,
+      "status": "active",
+      "updatedAt": "2026-09-18T04:27:30.575Z",
+      "steps": {
+        "section": "",
+        "subsection": "",
+        "chapter": "",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 5,
+      "createdAt": "2026-09-21T11:12:09.613Z",
+      "courseId": 9,
+      "section": "",
+      "title": "CLASS 1",
+      "videoId": "",
+      "videoUrl": "/uploads/videos/class-1789989129600-498ed84ed603456c.mp4",
+      "videoName": "video.mp4",
+      "videoSize": 98116,
+      "videoType": "upload",
+      "duration": "",
+      "isFree": false,
+      "order": 1,
+      "status": "active",
+      "steps": {
+        "section": "",
+        "subsection": "",
+        "chapter": "",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 6,
+      "createdAt": "2026-09-22T05:34:31.781Z",
+      "courseId": 10,
+      "section": "",
+      "title": "CLASS 1",
+      "videoId": "",
+      "videoUrl": "/uploads/videos/class-1789989129600-498ed84ed603456c.mp4",
+      "videoName": "video.mp4",
+      "videoSize": 98116,
+      "videoType": "upload",
+      "duration": "",
+      "isFree": false,
+      "order": 1,
+      "status": "active",
+      "steps": {
+        "section": "",
+        "subsection": "",
+        "chapter": "",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 7,
+      "createdAt": "2026-09-22T05:37:31.358Z",
+      "courseId": 11,
+      "section": "",
+      "title": "CLASS 1",
+      "videoId": "",
+      "videoUrl": "/uploads/videos/class-1789989129600-498ed84ed603456c.mp4",
+      "videoName": "video.mp4",
+      "videoSize": 98116,
+      "videoType": "upload",
+      "duration": "",
+      "isFree": false,
+      "order": 1,
+      "status": "active",
+      "steps": {
+        "section": "",
+        "subsection": "",
+        "chapter": "",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 9,
+      "createdAt": "2026-09-24T17:14:19.655Z",
+      "courseId": 14,
+      "subject": "Folder Name",
+      "subjectId": 1,
+      "section": "Chapter 1",
+      "chapter": "Chapter 1",
+      "title": "Physics 1",
+      "videoId": "FUNbxAbkcN0",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "1h",
+      "isFree": false,
+      "order": 1,
+      "status": "active",
+      "steps": {
+        "section": "Folder Name",
+        "subsection": "",
+        "chapter": "Chapter 1",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 10,
+      "createdAt": "2026-09-24T17:14:19.664Z",
+      "courseId": 14,
+      "subject": "Folder Name",
+      "subjectId": 1,
+      "section": "Chapter 1",
+      "chapter": "Chapter 1",
+      "title": "Physics 2",
+      "videoId": "FUNbxAbkcN0",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "34min",
+      "isFree": false,
+      "order": 2,
+      "status": "active",
+      "steps": {
+        "section": "Folder Name",
+        "subsection": "",
+        "chapter": "Chapter 1",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 11,
+      "createdAt": "2026-09-24T17:14:19.676Z",
+      "courseId": 14,
+      "subject": "Folder Name",
+      "subjectId": 1,
+      "section": "Chapter 2",
+      "chapter": "Chapter 2",
+      "title": "Light 01",
+      "videoId": "FUNbxAbkcN0",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 3,
+      "status": "active",
+      "steps": {
+        "section": "Folder Name",
+        "subsection": "",
+        "chapter": "Chapter 2",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 12,
+      "createdAt": "2026-09-24T17:14:19.682Z",
+      "courseId": 14,
+      "subject": "Folder Name",
+      "subjectId": 1,
+      "section": "Chapter 3",
+      "chapter": "Chapter 3",
+      "title": "Gravity",
+      "videoId": "FUNbxAbkcN0",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "70min",
+      "isFree": false,
+      "order": 4,
+      "status": "active",
+      "steps": {
+        "section": "Folder Name",
+        "subsection": "",
+        "chapter": "Chapter 3",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 13,
+      "createdAt": "2026-09-25T09:30:14.205Z",
+      "courseId": 15,
+      "subject": "Zoology",
+      "subjectId": 0,
+      "section": "Chapter 1",
+      "chapter": "Chapter 1",
+      "title": "প্রাণির বিভিন্নতা ও শ্রেণিবিন্যাস 01",
+      "videoId": "a1n7rxGQUaw",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 2,
+      "status": "active",
+      "updatedAt": "2026-09-29T05:19:28.797Z",
+      "steps": {
+        "section": "Zoology",
+        "subsection": "",
+        "chapter": "Chapter 1",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 14,
+      "createdAt": "2026-09-25T09:30:14.219Z",
+      "courseId": 15,
+      "subject": "Zoology",
+      "subjectId": 0,
+      "section": "Chapter 1",
+      "chapter": "Chapter 1",
+      "title": "প্রাণির বিভিন্নতা ও শ্রেণিবিন্যাস 02",
+      "videoId": "O02HindEPIE",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 1,
+      "status": "active",
+      "updatedAt": "2026-09-29T05:19:28.795Z",
+      "steps": {
+        "section": "Zoology",
+        "subsection": "",
+        "chapter": "Chapter 1",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 15,
+      "createdAt": "2026-09-25T09:30:14.231Z",
+      "courseId": 15,
+      "subject": "Zoology",
+      "subjectId": 0,
+      "section": "শ্বসণ ও শ্বাসক্রিয়া || FULL CHAPTER - ম্যারাথন ক্লাস|",
+      "chapter": "শ্বসণ ও শ্বাসক্রিয়া || FULL CHAPTER - ম্যারাথন ক্লাস|",
+      "title": "HSC Biology 2nd Paper Chapter 5-Hasnat Shuvro",
+      "videoId": "vXEE1iw5WM8",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 3,
+      "status": "active",
+      "updatedAt": "2026-09-29T05:19:28.799Z",
+      "steps": {
+        "section": "Zoology",
+        "subsection": "",
+        "chapter": "শ্বসণ ও শ্বাসক্রিয়া || FULL CHAPTER - ম্যারাথন ক্লাস|",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 16,
+      "createdAt": "2026-09-25T09:30:14.242Z",
+      "courseId": 15,
+      "subject": "Nano Biology Course Botany",
+      "subjectId": 0,
+      "section": "Chapter 1",
+      "chapter": "Chapter 1",
+      "title": "উদ্ভিদ শারীরতত্ত্ব-প্রথম অংশ(খনিজ লবণ শোষণ)",
+      "videoId": "VbywRHR0JJw",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 4,
+      "status": "active",
+      "updatedAt": "2026-09-29T05:19:28.802Z",
+      "steps": {
+        "section": "Nano Biology Course Botany",
+        "subsection": "",
+        "chapter": "Chapter 1",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 17,
+      "createdAt": "2026-09-29T05:25:06.476Z",
+      "courseId": 15,
+      "subject": "Zoology",
+      "subjectId": 0,
+      "section": "Chapter Test",
+      "chapter": "Chapter Test",
+      "title": "Test Lecture Tittle",
+      "videoId": "zxp6qZJqWXk",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 5,
+      "status": "active",
+      "resources": [
+        {
+          "label": "Lecture Sheet",
+          "url": "/uploads/resources/sheet-1790659490522-1055566ac63a0f93.pdf",
+          "kind": "lecture"
+        }
+      ],
+      "updatedAt": "2026-09-29T05:25:41.586Z",
+      "steps": {
+        "section": "Zoology",
+        "subsection": "",
+        "chapter": "Chapter Test",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 18,
+      "createdAt": "2026-09-29T05:54:10.741Z",
+      "courseId": 14,
+      "subject": "FOLDER3",
+      "subjectId": 0,
+      "section": "Chapter 1",
+      "chapter": "Chapter 1",
+      "title": "Test Lecture Tittle",
+      "videoId": "zxp6qZJqWXk",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 5,
+      "status": "active",
+      "resources": [],
+      "steps": {
+        "section": "FOLDER3",
+        "subsection": "",
+        "chapter": "Chapter 1",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 19,
+      "createdAt": "2026-09-30T06:00:40.382Z",
+      "courseId": 16,
+      "subject": "রসায়ন ২য় পত্র",
+      "subjectId": 0,
+      "subsection": "",
+      "section": "জৈব যৌগ (Organic Chemistry)",
+      "chapter": "জৈব যৌগ (Organic Chemistry)",
+      "title": "ভূমিকা ও নামকরণ (পর্ব-১)",
+      "videoId": "QZYDmwpVDGs",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 1,
+      "status": "active",
+      "resources": [
+        {
+          "label": "Lecture Sheet",
+          "url": "/uploads/resources/sheet-1790748031394-869d2bbd09d28a76.pdf",
+          "kind": "lecture"
+        }
+      ],
+      "telegramLinks": [],
+      "telegramChatIds": [],
+      "updatedAt": "2026-09-30T06:03:28.886Z",
+      "steps": {
+        "section": "রসায়ন ২য় পত্র",
+        "subsection": "",
+        "chapter": "জৈব যৌগ (Organic Chemistry)",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 21,
+      "createdAt": "2026-09-30T06:02:47.270Z",
+      "courseId": 16,
+      "subject": "রসায়ন ২য় পত্র",
+      "subjectId": 0,
+      "subsection": "",
+      "section": "গুণগত রসায়ন",
+      "chapter": "গুণগত রসায়ন",
+      "title": "রাদারফোর্ড ও বোর পরমাণু মডেল",
+      "videoId": "QZYDmwpVDGs",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 2,
+      "status": "active",
+      "resources": [],
+      "telegramLinks": [],
+      "telegramChatIds": [],
+      "updatedAt": "2026-09-30T06:03:28.887Z",
+      "steps": {
+        "section": "রসায়ন ২য় পত্র",
+        "subsection": "",
+        "chapter": "গুণগত রসায়ন",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 22,
+      "createdAt": "2026-09-30T06:03:20.311Z",
+      "courseId": 16,
+      "subject": "রসায়ন ২য় পত্র",
+      "subjectId": 0,
+      "subsection": "",
+      "section": "গুণগত রসায়ন",
+      "chapter": "গুণগত রসায়ন",
+      "title": "কোয়ান্টাম সংখ্যা ও ইলেকট্রন বিন্যাস",
+      "videoId": "QZYDmwpVDGs",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 3,
+      "status": "active",
+      "resources": [],
+      "telegramLinks": [],
+      "telegramChatIds": [],
+      "updatedAt": "2026-09-30T06:03:28.890Z",
+      "steps": {
+        "section": "রসায়ন ২য় পত্র",
+        "subsection": "",
+        "chapter": "গুণগত রসায়ন",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 23,
+      "createdAt": "2026-09-30T06:03:59.578Z",
+      "courseId": 16,
+      "subject": "পদার্থবিজ্ঞান ১ম পত্র",
+      "subjectId": 0,
+      "subsection": "",
+      "section": "নিউটনিয়ান বলবিদ্যা (Newtonian Mechanics)",
+      "chapter": "নিউটনিয়ান বলবিদ্যা (Newtonian Mechanics)",
+      "title": "নিউটনের গতির সূত্র ও বল",
+      "videoId": "QZYDmwpVDGs",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 4,
+      "status": "active",
+      "resources": [],
+      "telegramLinks": [],
+      "telegramChatIds": [],
+      "steps": {
+        "section": "পদার্থবিজ্ঞান ১ম পত্র",
+        "subsection": "",
+        "chapter": "নিউটনিয়ান বলবিদ্যা (Newtonian Mechanics)",
+        "topic": "",
+        "subtopic": ""
+      }
+    },
+    {
+      "id": 24,
+      "createdAt": "2026-10-02T06:08:21.132Z",
+      "courseId": 14,
+      "subject": "Physics",
+      "subjectId": 0,
+      "subsection": "Set A",
+      "section": "Module 1",
+      "chapter": "Module 1",
+      "topic": "Part 1",
+      "subtopic": "Type A",
+      "steps": {
+        "section": "Physics",
+        "subsection": "Set A",
+        "chapter": "Module 1",
+        "topic": "Part 1",
+        "subtopic": "Type A"
+      },
+      "title": "Test Lesson",
+      "videoId": "dQw4w9WgXcQ",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "30 min",
+      "isFree": true,
+      "order": 6,
+      "status": "active",
+      "resources": [],
+      "telegramLinks": [],
+      "telegramChatIds": []
+    },
+    {
+      "id": 25,
+      "createdAt": "2026-10-02T08:38:34.587Z",
+      "courseId": 17,
+      "subject": "This Is Section",
+      "subjectId": 0,
+      "subsection": "This Is Sub Section",
+      "section": "This Is Chapter",
+      "chapter": "This Is Chapter",
+      "topic": "This Is Topic Optional",
+      "subtopic": "",
+      "steps": {
+        "section": "This Is Section",
+        "subsection": "This Is Sub Section",
+        "chapter": "This Is Chapter",
+        "topic": "This Is Topic Optional",
+        "subtopic": ""
+      },
+      "title": "This is Lecture Title",
+      "videoId": "QZYDmwpVDGs",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 1,
+      "status": "active",
+      "resources": [
+        {
+          "label": "Lecture Sheet",
+          "url": "/uploads/resources/sheet-1790930313238-5fa42500a4cf790b.pdf",
+          "kind": "lecture"
+        }
+      ],
+      "telegramLinks": [],
+      "telegramChatIds": []
+    },
+    {
+      "id": 26,
+      "createdAt": "2026-10-06T03:23:19.625Z",
+      "courseId": 18,
+      "subject": "Combo 1 Cycle 1,2,3",
+      "subjectId": 0,
+      "subsection": "Cycle 1 প্রথম পত্র - অধ্যায় (১, ২, ৩, ৪)",
+      "section": "অধ্যায় ১",
+      "chapter": "অধ্যায় ১",
+      "topic": "",
+      "subtopic": "",
+      "steps": {
+        "section": "Combo 1 Cycle 1,2,3",
+        "subsection": "Cycle 1 প্রথম পত্র - অধ্যায় (১, ২, ৩, ৪)",
+        "chapter": "অধ্যায় ১",
+        "topic": "",
+        "subtopic": ""
+      },
+      "title": "Matrix And Detirminer Class 01",
+      "videoId": "QZYDmwpVDGs",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 1,
+      "status": "active",
+      "resources": [],
+      "telegramLinks": [],
+      "telegramChatIds": []
+    },
+    {
+      "id": 27,
+      "createdAt": "2026-10-06T03:23:48.760Z",
+      "courseId": 18,
+      "subject": "Combo 1 Cycle 1,2,3",
+      "subjectId": 0,
+      "subsection": "Cycle 1 প্রথম পত্র - অধ্যায় (১, ২, ৩, ৪)",
+      "section": "অধ্যায় ১",
+      "chapter": "অধ্যায় ১",
+      "topic": "",
+      "subtopic": "",
+      "steps": {
+        "section": "Combo 1 Cycle 1,2,3",
+        "subsection": "Cycle 1 প্রথম পত্র - অধ্যায় (১, ২, ৩, ৪)",
+        "chapter": "অধ্যায় ১",
+        "topic": "",
+        "subtopic": ""
+      },
+      "title": "Matrix And Detirminer Class 02",
+      "videoId": "QZYDmwpVDGs",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 2,
+      "status": "active",
+      "resources": [],
+      "telegramLinks": [],
+      "telegramChatIds": []
+    },
+    {
+      "id": 28,
+      "createdAt": "2026-10-06T03:24:53.387Z",
+      "courseId": 18,
+      "subject": "Combo 1 Cycle 1,2,3",
+      "subjectId": 0,
+      "subsection": "Cycle 1 প্রথম পত্র - অধ্যায় (১, ২, ৩, ৪)",
+      "section": "অধ্যায় ২",
+      "chapter": "অধ্যায় ২",
+      "topic": "",
+      "subtopic": "",
+      "steps": {
+        "section": "Combo 1 Cycle 1,2,3",
+        "subsection": "Cycle 1 প্রথম পত্র - অধ্যায় (১, ২, ৩, ৪)",
+        "chapter": "অধ্যায় ২",
+        "topic": "",
+        "subtopic": ""
+      },
+      "title": "Vector Lecture 01",
+      "videoId": "QZYDmwpVDGs",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 3,
+      "status": "active",
+      "resources": [],
+      "telegramLinks": [],
+      "telegramChatIds": []
+    },
+    {
+      "id": 29,
+      "createdAt": "2026-10-06T18:13:23.463Z",
+      "courseId": 19,
+      "subject": "",
+      "subjectId": 0,
+      "subsection": "",
+      "section": "",
+      "chapter": "",
+      "topic": "",
+      "subtopic": "",
+      "steps": {
+        "section": "",
+        "subsection": "",
+        "chapter": "",
+        "topic": "",
+        "subtopic": ""
+      },
+      "title": "Class01",
+      "videoId": "QZYDmwpVDGs",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 1,
+      "status": "active",
+      "resources": [
+        {
+          "label": "Lecture Sheet",
+          "url": "/uploads/resources/sheet-1791310394602-1396ea64a85f3bb8.png",
+          "kind": "lecture"
+        },
+        {
+          "label": "Practice Sheet",
+          "url": "/uploads/resources/sheet-1791310402416-d5a58378941843ad.webp",
+          "kind": "practice"
+        }
+      ],
+      "telegramLinks": [],
+      "telegramChatIds": []
+    },
+    {
+      "id": 30,
+      "createdAt": "2026-10-06T18:45:35.998Z",
+      "courseId": 19,
+      "subject": "General",
+      "subjectId": 0,
+      "subsection": "",
+      "section": "Chapter 1",
+      "chapter": "Chapter 1",
+      "topic": "",
+      "subtopic": "",
+      "steps": {
+        "section": "General",
+        "subsection": "",
+        "chapter": "Chapter 1",
+        "topic": "",
+        "subtopic": ""
+      },
+      "title": "CHHHHHpaw",
+      "videoId": "QZYDmwpVDGs",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 2,
+      "status": "active",
+      "resources": [
+        {
+          "label": "Lecture Sheet",
+          "url": "/uploads/resources/sheet-1791312334389-2d9514237487c5b0.png",
+          "kind": "lecture"
+        }
+      ],
+      "telegramLinks": [],
+      "telegramChatIds": []
+    },
+    {
+      "id": 31,
+      "createdAt": "2026-10-07T02:19:29.465Z",
+      "courseId": 5,
+      "subject": "",
+      "subjectId": 0,
+      "subsection": "",
+      "section": "Chapter FFuck",
+      "chapter": "Chapter FFuck",
+      "topic": "",
+      "subtopic": "",
+      "steps": {
+        "section": "",
+        "subsection": "",
+        "chapter": "Chapter FFuck",
+        "topic": "",
+        "subtopic": ""
+      },
+      "title": "Class 1",
+      "videoId": "QZYDmwpVDGs",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 1,
+      "status": "active",
+      "resources": [
+        {
+          "label": "Lecture Sheet",
+          "url": "/uploads/resources/sheet-1791339568227-4430fa06cc7213c7.png",
+          "kind": "lecture"
+        }
+      ],
+      "telegramLinks": [],
+      "telegramChatIds": []
+    },
+    {
+      "id": 32,
+      "createdAt": "2026-10-07T02:56:15.128Z",
+      "courseId": 5,
+      "subject": "",
+      "subjectId": 0,
+      "subsection": "",
+      "section": "Chapter But",
+      "chapter": "Chapter But",
+      "topic": "",
+      "subtopic": "",
+      "steps": {
+        "section": "",
+        "subsection": "",
+        "chapter": "Chapter But",
+        "topic": "",
+        "subtopic": ""
+      },
+      "title": "Class 1",
+      "videoId": "QZYDmwpVDGs",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 2,
+      "status": "active",
+      "resources": [
+        {
+          "label": "Lecture Sheet",
+          "url": "/uploads/resources/sheet-1791341774155-dff00c993c6454f9.png",
+          "kind": "lecture"
+        }
+      ],
+      "telegramLinks": [],
+      "telegramChatIds": []
+    },
+    {
+      "id": 33,
+      "createdAt": "2026-10-07T05:11:27.836Z",
+      "courseId": 20,
+      "subject": "",
+      "subjectId": 0,
+      "subsection": "",
+      "section": "ASA",
+      "chapter": "ASA",
+      "topic": "",
+      "subtopic": "",
+      "steps": {
+        "section": "",
+        "subsection": "",
+        "chapter": "ASA",
+        "topic": "",
+        "subtopic": ""
+      },
+      "title": "CHHHHHpaw",
+      "videoId": "QZYDmwpVDGs",
+      "videoUrl": "",
+      "videoName": "",
+      "videoSize": 0,
+      "videoType": "youtube",
+      "duration": "",
+      "isFree": false,
+      "order": 1,
+      "status": "active",
+      "resources": [],
+      "telegramLinks": [],
+      "telegramChatIds": []
+    }
+  ],
+  "ebooks": [
+    {
+      "id": 1,
+      "createdAt": "2026-09-17T07:48:02.504Z",
+      "title": "ম্যাথ ট্রিকস (উচ্চতর গণিত || নবম-দশম শ্রেণী)",
+      "cover": "/uploads/media/ebook-1-1789977045773-fb9228b00145.webp",
+      "details": "নবম-দশম শিক্ষার্থীদের জন্য স্কুল জীবন থেকে বোর্ড পরীক্ষা ও সেরা কলেজ ভর্তি প্রস্তুতি পর্যন্ত CONCEPT, MCQ, Written Concept -এর একমাত্র পূর্ণাঙ্গ হাতিয়ার।",
+      "linkUrl": "",
+      "status": "active",
+      "slug": "-",
+      "fileUrl": "/uploads/ebooks/ebook-1.pdf",
+      "fileSize": 40773,
+      "fileName": "Invoice-10.pdf",
+      "updatedAt": "2026-09-21T08:21:11.766Z",
+      "downloads": 4
+    },
+    {
+      "id": 2,
+      "createdAt": "2026-09-17T08:09:56.390Z",
+      "title": "Master Book — Math, Higher Math",
+      "cover": "/uploads/media/ebook-2-1789977045776-77766d74ba25.jpg",
+      "details": "FRBP সিরিজ — গণিত ও উচ্চতর গণিতের পূর্ণাঙ্গ প্রস্তুতি",
+      "author": "ACS",
+      "price": 600,
+      "oldPrice": 1000,
+      "linkUrl": "",
+      "status": "active",
+      "slug": "master-book-math-higher-math",
+      "batchId": 0,
+      "categoryId": 0,
+      "ebookBatchId": 0,
+      "updatedAt": "2026-09-29T04:38:39.287Z",
+      "fileUrl": "/uploads/ebooks/ebook-2-c99ed642f9716748.pdf",
+      "fileSize": 119767,
+      "fileName": "1233.pdf"
+    },
+    {
+      "id": 3,
+      "createdAt": "2026-09-17T08:23:08.287Z",
+      "title": "Top 2000 MCQ Book",
+      "cover": "/uploads/media/ebook-3-1789977045778-2f170dacae9b.jpg",
+      "details": "পদার্থ, রসায়ন, জীববিজ্ঞান, গণিত ও উচ্চতর গণিতের ২০০০ MCQ",
+      "author": "",
+      "price": 500,
+      "oldPrice": 0,
+      "linkUrl": "",
+      "status": "active",
+      "slug": "top-2000-mcq-book",
+      "batchId": 0,
+      "categoryId": 7,
+      "updatedAt": "2026-09-29T04:38:27.494Z",
+      "ebookBatchId": 5,
+      "fileUrl": "/uploads/ebooks/ebook-3-aa672cfda2a49e47.pdf",
+      "fileSize": 128518,
+      "fileName": "CV.pdf"
+    },
+    {
+      "id": 4,
+      "createdAt": "2026-09-19T03:38:52.282Z",
+      "title": "Top 2000 MCQ Book",
+      "cover": "/uploads/media/ebook-4-1789977045781-a386f4ff6a5a.webp",
+      "details": "",
+      "author": "",
+      "price": 800,
+      "oldPrice": 0,
+      "linkUrl": "",
+      "status": "active",
+      "batchId": 0,
+      "categoryId": 0,
+      "ebookBatchId": 1,
+      "slug": "top-2000-mcq-book",
+      "updatedAt": "2026-09-29T04:37:51.895Z",
+      "fileUrl": "/uploads/ebooks/ebook-4-062c59b2dc2bce24.pdf",
+      "fileSize": 40773,
+      "fileName": "Invoice-10.pdf"
+    },
+    {
+      "id": 5,
+      "createdAt": "2026-09-22T10:52:59.445Z",
+      "title": "Ebook-1",
+      "cover": "/uploads/media/ebooks-1790074379442-9ed50053192c.jpg",
+      "details": "",
+      "author": "",
+      "price": 400,
+      "oldPrice": 0,
+      "linkUrl": "",
+      "status": "active",
+      "batchId": 0,
+      "categoryId": 7,
+      "ebookBatchId": 5,
+      "slug": "ebook-1",
+      "fileUrl": "/uploads/ebooks/ebook-5-6fcf6c24c34122c7.pdf",
+      "fileSize": 359996,
+      "fileName": "WDDF_Liberation_War.pdf",
+      "updatedAt": "2026-09-22T11:09:39.786Z",
+      "downloads": 2
+    }
+  ],
+  "ebookBatches": [
+    {
+      "id": 1,
+      "createdAt": "2026-09-19T03:37:43.999Z",
+      "name": "HSC 26 E-BOOK",
+      "slug": "hsc-26-e-book",
+      "icon": "",
+      "iconUrl": "",
+      "color": "#6d56d7",
+      "status": "active",
+      "order": 2,
+      "updatedAt": "2026-09-19T03:45:11.976Z"
+    },
+    {
+      "id": 2,
+      "createdAt": "2026-09-19T06:27:52.730Z",
+      "name": "Job Preparetion Book",
+      "slug": "job-preparetion-book",
+      "icon": "",
+      "iconUrl": "",
+      "color": "#f11edf",
+      "status": "active",
+      "order": 3,
+      "updatedAt": "2026-09-22T07:19:29.955Z"
+    },
+    {
+      "id": 3,
+      "createdAt": "2026-09-19T06:29:33.811Z",
+      "name": "Academic Book",
+      "slug": "academic-book",
+      "icon": "",
+      "iconUrl": "",
+      "color": "#5ae2d9",
+      "status": "active",
+      "order": 4,
+      "updatedAt": "2026-09-22T07:18:44.458Z"
+    },
+    {
+      "id": 4,
+      "createdAt": "2026-09-19T06:29:45.902Z",
+      "name": "Admission Book",
+      "slug": "admission-book",
+      "icon": "",
+      "iconUrl": "",
+      "color": "#eec944",
+      "status": "active",
+      "order": 5,
+      "updatedAt": "2026-09-22T07:19:00.616Z"
+    },
+    {
+      "id": 5,
+      "createdAt": "2026-09-22T10:48:37.298Z",
+      "name": "E-Batch1",
+      "slug": "e-batch1",
+      "icon": "",
+      "iconUrl": "",
+      "color": "#ffd014",
+      "status": "active",
+      "order": 6
+    }
+  ],
+  "batches": [
+    {
+      "id": 1,
+      "name": "HSC 26",
+      "slug": "hsc26",
+      "year": "2026",
+      "description": "HSC 2026 Batch - Full Academic Course",
+      "color": "#4F46E5",
+      "status": "active",
+      "createdAt": "2026-01-01T00:00:00.000Z",
+      "order": 3,
+      "updatedAt": "2026-09-17T05:28:52.208Z"
+    },
+    {
+      "id": 2,
+      "name": "HSC 29",
+      "slug": "hsc27",
+      "year": "2027",
+      "description": "HSC 2027 Batch - Foundation Course",
+      "color": "#7c3aed",
+      "status": "active",
+      "createdAt": "2026-01-01T00:00:00.000Z",
+      "order": 2,
+      "updatedAt": "2026-09-18T04:47:32.129Z",
+      "icon": "",
+      "iconUrl": ""
+    },
+    {
+      "id": 3,
+      "name": "SSC 26",
+      "slug": "ssc26",
+      "year": "2026",
+      "description": "SSC 2026 Batch",
+      "color": "#0EA5E9",
+      "status": "active",
+      "createdAt": "2026-01-01T00:00:00.000Z",
+      "order": 1,
+      "updatedAt": "2026-09-18T05:51:23.946Z"
+    },
+    {
+      "id": 4,
+      "createdAt": "2026-09-17T05:20:14.405Z",
+      "name": "Skill Development",
+      "slug": "skill-development",
+      "year": "",
+      "description": "",
+      "color": "#4f46e5",
+      "status": "active",
+      "order": 4,
+      "updatedAt": "2026-09-18T05:51:23.967Z",
+      "icon": "",
+      "iconUrl": ""
+    },
+    {
+      "id": 5,
+      "createdAt": "2026-09-17T05:39:14.383Z",
+      "name": "BATCH A",
+      "slug": "batch-a",
+      "icon": "",
+      "iconUrl": "",
+      "color": "#2dd758",
+      "status": "active",
+      "order": 7,
+      "updatedAt": "2026-09-18T05:45:41.187Z"
+    },
+    {
+      "id": 6,
+      "createdAt": "2026-09-18T03:54:56.541Z",
+      "name": "SSC 27",
+      "slug": "ssc-27",
+      "icon": "",
+      "iconUrl": "",
+      "color": "#4f46e5",
+      "status": "active",
+      "order": 6
+    },
+    {
+      "id": 7,
+      "createdAt": "2026-09-18T03:55:11.607Z",
+      "name": "HSC 27",
+      "slug": "hsc-27",
+      "icon": "",
+      "iconUrl": "",
+      "color": "#4f46e5",
+      "status": "active",
+      "order": 5,
+      "updatedAt": "2026-09-18T05:49:45.760Z"
+    },
+    {
+      "id": 8,
+      "createdAt": "2026-09-22T08:03:09.053Z",
+      "name": "Batch 1",
+      "slug": "batch-1",
+      "icon": "",
+      "iconUrl": "",
+      "color": "#ff1aab",
+      "status": "active",
+      "order": 8
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Academic",
+      "slug": "academic",
+      "icon": "fa-graduation-cap",
+      "color": "#EDE9FF",
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "name": "Revision",
+      "slug": "revision",
+      "icon": "fa-rotate-right",
+      "color": "#E6F4EA",
+      "status": "active"
+    },
+    {
+      "id": 3,
+      "name": "Admission",
+      "slug": "admission",
+      "icon": "fa-university",
+      "color": "#FFF2E6",
+      "status": "active"
+    },
+    {
+      "id": 4,
+      "name": "Skill Development",
+      "slug": "skill",
+      "icon": "fa-laptop-code",
+      "color": "#E6F0FF",
+      "status": "active"
+    },
+    {
+      "id": 5,
+      "name": "E-Book",
+      "slug": "ebook",
+      "icon": "fa-book",
+      "color": "#FCE7F3",
+      "status": "active"
+    },
+    {
+      "id": 6,
+      "createdAt": "2026-09-22T08:18:54.538Z",
+      "name": "New1",
+      "slug": "new1",
+      "icon": "",
+      "color": "#7764ce",
+      "status": "active",
+      "for": "course"
+    },
+    {
+      "id": 7,
+      "createdAt": "2026-09-22T10:47:37.997Z",
+      "name": "Ebook-1",
+      "slug": "ebook-1",
+      "icon": "",
+      "color": "#070410",
+      "status": "active",
+      "for": "ebook"
+    }
+  ],
+  "platforms": [
+    {
+      "id": 1,
+      "createdAt": "2026-09-17T06:17:33.830Z",
+      "name": "ACS",
+      "status": "active",
+      "slug": "acs"
+    },
+    {
+      "id": 2,
+      "createdAt": "2026-09-17T06:17:39.134Z",
+      "name": "BP",
+      "status": "active",
+      "slug": "bp"
+    },
+    {
+      "id": 3,
+      "createdAt": "2026-09-17T06:17:44.557Z",
+      "name": "Udvash",
+      "status": "active",
+      "slug": "udvash",
+      "updatedAt": "2026-09-18T03:46:00.200Z"
+    },
+    {
+      "id": 4,
+      "createdAt": "2026-09-17T06:19:01.457Z",
+      "name": "Retina",
+      "status": "active",
+      "slug": "retina"
+    },
+    {
+      "id": 5,
+      "createdAt": "2026-09-18T04:39:10.703Z",
+      "name": "RMH",
+      "status": "active",
+      "slug": "rmh"
+    },
+    {
+      "id": 6,
+      "createdAt": "2026-09-18T04:39:37.420Z",
+      "name": "Rifat Academy",
+      "status": "active",
+      "slug": "rifat-academy"
+    },
+    {
+      "id": 7,
+      "createdAt": "2026-09-18T04:39:49.144Z",
+      "name": "HSC Crackers",
+      "status": "active",
+      "slug": "hsc-crackers"
+    },
+    {
+      "id": 8,
+      "createdAt": "2026-09-18T04:42:24.047Z",
+      "name": "CPS",
+      "status": "active",
+      "slug": "cps"
+    },
+    {
+      "id": 9,
+      "createdAt": "2026-09-18T04:42:29.959Z",
+      "name": "BH",
+      "status": "active",
+      "slug": "bh"
+    },
+    {
+      "id": 10,
+      "createdAt": "2026-09-18T04:42:41.742Z",
+      "name": "Unmesh",
+      "status": "active",
+      "slug": "unmesh"
+    },
+    {
+      "id": 11,
+      "createdAt": "2026-09-18T04:42:49.734Z",
+      "name": "Medilogy",
+      "status": "active",
+      "slug": "medilogy"
+    },
+    {
+      "id": 12,
+      "createdAt": "2026-09-18T04:42:54.892Z",
+      "name": "RTDS",
+      "status": "active",
+      "slug": "rtds"
+    }
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "createdAt": "2026-09-24T09:59:33.898Z",
+      "name": "Science",
+      "status": "active",
+      "slug": "science"
+    },
+    {
+      "id": 2,
+      "createdAt": "2026-09-24T10:00:02.146Z",
+      "name": "Arts",
+      "status": "active",
+      "slug": "arts"
+    },
+    {
+      "id": 3,
+      "createdAt": "2026-09-24T10:00:02.148Z",
+      "name": "Commerce",
+      "status": "active",
+      "slug": "commerce"
+    }
+  ],
+  "subjects": [
+    {
+      "id": 1,
+      "createdAt": "2026-09-24T09:59:33.915Z",
+      "name": "Physics",
+      "status": "active",
+      "slug": "physics"
+    },
+    {
+      "id": 2,
+      "createdAt": "2026-09-24T10:00:02.152Z",
+      "name": "Chemistry",
+      "status": "active",
+      "slug": "chemistry"
+    },
+    {
+      "id": 3,
+      "createdAt": "2026-09-24T10:00:02.154Z",
+      "name": "Higher Math",
+      "status": "active",
+      "slug": "higher-math"
+    },
+    {
+      "id": 4,
+      "createdAt": "2026-09-24T10:00:02.156Z",
+      "name": "Biology",
+      "status": "active",
+      "slug": "biology"
+    },
+    {
+      "id": 5,
+      "createdAt": "2026-09-24T10:00:02.158Z",
+      "name": "English",
+      "status": "active",
+      "slug": "english"
+    }
+  ],
+  "coupons": [
+    {
+      "id": 1,
+      "code": "SAVE10",
+      "type": "percent",
+      "value": 10,
+      "minOrder": 500,
+      "maxDiscount": 300,
+      "usageLimit": 100,
+      "used": 0,
+      "expiresAt": "2026-12-31",
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "code": "FLAT200",
+      "type": "fixed",
+      "value": 200,
+      "minOrder": 1000,
+      "maxDiscount": 200,
+      "usageLimit": 50,
+      "used": 0,
+      "expiresAt": "2026-12-31",
+      "status": "active"
+    },
+    {
+      "id": 3,
+      "createdAt": "2026-09-16T20:25:43.181Z",
+      "code": "TEST25",
+      "type": "percent",
+      "value": 25,
+      "minOrder": 100,
+      "maxDiscount": 500,
+      "usageLimit": 5,
+      "expiresAt": "2026-12-31",
+      "status": "active",
+      "updatedAt": "2026-09-16T20:26:16.462Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "createdAt": "2026-10-10T02:17:58.283Z",
+      "orderNo": "ORD-0001",
+      "userId": 4,
+      "customer": {
+        "name": "user",
+        "email": "user@gmail.com",
+        "phone": ""
+      },
+      "items": [
+        {
+          "courseId": 2,
+          "title": "এইচএসসি'২6 ম্যাথ অনলাইন প্রোগ্রাম (১ম বর্ষ)",
+          "price": 2000
+        }
+      ],
+      "subtotal": 2000,
+      "discount": 0,
+      "couponCode": "",
+      "referrerId": null,
+      "referralCode": "",
+      "referralDiscount": 0,
+      "walletPaid": 0,
+      "total": 2000,
+      "paymentMethod": "manual",
+      "note": "",
+      "status": "pending",
+      "paidAt": null
+    },
+    {
+      "id": 2,
+      "createdAt": "2026-10-10T02:18:28.199Z",
+      "orderNo": "ORD-0002",
+      "userId": 4,
+      "customer": {
+        "name": "user",
+        "email": "user@gmail.com",
+        "phone": ""
+      },
+      "items": [
+        {
+          "courseId": 14,
+          "title": "Youtube Classes",
+          "price": 798
+        }
+      ],
+      "subtotal": 798,
+      "discount": 0,
+      "couponCode": "",
+      "referrerId": null,
+      "referralCode": "",
+      "referralDiscount": 0,
+      "walletPaid": 0,
+      "total": 798,
+      "paymentMethod": "manual",
+      "note": "",
+      "status": "pending",
+      "paidAt": null
+    }
+  ],
+  "adminInvites": [],
+  "commissions": [],
+  "withdrawals": [
+    {
+      "id": 1,
+      "createdAt": "2026-10-07T14:32:37.754Z",
+      "userId": 4,
+      "userName": "user",
+      "amount": 1200,
+      "method": "bkash",
+      "account": "01784002836",
+      "status": "approved",
+      "note": "",
+      "processedAt": "2026-10-07T14:35:21.658Z",
+      "updatedAt": "2026-10-07T14:35:21.658Z"
+    }
+  ],
+  "walletTxns": [
+    {
+      "id": 1,
+      "createdAt": "2026-10-07T14:30:09.603Z",
+      "userId": 4,
+      "type": "adjust",
+      "amount": 5000,
+      "balanceAfter": 5000,
+      "note": "Admin adjust +5000"
+    },
+    {
+      "id": 2,
+      "createdAt": "2026-10-07T14:30:50.251Z",
+      "userId": 4,
+      "type": "purchase",
+      "amount": -499,
+      "balanceAfter": 4501,
+      "note": "Order: ORD-0022",
+      "orderId": 22
+    },
+    {
+      "id": 3,
+      "createdAt": "2026-10-07T14:32:37.759Z",
+      "userId": 4,
+      "type": "withdraw",
+      "amount": -1200,
+      "balanceAfter": 3301,
+      "note": "Withdraw request (bkash)",
+      "withdrawalId": 1
+    },
+    {
+      "id": 4,
+      "createdAt": "2026-10-07T14:35:21.660Z",
+      "userId": 4,
+      "type": "withdraw_approved",
+      "amount": 0,
+      "balanceAfter": 3301,
+      "note": "Withdraw approved (bkash)",
+      "withdrawalId": 1
+    }
+  ]
+}

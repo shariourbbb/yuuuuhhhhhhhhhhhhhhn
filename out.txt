@@ -1,0 +1,26 @@
+==================================================
+  StudyMart server running
+  Frontend : http://localhost:3000
+  Admin    : http://localhost:3000/admin.html
+  API      : http://localhost:3000/api/health
+  Admin login -> admin / admin123
+  Data     : courses=13 batches=8 users=5 orders=14
+==================================================
+[2026-09-24T12:58:25.506Z] GET /ebook.html?id=2 -> 200 (11ms)
+[2026-09-24T12:58:25.553Z] GET /assets/navbar.css -> 304 (7ms)
+[2026-09-24T12:58:25.566Z] GET /assets/navbar.js -> 304 (3ms)
+[2026-09-24T12:58:25.567Z] GET /assets/app.js -> 304 (3ms)
+[2026-09-24T12:58:26.385Z] GET /api/public/ebooks/2 -> 200 (10ms)
+[2026-09-24T12:58:26.392Z] GET /uploads/media/logo-1789977045736-074cfc905d45.jpg -> 304 (4ms)
+[2026-09-24T12:58:26.542Z] GET /uploads/media/ebook-2-1789977045776-77766d74ba25.jpg -> 304 (1ms)
+[2026-09-24T12:58:29.168Z] GET / -> 200 (7ms)
+[2026-09-24T12:58:34.381Z] GET /ebook.html?id=3 -> 200 (9ms)
+[2026-09-24T12:58:34.447Z] GET /assets/navbar.css -> 304 (3ms)
+[2026-09-24T12:58:34.449Z] GET /assets/navbar.js -> 304 (1ms)
+[2026-09-24T12:58:34.452Z] GET /assets/app.js -> 304 (2ms)
+[2026-09-24T12:58:34.802Z] GET /api/public/ebooks/3 -> 200 (4ms)
+[2026-09-24T12:58:34.810Z] GET /uploads/media/logo-1789977045736-074cfc905d45.jpg -> 304 (6ms)
+[2026-09-24T12:58:34.936Z] GET /uploads/media/ebook-3-1789977045778-2f170dacae9b.jpg -> 304 (2ms)
+[2026-09-24T12:59:57.629Z] GET /api/public/homepage -> 200 (2ms)
+[2026-09-24T13:01:06.334Z] GET /api/public/batches -> 200 (0ms)
+[2026-09-24T13:01:06.337Z] GET /api/public/ebook-batches -> 200 (0ms)

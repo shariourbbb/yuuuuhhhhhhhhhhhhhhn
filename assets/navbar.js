@@ -1,0 +1,749 @@
+/* StudyMart - Navbar logic (desktop + mobile search).
+   Handles: active link, search -> courses.html?q=, language BN/EN, theme light/dark, account dropdown, desktop drawer, mobile search bar. */
+(function () {
+  'use strict';
+
+  var I18N = {
+    en: { home: 'Home', courses: 'Courses', ebooks: 'Ebooks', free: 'Free Resources', telegram: 'Telegram', searchPh: 'Search courses, subjects, ebooks...', lang: 'বাংলা/English', theme: 'Theme', account: 'Account' },
+    bn: { home: 'হোম', courses: 'কোর্স', ebooks: 'ই-বুক', free: 'ফ্রি রিসোর্স', telegram: 'টেলিগ্রাম', searchPh: 'কোর্স, বিষয়, ই-বুক খুঁজুন...', lang: 'বাংলা/English', theme: 'থিম', account: 'অ্যাকাউন্ট' }
+  };
+
+  function getLang() { try { return localStorage.getItem('sm_lang') || 'en'; } catch (e) { return 'en'; } }
+  function setLang(v) { try { localStorage.setItem('sm_lang', v); } catch (e) {} }
+  function getTheme() { try { return localStorage.getItem('sm_theme') || 'light'; } catch (e) { return 'light'; } }
+  function setTheme(v) { try { localStorage.setItem('sm_theme', v); } catch (e) {} }
+  function getToken() { try { return localStorage.getItem('sm_user_token') || sessionStorage.getItem('sm_user_token') || ''; } catch (e) { return ''; } }
+
+  function applyTheme() {
+    var t = getTheme();
+    try {
+      document.documentElement.classList.toggle('sm-dark', t === 'dark');
+      document.documentElement.style.colorScheme = t === 'dark' ? 'dark' : 'light';
+    } catch (e) {}
+    document.querySelectorAll('[data-sm-theme-icon]').forEach(function (el) {
+      el.className = t === 'dark' ? 'fa-solid fa-moon text-[15px] text-[#7AA2FF]' : 'fa-solid fa-sun text-[15px] text-[#F59E0B]';
+    });
+  }
+
+  // Apply saved theme immediately (no light-flash) — runs before DOMContentLoaded too
+  try { applyTheme(); } catch (e) {}
+  try {
+    window.addEventListener('storage', function (e) {
+      if (e && e.key === 'sm_theme') applyTheme();
+    });
+  } catch (e) {}
+
+  function applyLang() {
+    var l = getLang();
+    var d = I18N[l] || I18N.en;
+    document.documentElement.setAttribute('lang', l === 'bn' ? 'bn' : 'en');
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (d[k]) el.textContent = d[k];
+    });
+    document.querySelectorAll('[data-i18n-ph="searchPh"]').forEach(function (el) {
+      el.setAttribute('placeholder', d.searchPh);
+    });
+  }
+
+  function paintAccount() {
+    var tok = getToken();
+    document.querySelectorAll('[data-sm-desk-account-menu]').forEach(function (menu) {
+      if (tok) {
+        var name = 'Student';
+        try {
+          var u = JSON.parse(localStorage.getItem('sm_user') || 'null');
+          if (u && u.name) name = u.name.split(' ')[0];
+        } catch (e) {}
+        menu.innerHTML =
+          '<div class="px-3 py-2 text-[12px] font-bold text-slate-500">Hi, ' + name.replace(/[<>&"]/g, '') + '</div>' +
+          '<a href="dashboard.html"><i class="fa-solid fa-gauge-high w-4 text-center"></i>Dashboard</a>' +
+          '<a href="dashboard.html#secOrders"><i class="fa-solid fa-bag-shopping w-4 text-center"></i>My Orders</a>' +
+          '<a href="cart.html"><i class="fa-solid fa-cart-shopping w-4 text-center"></i>Cart</a>' +
+          '<button type="button" class="sm-mi" data-sm-logout-x><i class="fa-solid fa-right-from-bracket w-4 text-center"></i>Logout</button>';
+      } else {
+        menu.innerHTML =
+          '<a href="auth.html"><i class="fa-solid fa-right-to-bracket w-4 text-center"></i>Login</a>' +
+          '<a href="auth.html?tab=signup"><i class="fa-solid fa-user-plus w-4 text-center"></i>Sign Up</a>' +
+          '<a href="dashboard.html" data-account-link><i class="fa-solid fa-gauge-high w-4 text-center"></i>Dashboard</a>';
+      }
+    });
+  }
+
+  function markActive() {
+    var p = (location.pathname.split('/').pop() || 'index.html').split('?')[0].toLowerCase();
+    var key = 'home';
+    if (p === 'courses.html' || p === 'course.html' || p === 'batch.html') key = 'courses';
+    else if (p === 'ebooks.html' || p === 'ebook.html' || p === 'ebbatch.html') key = 'ebooks';
+    else if (p === 'index.html' || p === '' ) key = 'home';
+    if (p === 'courses.html' && /ebook/i.test(location.search + location.hash)) key = 'ebooks';
+    var h = '';
+    try { h = String(location.hash || '').toLowerCase(); } catch (e) {}
+    if (h === '#seccategories') key = 'courses';
+    else if (h === '#secebookcategory') key = 'ebooks';
+    document.querySelectorAll('[data-sm-nav]').forEach(function (a) {
+      if (a.getAttribute('data-sm-nav') === key) a.classList.add('sm-active');
+      else a.classList.remove('sm-active');
+    });
+  }
+
+  /* Navbar Courses/Ebooks -> homepage category sections (Boss requirement):
+     Courses => Courses Category (#secCategories), Ebooks => E-Book Category (#secEbookCategory).
+     Sob page-er header/phone nav-e data-sm-nav attr ache — ekhan thekei centrally rewrite,
+     prottek HTML file edit kora lage na. */
+  var SM_SEC_LINKS = { courses: 'index.html#secCategories', ebooks: 'index.html#secEbookCategory' };
+  function smIsHomePage() {
+    try {
+      var p = (location.pathname.split('/').pop() || 'index.html').split('?')[0].toLowerCase();
+      return p === '' || p === '/' || p === 'index.html';
+    } catch (e) { return false; }
+  }
+  function bindSectionLinks() {
+    try {
+      Object.keys(SM_SEC_LINKS).forEach(function (k) {
+        document.querySelectorAll('a[data-sm-nav="' + k + '"]').forEach(function (a) {
+          a.setAttribute('href', SM_SEC_LINKS[k]);
+        });
+      });
+      if (!document._smSecLinkBound) {
+        document._smSecLinkBound = true;
+        // Homepage-e thakle click-e smooth scroll (navigate na kore)
+        document.addEventListener('click', function (e) {
+          var a = e.target && e.target.closest ? e.target.closest('a[data-sm-nav="courses"],a[data-sm-nav="ebooks"]') : null;
+          if (!a || !smIsHomePage()) return;
+          var id = a.getAttribute('data-sm-nav') === 'courses' ? 'secCategories' : 'secEbookCategory';
+          var el = document.getElementById(id);
+          if (!el) return;
+          e.preventDefault();
+          try { history.replaceState(null, '', '#' + id); } catch (x) {}
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          markActive();
+        });
+      }
+    } catch (e) {}
+  }
+
+  function closeAllMenus(except) {
+    document.querySelectorAll('[data-sm-desk-account-menu],[data-sm-desk-lang-menu]').forEach(function (m) {
+      if (m !== except) m.classList.add('hidden');
+    });
+  }
+
+  function escHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (m) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]); });
+  }
+
+  function goSearch(v) {
+    location.href = 'courses.html' + (v ? '?q=' + encodeURIComponent(v) : '');
+  }
+
+  /* Live suggestions: typing -> matching courses + ebooks dropdown */
+  function bindSuggest(input, box) {
+    var timer = null;
+    var items = []; // {url}
+    var active = -1;
+
+    function hide() {
+      box.classList.add('hidden');
+      box.innerHTML = '';
+      items = [];
+      active = -1;
+    }
+
+    function paintActive() {
+      box.querySelectorAll('.sm-sug-row').forEach(function (row, i) {
+        row.classList.toggle('sug-active', i === active);
+      });
+    }
+
+    function openUrl(url) { if (url) location.href = url; }
+
+    function rowHtml(it) {
+      var thumb = it.img
+        ? '<img src="' + escHtml(it.img) + '" alt="">'
+        : '<i class="fa-solid ' + (it.type === 'ebook' ? 'fa-book-open' : 'fa-book') + '"></i>';
+      var price = it.price > 0
+        ? '<span class="sm-sug-price">৳' + it.price + '</span>'
+        : '<span class="sm-sug-price free">' + (it.type === 'ebook' ? 'FREE' : '৳0') + '</span>';
+      return '<div class="sm-sug-thumb">' + thumb + '</div>' +
+        '<div class="sm-sug-meta"><div class="sm-sug-title">' + escHtml(it.title) + '</div>' +
+        '<div class="sm-sug-sub">' + escHtml(it.sub || '') + '</div></div>' + price;
+    }
+
+    function sugRow(it) {
+      items.push({ url: it.url });
+      return '<div class="sm-sug-row" data-sug="' + (items.length - 1) + '">' + rowHtml(it) + '</div>';
+    }
+
+    function render(courses, ebooks, q) {
+      items = [];
+      var html = '';
+      if (courses && courses.length) {
+        html += '<div class="sm-sug-group">Courses</div>';
+        courses.forEach(function (c) {
+          html += sugRow({ url: 'course.html?id=' + c.id, type: 'course', img: c.thumbnail, title: c.title, sub: (c.teacher || c.batchName || c.categoryName || ''), price: Number(c.price) || 0 });
+        });
+      }
+      if (ebooks && ebooks.length) {
+        html += '<div class="sm-sug-group">E-Books</div>';
+        ebooks.forEach(function (b) {
+          html += sugRow({ url: 'ebook.html?id=' + b.id, type: 'ebook', img: b.cover, title: b.title, sub: (b.author ? 'By ' + b.author : (b.ebookBatchName || b.batchName || 'E-Book')), price: Number(b.price) || 0 });
+        });
+      }
+      if (!items.length) {
+        box.innerHTML = '<div class="sm-sug-empty">"' + escHtml(q) + '" — kichu pawa jayni</div>' +
+          '<button type="button" class="sm-sug-all" data-sug-all>Try full search <i class="fa-solid fa-arrow-right text-[11px]"></i></button>';
+      } else {
+        box.innerHTML = html + '<button type="button" class="sm-sug-all" data-sug-all>See all results for "' + escHtml(q) + '" <i class="fa-solid fa-arrow-right text-[11px]"></i></button>';
+      }
+      active = -1;
+      box.classList.remove('hidden');
+      box.querySelectorAll('.sm-sug-row').forEach(function (row) {
+        row.addEventListener('mousedown', function (e) {
+          e.preventDefault();
+          openUrl(items[Number(row.dataset.sug)].url);
+        });
+      });
+      var allBtn = box.querySelector('[data-sug-all]');
+      if (allBtn) allBtn.addEventListener('mousedown', function (e) { e.preventDefault(); goSearch(q); });
+    }
+
+    async function lookup(q) {
+      try {
+        var res = await Promise.all([
+          fetch('/api/public/courses?q=' + encodeURIComponent(q) + '&limit=5').then(function (r) { return r.json(); }),
+          fetch('/api/public/ebooks?q=' + encodeURIComponent(q) + '&limit=4').then(function (r) { return r.json(); })
+        ]);
+        if (input.value.trim() !== q) return; // stale response
+        render(res[0].data || [], res[1].data || [], q);
+      } catch (e) { hide(); }
+    }
+
+    input.addEventListener('input', function () {
+      var q = input.value.trim();
+      if (timer) clearTimeout(timer);
+      if (q.length < 2) { hide(); return; }
+      timer = setTimeout(function () { lookup(q); }, 220);
+    });
+    input.addEventListener('focus', function () {
+      var q = input.value.trim();
+      if (q.length >= 2) lookup(q);
+    });
+    input.addEventListener('blur', function () {
+      setTimeout(hide, 150); // mousedown on rows fires first
+    });
+    input.addEventListener('keydown', function (e) {
+      if (box.classList.contains('hidden')) return;
+      var rows = box.querySelectorAll('.sm-sug-row');
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (!rows.length) return;
+        active = e.key === 'ArrowDown' ? (active + 1) % rows.length : (active - 1 + rows.length) % rows.length;
+        paintActive();
+        if (rows[active] && rows[active].scrollIntoView) rows[active].scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'Escape') {
+        hide();
+      } else if (e.key === 'Enter' && active >= 0 && items[active]) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        openUrl(items[active].url);
+      }
+    });
+  }
+
+  function bindSearch() {
+    document.querySelectorAll('[data-sm-desk-search]').forEach(function (input) {
+      // prefill from ?q=
+      try {
+        var q = new URLSearchParams(location.search).get('q');
+        if (q && !input.value) input.value = q;
+      } catch (e) {}
+      // suggestion dropdown (lives inside the search pill)
+      var wrap = input.parentElement;
+      var box = document.createElement('div');
+      box.className = 'sm-search-suggest hidden';
+      wrap.appendChild(box);
+      bindSuggest(input, box);
+      input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          goSearch(input.value.trim());
+        }
+      });
+      var btn = wrap.querySelector('[data-sm-desk-search-btn]');
+      if (btn) btn.addEventListener('click', function () {
+        goSearch(input.value.trim());
+      });
+    });
+    // click outside closes any open suggestions
+    document.addEventListener('click', function (e) {
+      document.querySelectorAll('.sm-search-suggest').forEach(function (b) {
+        if (!b.classList.contains('hidden') && !(e.target.closest && e.target.closest('.sm-desk-search'))) b.classList.add('hidden');
+      });
+    });
+  }
+
+  function isMobileView() {
+    try { return window.matchMedia('(max-width:1023.5px)').matches; }
+    catch (e) { return window.innerWidth < 1024; }
+  }
+
+  /* Mobile search: phone header er search icon -> expandable search bar (sob page-e kaj korbe).
+     Desktop-e jader alada search bar ache, tader default behavior untouched thakbe. */
+  function bindMobileSearch() {
+    function ensureBar() {
+      var bar = document.getElementById('smMobileSearchBar');
+      if (bar) return bar;
+      var header = document.querySelector('header');
+      if (!header) return null;
+      var ph = 'Search courses, subjects, ebooks...';
+      try { ph = (getLang() === 'bn' ? I18N.bn.searchPh : I18N.en.searchPh) || ph; } catch (e) {}
+      bar = document.createElement('div');
+      bar.id = 'smMobileSearchBar';
+      bar.className = 'lg:hidden hidden border-t border-slate-100 bg-white px-4 py-2.5';
+      bar.innerHTML =
+        '<div data-sm-mob-pill class="relative flex items-center gap-2 bg-[#F1F5F9] rounded-full pl-3.5 pr-1.5 py-1.5">' +
+        '<i class="fa-solid fa-magnifying-glass text-slate-400 text-[14px] flex-shrink-0"></i>' +
+        '<input data-sm-mob-search type="text" placeholder="' + ph.replace(/"/g, '&quot;') + '" autocomplete="off" class="flex-1 min-w-0 bg-transparent outline-none text-[13px] text-[#0F2043] placeholder:text-slate-400">' +
+        '<button data-sm-mob-search-go class="w-8 h-8 rounded-full bg-[#1A56FF] text-white flex items-center justify-center flex-shrink-0" aria-label="Search"><i class="fa-solid fa-arrow-right text-[12px]"></i></button>' +
+        '<button data-sm-mob-search-close class="w-8 h-8 rounded-full text-slate-500 hover:bg-slate-200 flex items-center justify-center flex-shrink-0" aria-label="Close"><i class="fa-solid fa-xmark text-[14px]"></i></button>' +
+        '</div>';
+      header.appendChild(bar);
+      var input = bar.querySelector('[data-sm-mob-search]');
+      try {
+        var q = new URLSearchParams(location.search).get('q');
+        if (q && input && !input.value) input.value = q;
+      } catch (e) {}
+      // Live suggestions (desktop-er moto courses + ebooks dropdown)
+      var sugBox = null;
+      try {
+        var pill = bar.querySelector('[data-sm-mob-pill]');
+        if (pill && input && typeof bindSuggest === 'function') {
+          sugBox = document.createElement('div');
+          sugBox.className = 'sm-search-suggest hidden';
+          pill.appendChild(sugBox);
+          bindSuggest(input, sugBox);
+        }
+      } catch (e) {}
+      // NOTE: bindSuggest-er pore add — highlighted suggestion thakle Enter oitate jabe
+      if (input) input.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); goSearch(input.value.trim()); }
+      });
+      var go = bar.querySelector('[data-sm-mob-search-go]');
+      if (go) go.addEventListener('click', function () { goSearch(input.value.trim()); });
+      var close = bar.querySelector('[data-sm-mob-search-close]');
+      if (close) close.addEventListener('click', function () {
+        bar.classList.add('hidden');
+        if (sugBox) sugBox.classList.add('hidden');
+      });
+      return bar;
+    }
+    document.addEventListener('click', function (e) {
+      var btn = e.target && e.target.closest ? e.target.closest('[data-sm-mob-search-btn]') : null;
+      if (!btn) return;
+      if (!isMobileView()) {
+        if (btn.tagName !== 'A') e.preventDefault();
+        return;
+      }
+      e.preventDefault();
+      var mm = document.getElementById('mobileMenu');
+      if (mm) mm.classList.add('hidden');
+      var bar = ensureBar();
+      if (!bar) return;
+      bar.classList.toggle('hidden');
+      if (!bar.classList.contains('hidden')) {
+        var input = bar.querySelector('[data-sm-mob-search]');
+        if (input) setTimeout(function () { try { input.focus(); } catch (x) {} }, 60);
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        var bar = document.getElementById('smMobileSearchBar');
+        if (bar) bar.classList.add('hidden');
+      }
+    });
+  }
+
+  // On courses.html, apply ?q= to backend-backed blocks (app.js reads data-sm-q at hydrate time).
+  // navbar.js runs before app.js hydrates if loaded first; also do client-side fallback filtering.
+  function applyCoursesQuery() {
+    var p = (location.pathname.split('/').pop() || '').toLowerCase();
+    if (p !== 'courses.html') return;
+    var q = '';
+    try { q = new URLSearchParams(location.search).get('q') || ''; } catch (e) {}
+    if (!q) return;
+    document.querySelectorAll('[data-sm-courses]').forEach(function (b) { b.dataset.smQ = q; });
+  }
+
+  /* Compact the pic-like desktop bar at runtime (same markup on all pages):
+     - remove the Language pill (not needed)
+     - Telegram text link -> round icon button (saves space)
+     - add compact/responsive helper classes (see navbar.css) */
+  function compactDesktopBar() {
+    try {
+      setLang('en'); // language UI removed -> force English labels
+      document.querySelectorAll('[data-sm-desk-search]').forEach(function (input) {
+        var sDiv = input.closest('.sm-desk-search');
+        if (!sDiv) return;
+        var bar = sDiv.parentElement;
+        if (bar) bar.classList.add('sm-desk-bar');
+        var nav = bar ? bar.querySelector('nav') : null;
+        if (nav) nav.classList.add('sm-desk-links');
+        sDiv.classList.add('sm-desk-searchflex');
+        var logoTxt = bar ? bar.querySelector('a[href="index.html"] > span') : null;
+        if (logoTxt) logoTxt.classList.add('sm-desk-logo-txt');
+        // keep Telegram as text on desktop (do not convert to icon) — phone shows icon via lg:hidden header
+        var lb = bar ? bar.querySelector('[data-sm-desk-lang-btn]') : null;
+        if (lb && lb.closest('.sm-desk-drop')) lb.closest('.sm-desk-drop').remove();
+        // Remove Free Resources link from desktop nav
+        var fr = bar ? bar.querySelector('a[data-sm-nav="free"]') : null;
+        if (fr) fr.remove();
+        // Cart icon next to Theme -> goes to cart page
+        if (bar && !bar.querySelector('a.sm-desk-cart')) {
+          var accDrop = bar.querySelector('[data-sm-desk-account-btn]');
+          accDrop = accDrop ? accDrop.closest('.sm-desk-drop') : null;
+          var cart = document.createElement('a');
+          cart.href = 'cart.html';
+          cart.className = 'sm-desk-tg-icon sm-desk-cart';
+          cart.title = 'Cart';
+          cart.setAttribute('aria-label', 'Cart');
+          cart.innerHTML = '<i class="fa-solid fa-cart-shopping" style="font-size:15px"></i><span data-sm-cart-count class="sm-desk-cart-badge">0</span>';
+          if (accDrop && accDrop.parentElement === bar) bar.insertBefore(cart, accDrop);
+          else bar.appendChild(cart);
+        }
+      });
+      // Remove Free Resources from desktop drawer menu(s)
+      document.querySelectorAll('#smDeskDrawer nav a').forEach(function (a) {
+        if (a.textContent && a.textContent.trim().toLowerCase() === 'free resources') a.remove();
+      });
+    } catch (e) {}
+  }
+
+  /* Same phone drawer items on every page (Android menu button):
+     Guest: Home, Courses, Ebooks, Telegram, Dashboard, Cart (akhon jemon ache).
+     Logged-in: screenshot-er moto Dashboard, Courses, Ebooks, My Courses,
+     My E-Books, My Orders, Profile, Logout. */
+  function smAuthMenuKey() {
+    try {
+      var hh = String(location.hash || '').toLowerCase();
+      if (hh === '#seccategories') return 'courses';
+      if (hh === '#secebookcategory') return 'ebooks';
+      var p = (location.pathname.split('/').pop() || 'index.html').split('?')[0].toLowerCase();
+      if (p === 'dashboard.html' || p === '' || p === 'index.html') {
+        // dashboard.html + index (screenshot-e Dashboard active) — sudhu dashboard page-e dashboard active
+        if (p === 'dashboard.html') return 'dashboard';
+        return '';
+      }
+      if (p === 'courses.html' || p === 'course.html' || p === 'batch.html') return 'courses';
+      if (p === 'ebooks.html' || p === 'ebook.html' || p === 'ebbatch.html') return 'ebooks';
+      if (p === 'my-courses.html' || p === 'learn.html') return 'my-courses';
+      if (p === 'my-ebooks.html') return 'my-ebooks';
+      if (p === 'my-orders.html') return 'my-orders';
+      if (p === 'referral-wallet.html') return 'referral-wallet';
+      if (p === 'my-profile.html' || p === 'auth.html') return 'profile';
+    } catch (e) {}
+    return '';
+  }
+  function smIsLoggedIn() { return !!getToken(); }
+  function smAuthDrawerHTML() {
+    var active = smAuthMenuKey();
+    // dashboard.html-e thakle Dashboard active, index.html-e konotai active na (screenshot default)
+    // tobe screenshot moto dekhate index-eo dashboard-ke highlight kori na — active na thakle sob normal
+    if ((location.pathname.split('/').pop() || 'index.html').toLowerCase().split('?')[0] === 'index.html' && !active) active = 'dashboard';
+    function row(key, href, icon, label) {
+      var on = active === key;
+      return '<a href="' + href + '" class="sm-auth-link' + (on ? ' sm-auth-active' : '') + '">' +
+        '<i class="fa-solid ' + icon + '"></i><span>' + label + '</span></a>';
+    }
+    return row('dashboard', 'dashboard.html', 'fa-house', 'Dashboard') +
+      row('courses', 'index.html#secCategories', 'fa-book-open', 'Courses') +
+      row('ebooks', 'index.html#secEbookCategory', 'fa-book', 'Ebooks') +
+      row('my-courses', 'my-courses.html', 'fa-circle-play', 'My Courses') +
+      row('my-ebooks', 'my-ebooks.html', 'fa-book', 'My E-Books') +
+      row('my-orders', 'my-orders.html', 'fa-bag-shopping', 'My Orders') +
+      row('referral-wallet', 'referral-wallet.html', 'fa-gift', 'Referral & Wallet') +
+      row('profile', 'my-profile.html', 'fa-circle-user', 'Profile') +
+      '<div class="sm-auth-div"></div>' +
+      '<button type="button" class="sm-auth-link" data-sm-logout-x><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span></button>';
+  }
+  function smGuestMobileHTML() {
+    return '<a href="index.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Home</a>' +
+      '<a href="index.html#secCategories" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Courses</a>' +
+      '<a href="index.html#secEbookCategory" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Ebooks</a>' +
+      '<a href="#" data-sm-telegram class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Telegram</a>' +
+      '<a href="dashboard.html" data-account-link class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Dashboard</a>' +
+      '<a href="cart.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Cart (<span data-sm-cart-count>0</span>)</a>';
+  }
+  var __smDeskGuestHTML = null;
+  function paintAuthDrawers() {
+    try {
+      var logged = smIsLoggedIn();
+      if (__smDeskGuestHTML === null) {
+        var dnav = document.querySelector('#smDeskDrawer nav');
+        if (dnav) __smDeskGuestHTML = dnav.innerHTML;
+      }
+      if (logged) {
+        var html = smAuthDrawerHTML();
+        document.querySelectorAll('#smDeskDrawer nav').forEach(function (nav) {
+          nav.innerHTML = html;
+          nav.classList.add('sm-auth-menu');
+        });
+        document.querySelectorAll('#mobileMenu nav').forEach(function (nav) {
+          nav.innerHTML = html;
+          nav.classList.add('sm-auth-menu');
+        });
+      } else {
+        // guest — akhon jemon ase oirokom (original drawer restore)
+        document.querySelectorAll('#smDeskDrawer nav').forEach(function (nav) {
+          if (__smDeskGuestHTML !== null) nav.innerHTML = __smDeskGuestHTML;
+          nav.classList.remove('sm-auth-menu');
+        });
+        document.querySelectorAll('#mobileMenu nav').forEach(function (nav) {
+          nav.innerHTML = smGuestMobileHTML();
+          nav.classList.remove('sm-auth-menu');
+        });
+      }
+    } catch (e) {}
+  }
+  function unifyMobileMenu() {
+    try {
+      // guest default bosai, logged-in hole paintAuthDrawers overwrite korbe
+      document.querySelectorAll('#mobileMenu nav').forEach(function (nav) {
+        if (!smIsLoggedIn()) nav.innerHTML = smGuestMobileHTML();
+      });
+      paintAuthDrawers();
+    } catch (e) {}
+  }
+
+  /* Phone top bar quick links: Courses + Ebooks icon buttons next to the
+     other icons (visible on phone/tablet only, `lg:hidden`). Injected once
+     so every page gets them without editing each header. */
+  function addMobileQuickLinks() {
+    try {
+      if (document.querySelector('[data-sm-quicklinks]')) return;
+      if (document.querySelector('[data-sm-mob-nav]')) return; // new labeled phone nav already present
+      var page = '';
+      try { page = (location.pathname.split('/').pop() || 'index.html').split('?')[0]; } catch (e) {}
+      var mk = function (href, icon, label) {
+        var a = document.createElement('a');
+        a.href = href;
+        a.title = label;
+        a.setAttribute('aria-label', label);
+        a.setAttribute('data-sm-quicklinks', '');
+        var __qh = '';
+        try { __qh = String(location.hash || '').toLowerCase(); } catch (e) {}
+        var active = (page === href)
+          || (href.indexOf('#secCategories') > -1 && __qh === '#seccategories')
+          || (href.indexOf('#secEbookCategory') > -1 && __qh === '#secebookcategory');
+        a.className = 'w-9 h-9 items-center justify-center rounded-full transition flex-shrink-0 lg:hidden ' +
+          (active ? 'bg-[#E6F0FF] inline-flex' : 'hover:bg-slate-100 inline-flex');
+        a.innerHTML = '<i class="fa-solid ' + icon + ' text-[18px] ' + (active ? 'text-[#1A56FF]' : 'text-[#0F2043]') + '"></i>';
+        return a;
+      };
+      var coursesBtn = function () { return mk('index.html#secCategories', 'fa-book-open', 'Courses'); };
+      var ebooksBtn = function () { return mk('index.html#secEbookCategory', 'fa-book', 'Ebooks'); };
+      var placed = false;
+      // 1) pages with a cart icon button: insert before it — Courses first, then Ebooks (search → Courses → Ebooks → Cart)
+      document.querySelectorAll('a[href="cart.html"]').forEach(function (cart) {
+        if (!cart.querySelector('.fa-cart-shopping')) return;
+        if (!cart.parentElement) return;
+        cart.parentElement.insertBefore(coursesBtn(), cart);
+        cart.parentElement.insertBefore(ebooksBtn(), cart);
+        placed = true;
+      });
+      if (placed) return;
+      // 2) pages without a cart icon (courses.html, dashboard.html): after the visible telegram icon
+      var tgs = Array.prototype.slice.call(document.querySelectorAll('a[data-sm-telegram]'));
+      var tg = tgs.filter(function (a) { return a.offsetParent !== null; })[0] || tgs[0];
+      if (tg && tg.parentElement) {
+        var eb = ebooksBtn(), cb = coursesBtn();
+        tg.parentElement.insertBefore(cb, tg.nextSibling);
+        tg.parentElement.insertBefore(eb, cb.nextSibling);
+      }
+    } catch (e) {}
+  }
+
+  /* Account pill label: guest -> "Login", logged-in -> "Dashboard" (dashboard icon).
+     Guest click goes straight to auth.html; logged-in click opens dashboard.html. */
+  function cachedFirstName() {
+    try {
+      var u = JSON.parse(localStorage.getItem('sm_user') || 'null');
+      if (u && u.name) return String(u.name).split(' ')[0];
+    } catch (e) {}
+    return '';
+  }
+  function setAccountBtn(btn, mode, name) {
+    var label = btn.querySelector('span');
+    var icon = btn.querySelector('i');
+    // remove dropdown arrow - not needed (Dashboard pill has no chevron)
+    var chev = btn.querySelector('.fa-chevron-down');
+    if (chev) chev.remove();
+    // also remove any stray chevron icon element
+    btn.querySelectorAll('i.fa-chevron-down').forEach(function(el){ el.remove(); });
+    if (mode === 'login') {
+      if (label) label.textContent = 'Login';
+      if (icon) icon.className = 'fa-solid fa-right-to-bracket text-[15px] text-slate-600';
+      btn.setAttribute('data-sm-go-login', '1');
+    } else {
+      if (label) label.textContent = 'Dashboard';
+      if (icon) icon.className = 'fa-solid fa-circle-user text-[15px] text-[#1A56FF]';
+      btn.removeAttribute('data-sm-go-login');
+    }
+  }
+  function paintAccountButton() {
+    var btns = document.querySelectorAll('[data-sm-desk-account-btn]');
+    if (!btns.length) return;
+    var tok = getToken();
+    if (!tok) {
+      btns.forEach(function (btn) { setAccountBtn(btn, 'login'); });
+      return;
+    }
+    var cached = cachedFirstName();
+    btns.forEach(function (btn) { setAccountBtn(btn, 'user', cached); });
+    // refresh name from server (guarded: no fetch in some contexts)
+    try {
+      if (typeof fetch !== 'function') return;
+      fetch('/api/public/auth/me', { headers: { 'Authorization': 'Bearer ' + tok } })
+        .then(function (r) { return r.json().then(function (j) { return { status: r.status, body: j }; }); })
+        .then(function (res) {
+          if (res.status === 401 || res.status === 403) {
+            btns.forEach(function (btn) { setAccountBtn(btn, 'login'); });
+            return;
+          }
+          var nm = res.body && res.body.data && res.body.data.name;
+          if (nm) {
+            try { localStorage.setItem('sm_user', JSON.stringify({ name: nm })); } catch (e) {}
+            var first = String(nm).split(' ')[0];
+            btns.forEach(function (btn) { setAccountBtn(btn, 'user', first); });
+          }
+        })
+        .catch(function () {});
+    } catch (e) {}
+  }
+
+  function init() {
+    // remove down-arrow chevron from account pill (not needed)
+    try { document.querySelectorAll('[data-sm-desk-account-btn] .fa-chevron-down').forEach(function(el){ el.remove(); }); } catch(e){}
+    unifyMobileMenu();
+    compactDesktopBar();
+    addMobileQuickLinks();
+    try { document.querySelectorAll('[data-sm-desk-account-btn] .fa-chevron-down').forEach(function(el){ el.remove(); }); } catch(e){}
+    applyTheme();
+    applyLang();
+    paintAccount();
+    paintAccountButton();
+    markActive();
+    bindSectionLinks();
+    try { window.addEventListener('hashchange', markActive); } catch (e) {}
+    bindSearch();
+    bindMobileSearch();
+    applyCoursesQuery();
+    try { document.querySelectorAll('[data-sm-desk-account-btn] .fa-chevron-down').forEach(function(el){ el.remove(); }); } catch(e){}
+
+    // dropdown toggles
+    document.querySelectorAll('[data-sm-desk-account-btn]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        // login kora thakle dropdown menu nai — direct dashboard
+        if (!getToken()) { location.href = 'auth.html'; return; }
+        location.href = 'dashboard.html';
+      });
+    });
+    document.querySelectorAll('[data-sm-desk-lang-btn]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var menu = btn.parentElement.querySelector('[data-sm-desk-lang-menu]');
+        if (!menu) return;
+        var willOpen = menu.classList.contains('hidden');
+        closeAllMenus(menu);
+        menu.classList.toggle('hidden', !willOpen);
+      });
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest || (!e.target.closest('[data-sm-desk-account-menu]') && !e.target.closest('[data-sm-desk-lang-menu]'))) closeAllMenus(null);
+      var langPick = e.target.closest && e.target.closest('[data-sm-lang-pick]');
+      if (langPick) {
+        setLang(langPick.getAttribute('data-sm-lang-pick'));
+        applyLang();
+        try { paintAccountButton(); } catch (x) {} // account pill label (Login/Dashboard) restore
+        closeAllMenus(null);
+      }
+      var lo = e.target.closest && e.target.closest('[data-sm-logout-x]');
+      if (lo) {
+        try { localStorage.removeItem('sm_user_token'); sessionStorage.removeItem('sm_user_token'); localStorage.removeItem('sm_user'); } catch (x) {}
+        location.href = 'index.html';
+      }
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAllMenus(null); });
+
+    // theme toggle(s)
+    document.querySelectorAll('[data-sm-theme-btn]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        setTheme(getTheme() === 'dark' ? 'light' : 'dark');
+        applyTheme();
+      });
+    });
+
+    // desktop drawer (open-er somoy login state onujayi menu repaint — login thakle auth menu, nahole guest)
+    var drawer = document.getElementById('smDeskDrawer');
+    document.querySelectorAll('[data-sm-desk-menu-btn]').forEach(function (btn) {
+      btn.addEventListener('click', function () { try { paintAuthDrawers(); } catch (e) {} if (drawer) drawer.classList.remove('hidden'); });
+    });
+    // phone hamburger (#menuBtn) — page-er inline toggle-er sathe conflict na kore sudhu repaint
+    try {
+      var __mmBtn = document.getElementById('menuBtn');
+      if (__mmBtn && !__mmBtn._smAuthBound) {
+        __mmBtn._smAuthBound = true;
+        __mmBtn.addEventListener('click', function () { try { paintAuthDrawers(); } catch (e) {} });
+      }
+      // onno page-e #menuBtn pore bosle capture phase-e repaint (toggle-e hat dei na)
+      document.addEventListener('click', function (e) {
+        try {
+          var b = e.target && e.target.closest ? e.target.closest('#menuBtn,[data-sm-desk-menu-btn]') : null;
+          if (b) paintAuthDrawers();
+        } catch (x) {}
+      }, true);
+    } catch (e) {}
+    // login/logout bodlale (onno tab) menu sync
+    try {
+      window.addEventListener('storage', function (e) {
+        if (e && (e.key === 'sm_user_token' || e.key === 'sm_user')) { try { paintAuthDrawers(); paintAccount(); paintAccountButton(); } catch (x) {} }
+      });
+    } catch (e) {}
+    if (drawer) {
+      drawer.addEventListener('click', function (e) {
+        if (e.target.closest('[data-sm-drawer-close]') || e.target.classList.contains('sm-backdrop')) drawer.classList.add('hidden');
+        else if (e.target.closest && e.target.closest('nav a')) drawer.classList.add('hidden');
+      });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') drawer.classList.add('hidden'); });
+    }
+    // phone drawer-e link chaple auto close (guest + auth duitar jonno)
+    try {
+      document.addEventListener('click', function (e) {
+        var a = e.target && e.target.closest ? e.target.closest('#mobileMenu nav a') : null;
+        if (a) {
+          var mm = document.getElementById('mobileMenu');
+          if (mm) mm.classList.add('hidden');
+        }
+      });
+    } catch (e) {}
+
+    // sync desktop logo with settings (bootstrap only — NO extra fetch,
+    // nahole purono SVG logo age dekhiye pore replace hoye flash korto).
+    // app.js hydrateSettings thekeo window.__smSetDeskLogo() call kora hoy.
+    function setDeskLogo(url) {
+      if (!url || !String(url).trim()) return;
+      document.querySelectorAll('[data-sm-desk-logo]').forEach(function (img) { try{ img.src = url; }catch(e){} img.classList.remove('hidden'); });
+      document.querySelectorAll('[data-sm-desk-logo-fb]').forEach(function (fb) { fb.classList.add('hidden'); });
+    }
+    try { window.__smSetDeskLogo = setDeskLogo; } catch (e) {}
+    try {
+      var b = window.__SM_BOOTSTRAP__ && window.__SM_BOOTSTRAP__.settings;
+      var logo = b && b.logoUrl;
+      if (logo && String(logo).trim()) setDeskLogo(logo);
+    } catch (e) {}
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();

@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - StudyMart</title>
+<script>try{var __sm_t=localStorage.getItem('sm_theme')||'light';if(__sm_t==='dark'){document.documentElement.classList.add('sm-dark');document.documentElement.style.colorScheme='dark';}}catch(e){}</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{font-family:'Inter',sans-serif}
+.scrollbar-hide::-webkit-scrollbar{display:none}
+.scrollbar-hide{-ms-overflow-style:none;scrollbar-width:none}
+</style>
+</head>
+<body class="bg-[#F5F7FB] text-slate-900 antialiased pb-[88px] lg:pb-0">
+
+<!-- Header: phone unchanged + desktop pic-like -->
+<link rel="stylesheet" href="assets/navbar.css">
+<header class="sticky top-0 z-40 bg-white border-b border-slate-100 shadow-sm">
+  <div class="hidden lg:block border-b border-slate-100">
+    <div class="max-w-[1400px] mx-auto px-6 h-[68px] flex items-center gap-4">
+      <button data-sm-desk-menu-btn class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 transition flex-shrink-0" aria-label="Menu"><i class="fa-solid fa-bars text-[20px] text-[#0F2043]"></i></button>
+      <a href="index.html" class="flex items-center gap-2 flex-shrink-0">
+        <img data-sm-desk-logo src="" alt="Logo" class="hidden w-10 h-10 object-contain rounded-lg">
+        <div data-sm-desk-logo-fb class="w-10 h-10 flex items-center justify-center"><svg width="40" height="40" viewBox="0 0 44 44" fill="none"><path d="M22 6 C16 10 8 12 8 20 C8 28 16 30 22 34 C28 30 36 28 36 20 C36 12 28 10 22 6Z" fill="#1A56FF"/><path d="M12 28 L22 38 L32 28" stroke="#1A56FF" stroke-width="2.5" fill="none" opacity="0.9"/><g><path d="M22 2 L32 7 L22 12 L12 7 Z" fill="#0F2043"/><rect x="21" y="7" width="2" height="8" fill="#FACC15"/></g></svg></div>
+        <span class="text-[22px] font-extrabold tracking-tight leading-none"><span class="text-[#0F2043]">Study</span><span class="text-[#1A56FF]">Mart</span></span>
+      </a>
+      <nav class="flex items-center gap-6 text-[14px] font-semibold flex-shrink-0 ml-2">
+        <a data-sm-nav="home" href="index.html" class="sm-desk-nav-link" data-i18n="home">Home</a>
+        <a data-sm-nav="courses" href="courses.html" class="sm-desk-nav-link" data-i18n="courses">Courses</a>
+        <a data-sm-nav="ebooks" href="ebooks.html" class="sm-desk-nav-link" data-i18n="ebooks">Ebooks</a>
+        <a data-sm-nav="free" href="courses.html?q=" class="sm-desk-nav-link" data-i18n="free">Free Resources</a>
+        <a data-sm-nav="telegram" href="#" data-sm-telegram class="sm-desk-nav-link" data-i18n="telegram">Telegram</a>
+      </nav>
+      <div class="flex-1"></div>
+      <div class="sm-desk-search w-[280px] xl:w-[320px] flex-shrink-0"><i class="fa-solid fa-magnifying-glass text-slate-400 text-[14px]"></i><input data-sm-desk-search data-i18n-ph="searchPh" type="text" placeholder="Search courses, subjects, ebooks..."><button data-sm-desk-search-btn class="text-slate-400 hover:text-[#1A56FF]" aria-label="Search"><i class="fa-solid fa-arrow-right text-[12px]"></i></button></div>
+      <div class="sm-desk-drop flex-shrink-0"><button data-sm-desk-lang-btn class="sm-desk-pill"><i class="fa-solid fa-globe text-[15px] text-slate-500"></i><span data-i18n="lang">বাংলা/English</span></button><div data-sm-desk-lang-menu class="sm-desk-menu hidden"><button type="button" class="sm-mi" data-sm-lang-pick="bn">বাংলা (Bangla)</button><button type="button" class="sm-mi" data-sm-lang-pick="en">English</button></div></div>
+      <button data-sm-theme-btn class="sm-desk-pill flex-shrink-0"><i data-sm-theme-icon class="fa-solid fa-sun text-[15px] text-[#F59E0B]"></i><span data-i18n="theme">Theme</span></button>
+      <div class="sm-desk-drop flex-shrink-0"><button data-sm-desk-account-btn class="sm-desk-pill"><i class="fa-regular fa-user text-[15px] text-slate-600"></i><span data-i18n="account">Account</span></button><div data-sm-desk-account-menu class="sm-desk-menu hidden"></div></div>
+    </div>
+  </div>
+  <div id="smDeskDrawer" class="hidden"><div class="sm-backdrop"></div><div class="sm-panel"><div class="flex items-center justify-between mb-3"><span class="text-[18px] font-extrabold"><span class="text-[#0F2043]">Study</span><span class="text-[#1A56FF]">Mart</span></span><button data-sm-drawer-close class="w-9 h-9 rounded-lg hover:bg-slate-100"><i class="fa-solid fa-xmark"></i></button></div><nav class="flex flex-col gap-1 text-[14px] font-semibold"><a href="index.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Home</a><a href="courses.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Courses</a><a href="ebooks.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Ebooks</a><a href="courses.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Free Resources</a><a href="#" data-sm-telegram class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Telegram</a><a href="dashboard.html" data-account-link class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Dashboard</a><a href="cart.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Cart (<span data-sm-cart-count>0</span>)</a></nav></div></div>
+  <!-- phone bar (unchanged) -->
+  <div class="lg:hidden max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-6 h-[58px] lg:h-[62px] flex items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <button id="menuBtn" class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-slate-100 lg:hidden">
+        <i class="fa-solid fa-bars text-[20px] text-[#0F2043]"></i>
+      </button>
+      <a href="index.html" class="flex items-center gap-2">
+        <img id="siteLogoImg" src="" alt="Logo" class="hidden w-8 h-8 object-contain rounded-lg flex-shrink-0">
+        <div id="siteLogoFallback" class="flex items-center justify-center flex-shrink-0">
+          <svg width="36" height="36" viewBox="0 0 44 44" fill="none">
+            <path d="M22 6 C16 10 8 12 8 20 C8 28 16 30 22 34 C28 30 36 28 36 20 C36 12 28 10 22 6Z" fill="url(#g1)" />
+            <path d="M12 28 L22 38 L32 28" stroke="#1A56FF" stroke-width="2.5" fill="none" opacity="0.9"/>
+            <g><path d="M22 2 L32 7 L22 12 L12 7 Z" fill="#0F2043"/></g>
+            <defs><linearGradient id="g1" x1="8" y1="6" x2="36" y2="34" gradientUnits="userSpaceOnUse"><stop stop-color="#1A56FF"/><stop offset="1" stop-color="#7C3AED"/></linearGradient></defs>
+          </svg>
+        </div>
+        <span id="siteNameDisplay" class="text-[20px] font-extrabold tracking-tight"><span class="text-[#0F2043]">Study</span><span class="text-[#1A56FF]">Mart</span></span>
+      </a>
+    </div>
+
+    <!-- Center Search - Desktop -->
+    <div class="hidden lg:flex flex-1 max-w-[420px] mx-6">
+      <div class="w-full relative">
+        <input type="text" placeholder="Search for courses..." class="w-full bg-[#F8F9FD] border border-slate-200 rounded-[8px] pl-4 pr-10 py-2 text-[13px] placeholder:text-slate-400 outline-none focus:border-[#1A56FF] focus:bg-white">
+        <button class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center text-slate-500 hover:text-[#1A56FF]">
+          <i class="fa-solid fa-magnifying-glass text-[13px]"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2 sm:gap-3">
+      <a href="#" data-sm-telegram class="flex lg:hidden w-9 h-9 rounded-full bg-[#E6F0FF] items-center justify-center text-[#1A56FF] hover:bg-[#D6E4FF] transition flex-shrink-0" title="Telegram"><i class="fa-brands fa-telegram text-[17px]"></i></a>
+      <a href="#" data-sm-telegram class="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F0F4FF] text-[#1A56FF] text-[12px] font-semibold">
+        <span class="w-6 h-6 rounded-full bg-[#1A56FF] flex items-center justify-center text-white"><i class="fa-brands fa-telegram text-[12px]"></i></span> Telegram
+      </a>
+      <div class="flex items-center gap-2">
+        <div id="dashHeaderAvatar" class="w-8 h-8 rounded-full bg-[#EDE9FF] border border-[#DDD6FE] flex items-center justify-center text-[#4F46E5] font-extrabold text-[13px] overflow-hidden">G</div>
+        <span class="hidden lg:flex items-center gap-1 text-[13px] font-semibold text-[#0F2043]"><span id="dashHeaderName">Guest</span> <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i></span>
+      </div>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden border-t bg-white absolute w-full left-0 shadow-lg lg:hidden">
+    <nav class="px-4 py-3 flex flex-col gap-1 text-[14px] font-medium">
+      <a href="index.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Home</a>
+      <a href="courses.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Courses</a>
+      <a href="ebooks.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Ebooks</a>
+      <a href="dashboard.html" class="px-3 py-2.5 rounded-xl bg-[#EEF2FF] text-[#1A56FF]">Dashboard</a>
+      <a href="my-courses.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">My Courses</a>
+      <a href="my-ebooks.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">My E-Books</a>
+      <a href="my-orders.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">My Orders</a>
+      <a href="referral-wallet.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Referral & Wallet</a>
+      <a href="my-profile.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Profile</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Main Layout -->
+<div class="max-w-[1420px] mx-auto flex">
+  <!-- Left Sidebar - Desktop -->
+  <aside class="hidden lg:block w-[220px] flex-shrink-0 sticky top-[62px] h-[calc(100vh-62px)] bg-white border-r border-slate-100 overflow-y-auto">
+    <nav class="p-3 space-y-1">
+      <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] bg-[#EEF2FF] text-[#1A56FF] font-semibold text-[13px]">
+        <i class="fa-solid fa-house w-5 text-center text-[14px]"></i> Dashboard
+      </a>
+      <a href="courses.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-solid fa-book-open w-5 text-center text-[14px]"></i> Courses
+      </a>
+      <a href="ebooks.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-solid fa-file-lines w-5 text-center text-[14px]"></i> Ebooks
+      </a>
+      <a href="my-courses.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-regular fa-circle-play w-5 text-center text-[14px]"></i> My Courses
+      </a>
+      <a href="my-ebooks.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-solid fa-book w-5 text-center text-[14px]"></i> My E-Books
+      </a>
+      <a href="my-orders.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-solid fa-bag-shopping w-5 text-center text-[14px]"></i> My Orders
+      </a>
+      <a href="referral-wallet.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-solid fa-gift w-5 text-center text-[14px]"></i> Referral & Wallet
+      </a>
+      <a href="my-profile.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-regular fa-circle-user w-5 text-center text-[14px]"></i> Profile
+      </a>
+      <div class="pt-3 mt-3 border-t border-slate-100">
+        <button data-dash-logout class="w-full flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-red-50 text-slate-700 hover:text-red-600 font-medium text-[13px]">
+          <i class="fa-solid fa-arrow-right-from-bracket w-5 text-center text-[14px]"></i> Logout
+        </button>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- Center Content - Udemy PRO clean -->
+  <div class="flex-1 min-w-0 bg-[#F5F7FB]">
+    <main class="flex-1 min-w-0 px-3 sm:px-6 lg:px-8 py-5 max-w-[1180px] mx-auto w-full">
+      <!-- Continue Learning Udemy -->
+      <section class="bg-white rounded-[14px] border border-slate-100 shadow-sm p-4 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-[15px] font-extrabold text-[#0F2043] flex items-center gap-2"><span class="w-7 h-7 rounded-[8px] bg-[#1A56FF]/10 text-[#1A56FF] flex items-center justify-center"><i class="fa-solid fa-play text-[12px] ml-0.5"></i></span> Continue Learning</h2>
+          <span class="text-[11px] font-bold text-slate-400">Resume</span>
+        </div>
+        <div id="continueWrap">
+          <p class="text-[13px] text-slate-400 text-center py-6"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Loading your courses...</p>
+        </div>
+      </section>
+
+      <!-- My Learning Tabs Udemy -->
+      <section id="secCourses" class="scroll-mt-20">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-[16px] font-extrabold text-[#0F2043]">My learning</h2>
+          <a href="my-courses.html" class="text-[#1A56FF] font-bold text-[12px] hover:underline">View All <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i></a>
+        </div>
+        <div class="flex items-center gap-2 mb-4 overflow-x-auto scrollbar-hide" id="myTabs">
+          <button class="px-4 py-2 rounded-full bg-[#0F2043] text-white text-[12px] font-extrabold whitespace-nowrap shadow-sm">All courses <span id="myCoursesCount" class="ml-1.5 px-1.5 py-0.5 rounded-full bg-white/20 text-[10px]"></span></button>
+        </div>
+        <!-- Unified responsive grid: phone-e 3 per row, sm:2, lg:3 -->
+        <div id="myCoursesGrid" class="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4">
+          <p class="col-span-full text-[13px] text-slate-400 text-center py-8"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Loading your courses...</p>
+        </div>
+        <!-- keep legacy containers hidden for JS compat -->
+        <div id="myCoursesMobile" class="hidden"></div>
+        <div id="myCoursesDesktop" class="hidden"></div>
+      </section>
+
+      <!-- My E-Books (My learning-er niche) -->
+      <section id="secEbooks" class="scroll-mt-20 mt-8">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-[16px] font-extrabold text-[#0F2043]">E Books <span id="myEbooksCount" class="ml-1 px-2 py-0.5 rounded-full bg-[#E0F2FE] text-[#0284C7] text-[11px] font-bold align-middle"></span></h2>
+          <a href="my-ebooks.html" class="text-[#1A56FF] font-bold text-[12px] hover:underline">View All <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i></a>
+        </div>
+        <div id="myEbooksGrid" class="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4">
+          <p class="col-span-full text-[13px] text-slate-400 text-center py-8"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Loading your e-books...</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- Mobile bottom nav removed -->
+<script>
+(function(){
+  try{
+    // Smart Account routing: guest -> auth page, logged-in -> dashboard
+    var hasTok=function(){ try{return !!(localStorage.getItem('sm_user_token')||sessionStorage.getItem('sm_user_token'));}catch(x){return false;} };
+    if(!hasTok()) document.querySelectorAll('[data-account-link]').forEach(function(a){ a.href='auth.html?next='+encodeURIComponent('dashboard.html'); });
+  }catch(e){}
+  // click-time re-check (token may change without reload)
+  document.addEventListener('click',function(e){
+    var a=e.target&&e.target.closest?e.target.closest('[data-account-link]'):null;
+    if(!a) return;
+    var t=''; try{t=localStorage.getItem('sm_user_token')||sessionStorage.getItem('sm_user_token')||'';}catch(x){}
+    if(!t){ e.preventDefault(); location.href='auth.html?next='+encodeURIComponent('dashboard.html'); }
+  });
+})();
+</script>
+
+<script>
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.toggle('hidden'));
+document.querySelectorAll('#mobileMenu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('hidden')));
+var bellBtn = document.getElementById('bellBtn'); if(bellBtn) bellBtn.addEventListener('click',()=>{location.href='my-orders.html'});
+</script>
+<script>
+/* ============ Dashboard: dynamic + verify logic (UI same, data live) ============ */
+(function(){
+  'use strict';
+  var esc = function(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); };
+  var $ = function(id){ return document.getElementById(id); };
+  var GRADS = [
+    'linear-gradient(135deg, #1E0E62 0%, #3B2F8A 60%, #1E135E 100%)',
+    'linear-gradient(135deg, #0B3D2E 0%, #165A3A 100%)',
+    'linear-gradient(135deg, #0B2E7A 0%, #1A4ABF 100%)',
+    'linear-gradient(135deg, #4A2000 0%, #8B3D00 100%)',
+    'linear-gradient(135deg, #2A0A4A 0%, #6D28D9 100%)'
+  ];
+  function token(){ try{ return localStorage.getItem('sm_user_token')||sessionStorage.getItem('sm_user_token')||''; }catch(e){ return ''; } }
+  function clearToken(){ try{ localStorage.removeItem('sm_user_token'); sessionStorage.removeItem('sm_user_token'); }catch(e){} }
+  function headers(){ var t=token(); return t ? { 'Authorization':'Bearer '+t } : {}; }
+  function fmtDate(iso){ try{ return new Date(iso).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}); }catch(e){ return ''; } }
+  function firstName(n){ return String(n||'Guest').trim().split(' ')[0]||'Guest'; }
+  function initial(n){ return String(n||'G').trim().charAt(0).toUpperCase()||'G'; }
+
+  function thumbHTML(c, size){
+    // size: 'continue' | 'row' | 'grid' — same UI as before, real thumbnail or gradient
+    if(c.thumbnail){
+      if(size==='continue') return '<div class="w-[150px] sm:w-[180px] aspect-video rounded-[10px] flex-shrink-0 self-center overflow-hidden relative bg-[#0F2043]"><img src="'+esc(c.thumbnail)+'" alt="'+esc(c.title)+'" class="w-full h-full object-contain" loading="lazy"></div>';
+      if(size==='row') return '<div class="w-[64px] h-[64px] rounded-[10px] flex-shrink-0 overflow-hidden relative bg-[#0F2043]"><img src="'+esc(c.thumbnail)+'" alt="'+esc(c.title)+'" class="w-full h-full object-cover" loading="lazy"></div>';
+      return '<div class="aspect-video relative overflow-hidden bg-[#0F2043]"><img src="'+esc(c.thumbnail)+'" alt="'+esc(c.title)+'" class="w-full h-full object-cover" loading="lazy"></div>';
+    }
+    var g = GRADS[String(c.id||'').length % GRADS.length];
+    var batch = esc(c.batchName||'Course'), cat = esc(c.categoryName||'');
+    if(size==='continue') return '<div class="w-[112px] sm:w-[132px] h-[112px] sm:h-[108px] rounded-[10px] flex-shrink-0 overflow-hidden relative flex flex-col p-2.5" style="background:'+g+';">'
+      + '<span class="w-fit px-2 py-0.5 rounded-full bg-white/15 border border-white/20 text-white text-[8px] font-semibold">'+batch+'</span>'
+      + '<h3 class="text-white font-black text-[14px] leading-none mt-2 truncate">'+esc(String(c.title||'').split(' ').slice(0,2).join(' ').toUpperCase())+'</h3>'
+      + (cat?'<p class="text-[#FACC15] text-[7.5px] font-bold tracking-wider mt-1">'+cat.toUpperCase()+'</p>':'')
+      + '<div class="absolute right-1 bottom-1 opacity-15"><i class="fa-solid fa-book-open text-white text-[36px]"></i></div></div>';
+    if(size==='row') return '<div class="w-[64px] h-[64px] rounded-[10px] flex-shrink-0 flex flex-col p-2 relative overflow-hidden" style="background:'+g+';">'
+      + '<span class="w-fit px-1.5 py-0.5 rounded-full bg-white/15 text-white text-[7px] font-semibold">'+batch+'</span>'
+      + '<span class="text-white font-black text-[10px] leading-none mt-1 truncate">'+esc(String(c.title||'').split(' ').slice(0,2).join(' ').toUpperCase())+'</span></div>';
+    return '<div class="h-[110px] p-3 relative overflow-hidden" style="background:'+g+';">'
+      + '<span class="w-fit px-2 py-0.5 rounded-full bg-white/15 border border-white/20 text-white text-[8px] font-semibold">'+batch+'</span>'
+      + '<h3 class="text-white font-black text-[15px] leading-none mt-2 truncate">'+esc(String(c.title||'').split(' ').slice(0,2).join(' ').toUpperCase())+'</h3>'
+      + (cat?'<p class="text-[#FACC15] text-[8px] font-bold tracking-wider mt-1">'+cat.toUpperCase()+'</p>':'')
+      + '<div class="absolute right-2 bottom-2 opacity-15"><i class="fa-solid fa-book-open text-white text-[40px]"></i></div></div>';
+  }
+
+  function guestCTA(title, sub, btn){
+    return '<div class="text-center py-8 px-4">'
+      + '<div class="w-12 h-12 rounded-full bg-[#EEF2FF] flex items-center justify-center mx-auto"><i class="fa-regular fa-user text-[#1A56FF] text-[18px]"></i></div>'
+      + '<p class="text-[13px] font-bold text-[#0F2043] mt-3">'+title+'</p>'
+      + '<p class="text-[11.5px] text-slate-500 mt-1">'+sub+'</p>'
+      + '<a href="auth.html?next='+encodeURIComponent('dashboard.html')+'" class="inline-flex items-center gap-1.5 mt-4 px-5 py-2.5 rounded-[10px] bg-[#1A56FF] hover:bg-[#1445D6] text-white font-bold text-[12.5px]"><i class="fa-solid fa-right-to-bracket text-[11px]"></i> '+btn+'</a></div>';
+  }
+
+  function renderContinue(list, loggedIn){
+    var box = $('continueWrap'); if(!box) return;
+    if(!loggedIn){ box.innerHTML = '<div class="bg-white rounded-[12px] border border-slate-100 p-4 text-center">'+guestCTA('Log in to continue learning','Your enrolled courses will appear here after you log in','Log In')+'</div>'; return; }
+    if(!list.length){
+      box.innerHTML = '<div class="bg-white rounded-[12px] border border-slate-100 p-6 text-center">'
+        + '<div class="w-14 h-14 rounded-full bg-[#EEF2FF] flex items-center justify-center mx-auto"><i class="fa-solid fa-compass text-[#1A56FF] text-[20px]"></i></div>'
+        + '<p class="text-[14px] font-extrabold text-[#0F2043] mt-3">Ready to start?</p>'
+        + '<p class="text-[12px] text-slate-500 mt-1">Pick a course and start learning — Udemy style</p>'
+        + '<a href="courses.html" class="inline-flex items-center gap-1.5 mt-4 px-5 py-2.5 rounded-[10px] bg-[#1A56FF] hover:bg-[#1445D6] text-white font-bold text-[12.5px]">Browse Courses <i class="fa-solid fa-arrow-right text-[11px]"></i></a></div>';
+      return;
+    }
+    var c = list[0];
+    var pct = 24;
+    box.innerHTML = '<div class="bg-white rounded-[12px] border border-slate-100 shadow-sm overflow-hidden flex flex-col sm:flex-row gap-0">'
+      + '<div class="sm:w-[280px] flex-shrink-0">' + thumbHTML(c,'continue').replace('rounded-[10px]','rounded-none sm:rounded-l-[12px]') + '</div>'
+      + '<div class="flex-1 min-w-0 p-4 flex flex-col">'
+      + '<div class="flex items-center gap-2 text-[11px] font-bold text-slate-500"><span class="px-2 py-1 rounded-full bg-[#EEF2FF] text-[#1A56FF]">Continue</span><span>• '+esc(c.batchName||c.categoryName||'Course')+'</span></div>'
+      + '<h3 class="font-extrabold text-[15px] text-[#0F2043] leading-tight mt-2 line-clamp-2">'+esc(c.title)+'</h3>'
+      + '<div class="mt-3"><div class="flex justify-between text-[11px] font-bold text-slate-500 mb-1"><span>Progress</span><span class="text-[#1A56FF]">'+pct+'%</span></div><div class="h-2 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-[#1A56FF] rounded-full" style="width:'+pct+'%"></div></div></div>'
+      + '<div class="mt-auto pt-4 flex items-center gap-2">'
+      + '<a href="learn.html?course='+c.id+'" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-[#1A56FF] hover:bg-[#1445D6] text-white font-extrabold text-[13px] px-6 py-2.5 rounded-[10px] shadow-sm">Continue Learning <i class="fa-solid fa-arrow-right text-[11px]"></i></a>'
+      + '</div></div></div>';
+  }
+
+  function renderMyCourses(list, loggedIn){
+    var grid = $('myCoursesGrid'), mob = $('myCoursesMobile'), desk = $('myCoursesDesktop'), cnt = $('myCoursesCount');
+    var all = Array.isArray(list) ? list : [];
+    if(cnt) cnt.textContent = loggedIn ? all.length : '';
+    var target = grid || desk;
+    if(!loggedIn){
+      var g = guestCTA('Log in required','Log in to see your purchased courses here','Log In');
+      if(grid) grid.innerHTML = '<div class="col-span-full bg-white rounded-[14px] border border-slate-100 p-6">'+g+'</div>';
+      if(mob) mob.innerHTML = g;
+      if(desk) desk.innerHTML = '<div class="col-span-3 bg-white rounded-[12px] border border-slate-100">'+g+'</div>';
+      return;
+    }
+    if(!all.length){
+      var e = '<div class="col-span-full bg-white rounded-[14px] border border-slate-100 p-8 text-center"><div class="w-14 h-14 rounded-full bg-[#EEF2FF] flex items-center justify-center mx-auto"><i class="fa-solid fa-book-open text-[#1A56FF] text-[20px]"></i></div>'
+        + '<p class="text-[14px] font-extrabold text-[#0F2043] mt-3">No courses yet</p>'
+        + '<p class="text-[12px] text-slate-500 mt-1">Purchase a course to continue learning — Udemy style</p>'
+        + '<a href="courses.html" class="inline-flex items-center gap-1.5 mt-4 px-5 py-2.5 rounded-[10px] bg-[#1A56FF] hover:bg-[#1445D6] text-white font-bold text-[12.5px]">Browse Courses <i class="fa-solid fa-arrow-right text-[11px]"></i></a></div>';
+      if(grid) grid.innerHTML = e;
+      if(mob) mob.innerHTML = e;
+      if(desk) desk.innerHTML = e;
+      return;
+    }
+    var html = all.map(function(c){
+      var pct = 18 + (String(c.id).charCodeAt(0)%70); // mock progress for Udemy feel (replace with real progress later)
+      return '<div class="bg-white rounded-[10px] sm:rounded-[12px] border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition overflow-hidden flex flex-col group">'
+        + '<div class="relative overflow-hidden">' + thumbHTML(c,'grid')
+        + '<span class="absolute top-1 left-1 sm:top-2 sm:left-2 px-1.5 sm:px-2 py-0.5 rounded-full bg-[#0F2043]/80 backdrop-blur text-white text-[8px] sm:text-[10px] font-bold">'+esc(c.categoryName||c.batchName||'Course')+'</span>'
+        + '</div>'
+        + '<div class="p-2 sm:p-3 flex flex-col flex-1">'
+        + '<h4 class="font-bold text-[11px] sm:text-[13px] text-[#0F2043] leading-snug line-clamp-2 min-h-[30px] sm:min-h-[36px]">'+esc(c.title)+'</h4>'
+        + '<p class="hidden sm:block text-[11px] text-slate-500 truncate mt-1">'+esc(c.teacher||'Instructor')+' • '+esc(c.batchName||'')+'</p>'
+        + '<div class="mt-2 sm:mt-3">'
+        + '<div class="hidden sm:flex items-center justify-between text-[11px] font-bold text-slate-500 mb-1"><span>Progress</span><span class="text-[#1A56FF]">'+pct+'% complete</span></div>'
+        + '<div class="h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-[#1A56FF] rounded-full" style="width:'+pct+'%"></div></div>'
+        + '</div>'
+        + '<a href="learn.html?course='+c.id+'" class="mt-2 sm:mt-3 w-full inline-flex items-center justify-center gap-1 py-1.5 sm:py-2 rounded-[8px] bg-[#0F2043] group-hover:bg-[#1A56FF] text-white font-bold text-[10px] sm:text-[12px] transition"><i class="fa-solid fa-play text-[9px] sm:text-[10px]"></i><span class="hidden sm:inline">Continue Learning</span><span class="sm:hidden">Continue</span></a>'
+        + '</div></div>';
+    }).join('');
+    if(grid) grid.innerHTML = html;
+    if(mob) mob.innerHTML = html;
+    if(desk) desk.innerHTML = html;
+  }
+
+  function ebCoverHTML(b){
+    if(b.cover) return '<div class="h-[70px] sm:h-[130px] relative overflow-hidden bg-[#F1F5F9]"><img src="'+esc(b.cover)+'" alt="'+esc(b.title)+'" class="w-full h-full object-cover" loading="lazy"></div>';
+    var color = b.ebookBatchColor || b.batchColor || '#0EA5E9';
+    return '<div class="h-[70px] sm:h-[130px] relative overflow-hidden flex items-center justify-center" style="background:linear-gradient(135deg,'+esc(color)+' 0%,#0F2043 100%)">'
+      + '<i class="fa-solid fa-book-open text-white/30 text-[20px] sm:text-[34px]"></i>'
+      + '<span class="absolute top-1 left-1 sm:top-2 sm:left-2 px-1.5 sm:px-2 py-0.5 rounded-full bg-black/45 backdrop-blur border border-white/25 text-white text-[7px] sm:text-[9px] font-bold"><i class="fa-solid fa-file-pdf mr-0.5"></i>PDF</span></div>';
+  }
+
+  function renderMyEbooks(list, loggedIn){
+    var grid = $('myEbooksGrid'), cnt = $('myEbooksCount');
+    if(!grid) return;
+    if(cnt) cnt.textContent = loggedIn && list.length ? list.length : '';
+    if(!loggedIn){
+      grid.innerHTML = '<div class="col-span-full bg-white rounded-[14px] border border-slate-100 p-6">'+guestCTA('Log in required','Log in to see your purchased e-books here','Log In')+'</div>';
+      return;
+    }
+    if(!list.length){
+      grid.innerHTML = '<div class="col-span-full bg-white rounded-[14px] border border-slate-100 p-8 text-center"><div class="w-14 h-14 rounded-full bg-[#E0F2FE] flex items-center justify-center mx-auto"><i class="fa-solid fa-book text-[#0284C7] text-[20px]"></i></div>'
+        + '<p class="text-[14px] font-extrabold text-[#0F2043] mt-3">No e-books yet</p>'
+        + '<p class="text-[12px] text-slate-500 mt-1">Buy e-books and read them here</p>'
+        + '<a href="ebooks.html" class="inline-flex items-center gap-1.5 mt-4 px-5 py-2.5 rounded-[10px] bg-[#1A56FF] hover:bg-[#1445D6] text-white font-bold text-[12.5px]">Browse E-Books <i class="fa-solid fa-arrow-right text-[11px]"></i></a></div>';
+      return;
+    }
+    grid.innerHTML = list.map(function(b){
+      return '<div class="bg-white rounded-[10px] sm:rounded-[12px] border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition overflow-hidden flex flex-col group">'
+        + '<div class="relative">' + ebCoverHTML(b)
+        + ((b.ebookBatchName||b.batchName) ? '<span class="absolute top-1 right-1 sm:top-2 sm:right-2 px-1.5 sm:px-2 py-0.5 rounded-full bg-[#0F2043]/80 backdrop-blur text-white text-[8px] sm:text-[10px] font-bold">'+esc(b.ebookBatchName||b.batchName)+'</span>' : '')
+        + '</div>'
+        + '<div class="p-2 sm:p-3 flex flex-col flex-1">'
+        + '<h4 class="font-bold text-[11px] sm:text-[13px] text-[#0F2043] leading-snug line-clamp-2 min-h-[30px] sm:min-h-[36px]">'+esc(b.title)+'</h4>'
+        + '<p class="hidden sm:block text-[11px] text-slate-500 truncate mt-1">'+esc(b.author ? 'By '+b.author : (b.categoryName||'E-Book'))+'</p>'
+        + '<div class="mt-2 sm:mt-3 flex items-center gap-1.5 sm:gap-2">'
+        + '<button data-eb-dl="'+b.id+'" class="flex-1 inline-flex items-center justify-center gap-1 py-1.5 sm:py-2 rounded-[8px] bg-[#16A34A] hover:bg-[#15803D] text-white font-bold text-[10px] sm:text-[12px] transition"><i class="fa-solid fa-download text-[10px] sm:text-[11px]"></i> Download</button>'
+        + '<a href="ebook.html?id='+b.id+'" class="hidden sm:flex w-9 h-9 rounded-[8px] border border-slate-200 items-center justify-center text-slate-500 group-hover:text-[#1A56FF] group-hover:border-[#1A56FF] transition flex-shrink-0" title="Details"><i class="fa-solid fa-circle-info text-[13px]"></i></a>'
+        + '</div></div></div>';
+    }).join('');
+  }
+
+  async function ebDownload(id){
+    try{
+      var r = await fetch('/api/my/ebooks/' + encodeURIComponent(id) + '/download', { headers: headers() });
+      var j = await r.json().catch(function(){ return null; });
+      if(!r.ok || !j || !j.success) throw new Error((j && j.message) || 'Download failed');
+      window.location.href = j.data.fileUrl;
+    }catch(e){ alert(e.message || 'Download failed'); }
+  }
+
+  function statusPill(s){
+    s = String(s||'pending').toLowerCase();
+    if(s==='completed'||s==='confirmed') return '<span class="px-2.5 py-1 rounded-full bg-[#DCFCE7] text-[#15803D] text-[10px] font-bold flex items-center gap-1 flex-shrink-0"><i class="fa-solid fa-check text-[8px]"></i> Paid</span>';
+    if(s==='cancelled') return '<span class="px-2.5 py-1 rounded-full bg-red-50 text-red-600 text-[10px] font-bold flex-shrink-0">Cancelled</span>';
+    return '<span class="px-2.5 py-1 rounded-full bg-[#FFF2E6] text-[#C2410C] text-[10px] font-bold flex-shrink-0">Pending</span>';
+  }
+
+  function renderOrders(orders, loggedIn){
+    var box = $('ordersList'), cnt = $('ordersCount'), dot = $('bellDot');
+    var pending = orders.filter(function(o){ return String(o.status).toLowerCase()==='pending'; }).length;
+    if(dot) dot.classList.toggle('hidden', !(loggedIn && pending>0));
+    if(cnt) cnt.textContent = loggedIn && orders.length ? orders.length : '';
+    if(!box) return;
+    if(!loggedIn){ box.innerHTML = guestCTA('Log in to see your orders','Track your payment status here after placing an order','Log In to View Orders'); return; }
+    if(!orders.length){
+      box.innerHTML = '<div class="text-center py-8 px-4"><div class="w-12 h-12 rounded-full bg-[#EEF2FF] flex items-center justify-center mx-auto"><i class="fa-solid fa-bag-shopping text-[#1A56FF] text-[18px]"></i></div>'
+        + '<p class="text-[13px] font-bold text-[#0F2043] mt-3">No orders yet</p>'
+        + '<p class="text-[11.5px] text-slate-500 mt-1">Choose a course and place your order</p>'
+        + '<a href="courses.html" class="inline-flex items-center gap-1.5 mt-4 px-5 py-2.5 rounded-[10px] bg-[#1A56FF] hover:bg-[#1445D6] text-white font-bold text-[12.5px]">Browse Courses <i class="fa-solid fa-arrow-right text-[11px]"></i></a></div>';
+      return;
+    }
+    var icons = ['bg-[#EEF2FF] text-[#6366F1] fa-book-open','bg-[#E6F4EA] text-[#16A34A] fa-flask','bg-[#FFF2E6] text-[#F59E0B] fa-graduation-cap','bg-[#EDE9FF] text-[#7C3AED] fa-book'];
+    box.innerHTML = orders.slice(0,10).map(function(o,i){
+      var first = (o.items&&o.items[0])||{};
+      var title = first.title || (o.items? o.items.length+' item(s)' : 'Order');
+      var sub = o.items && o.items.length>1 ? title+' +'+(o.items.length-1)+' more' : title;
+      var st = icons[i%icons.length].split(' ');
+      return '<div class="flex items-center gap-3 p-3 sm:p-4">'
+        + '<div class="w-9 h-9 rounded-[10px] '+st[0]+' flex items-center justify-center flex-shrink-0"><i class="fa-solid '+st[2]+' '+st[1]+' text-[14px]"></i></div>'
+        + '<div class="flex-1 min-w-0"><h4 class="font-bold text-[12px] sm:text-[13px] text-[#0F2043]">Order '+esc(o.orderNo||('#'+o.id))+'</h4><p class="text-[11px] text-slate-500 truncate">'+esc(sub)+'</p></div>'
+        + '<div class="text-right mr-1 sm:mr-2 flex-shrink-0"><div class="font-extrabold text-[12px]">৳'+esc(o.total!=null?o.total:o.subtotal||0)+'</div><div class="text-[10px] sm:text-[11px] text-slate-500">'+esc(fmtDate(o.createdAt))+'</div></div>'
+        + statusPill(o.status)+'</div>';
+    }).join('');
+  }
+
+  function setAvatar(el, me){
+    if(!el) return;
+    var url = me && me.avatar ? String(me.avatar) : '';
+    if(url){ el.innerHTML = '<img src="'+esc(url)+'" alt="Profile photo" class="w-full h-full object-cover">'; }
+    else { el.textContent = initial(me?(me.name||'G'):'G'); }
+  }
+  function displayEmail(me){
+    if(!me) return '';
+    if(me.email && me.email.indexOf('@mobile.studymart')===-1) return me.email;
+    return me.phone || me.email || '';
+  }
+  function paintUser(me){
+    var name = me ? me.name : 'Guest';
+    var greet = $('dashGreet'); if(greet) greet.textContent = 'Hi, '+(me?firstName(name):'Guest');
+    var sub = $('dashGreetSub'); if(sub) sub.textContent = me ? 'Welcome back to StudyMart' : 'Login kore tomar course dekho';
+    var hn = $('dashHeaderName'); if(hn) hn.textContent = me?firstName(name):'Guest';
+    setAvatar($('dashHeaderAvatar'), me);
+  }
+
+  /* ============ My Profile: details + edit (photo / name / phone / password) ============ */
+  var currentMe = null;
+  var pendingAvatar = null; // null = no change, '' = remove, dataURL = new photo
+  var savingProfile = false, savingPwd = false;
+
+  function profileMsg(text, ok){
+    var el = $('pfMsg'); if(!el) return;
+    el.textContent = text;
+    el.className = 'mt-3 text-[12px] font-semibold rounded-[10px] px-3 py-2 ' + (ok ? 'bg-[#E6F4EA] text-[#16A34A] border border-[#C8E9D5]' : 'bg-red-50 text-red-600 border border-red-100');
+    el.classList.remove('hidden');
+  }
+  function pwdMsg(text, ok){
+    var el = $('pwdMsg'); if(!el) return;
+    el.textContent = text;
+    el.className = 'mt-3 text-[12px] font-semibold rounded-[10px] px-3 py-2 ' + (ok ? 'bg-[#E6F4EA] text-[#16A34A] border border-[#C8E9D5]' : 'bg-red-50 text-red-600 border border-red-100');
+    el.classList.remove('hidden');
+  }
+
+  function renderProfile(me, loggedIn){
+    var box = $('profileWrap'); if(!box) return;
+    currentMe = loggedIn ? me : null;
+    pendingAvatar = null;
+    if(!loggedIn){ box.innerHTML = guestCTA('Login to view your profile','Login kore profile details, photo, password change korte parbe','Login'); return; }
+    var em = displayEmail(me) || '-';
+    var since = me.createdAt ? fmtDate(me.createdAt) : '';
+    var avUrl = me.avatar ? String(me.avatar) : '';
+    box.innerHTML =
+      '<div class="p-4 sm:p-5">'
+      + '<div class="flex flex-col sm:flex-row sm:items-center gap-4">'
+      + '<div class="relative flex-shrink-0 mx-auto sm:mx-0">'
+      + '<div id="pfAvatar" class="w-20 h-20 rounded-full bg-[#EDE9FF] border-2 border-[#DDD6FE] flex items-center justify-center text-[#4F46E5] font-extrabold text-[24px] overflow-hidden">'
+      + (avUrl ? '<img src="'+esc(avUrl)+'" alt="Profile photo" class="w-full h-full object-cover">' : esc(initial(me.name)))
+      + '</div>'
+      + '<button id="pfPhotoBtn" type="button" title="Change photo" class="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-[#1A56FF] hover:bg-[#1445D6] text-white flex items-center justify-center shadow border-2 border-white"><i class="fa-solid fa-camera text-[11px]"></i></button>'
+      + '<input id="pfPhotoInput" type="file" accept="image/*" class="hidden">'
+      + '</div>'
+      + '<div class="flex-1 min-w-0 text-center sm:text-left">'
+      + '<h3 class="font-extrabold text-[16px] text-[#0F2043] truncate">'+esc(me.name||'')+'</h3>'
+      + '<p class="text-[12px] text-slate-500 truncate mt-0.5"><i class="fa-regular fa-envelope mr-1"></i>'+esc(em)+'</p>'
+      + (since ? '<p class="text-[11px] text-slate-400 mt-0.5"><i class="fa-regular fa-calendar mr-1"></i>Member since '+esc(since)+'</p>' : '')
+      + '<div class="mt-2 flex items-center justify-center sm:justify-start gap-2">'
+      + (avUrl ? '<button id="pfPhotoRemove" type="button" class="text-[11px] font-bold text-red-600 hover:text-red-700"><i class="fa-solid fa-trash mr-1 text-[10px]"></i>Remove photo</button>' : '<span class="text-[11px] text-slate-400">Tap <i class="fa-solid fa-camera text-[10px]"></i> to add a profile photo</span>')
+      + '</div>'
+      + '</div>'
+      + '</div>'
+      + '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">'
+      + '<div><label class="text-[11px] font-bold text-slate-600 uppercase">Full Name</label>'
+      + '<input id="pfName" value="'+esc(me.name||'')+'" placeholder="Your name" class="mt-1 w-full border border-slate-200 rounded-[10px] px-3 py-2.5 text-[13px] outline-none focus:border-[#1A56FF]"></div>'
+      + '<div><label class="text-[11px] font-bold text-slate-600 uppercase">Email (login)</label>'
+      + '<input value="'+esc((me.email&&me.email.indexOf('@mobile.studymart')!==-1)?(me.phone||'Mobile account'):me.email||'')+'" disabled class="mt-1 w-full border border-slate-200 rounded-[10px] px-3 py-2.5 text-[13px] bg-slate-50 text-slate-500 cursor-not-allowed"></div>'
+      + '<div><label class="text-[11px] font-bold text-slate-600 uppercase">Mobile Number</label>'
+      + '<input id="pfPhone" value="'+esc(me.phone||'')+'" placeholder="01XXXXXXXXX" class="mt-1 w-full border border-slate-200 rounded-[10px] px-3 py-2.5 text-[13px] outline-none focus:border-[#1A56FF]"></div>'
+      + '<div><label class="text-[11px] font-bold text-slate-600 uppercase">Account Status</label>'
+      + '<div class="mt-1 w-full border border-slate-200 rounded-[10px] px-3 py-2.5 text-[13px] bg-slate-50 text-slate-600 font-semibold">'+esc(me.status||'active')+'</div></div>'
+      + '</div>'
+      + '<p id="pfMsg" class="hidden mt-3 text-[12px] font-semibold rounded-[10px] px-3 py-2"></p>'
+      + '<div class="flex justify-end mt-4"><button id="pfSave" type="button" class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-[10px] bg-[#1A56FF] hover:bg-[#1445D6] text-white font-bold text-[13px]"><i class="fa-solid fa-floppy-disk text-[12px]"></i> Save Changes</button></div>'
+      + '</div>'
+      + '<div id="secProfilePwd" class="border-t border-slate-100 p-4 sm:p-5 scroll-mt-20">'
+      + '<h4 class="font-extrabold text-[14px] text-[#0F2043]"><i class="fa-solid fa-key text-[#1A56FF] mr-1.5"></i>Change Password</h4>'
+      + '<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">'
+      + '<div><label class="text-[11px] font-bold text-slate-600 uppercase">Current Password</label>'
+      + '<input id="pwdCur" type="password" placeholder="••••••••" class="mt-1 w-full border border-slate-200 rounded-[10px] px-3 py-2.5 text-[13px] outline-none focus:border-[#1A56FF]"></div>'
+      + '<div><label class="text-[11px] font-bold text-slate-600 uppercase">New Password</label>'
+      + '<input id="pwdNew" type="password" placeholder="Min 4 characters" class="mt-1 w-full border border-slate-200 rounded-[10px] px-3 py-2.5 text-[13px] outline-none focus:border-[#1A56FF]"></div>'
+      + '<div><label class="text-[11px] font-bold text-slate-600 uppercase">Confirm New</label>'
+      + '<input id="pwdCon" type="password" placeholder="Repeat new password" class="mt-1 w-full border border-slate-200 rounded-[10px] px-3 py-2.5 text-[13px] outline-none focus:border-[#1A56FF]"></div>'
+      + '</div>'
+      + '<p id="pwdMsg" class="hidden mt-3 text-[12px] font-semibold rounded-[10px] px-3 py-2"></p>'
+      + '<div class="flex justify-end mt-4"><button id="pwdSave" type="button" class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-[10px] bg-[#0F2043] hover:bg-[#16294F] text-white font-bold text-[13px]"><i class="fa-solid fa-lock text-[12px]"></i> Update Password</button></div>'
+      + '</div>';
+    // wire photo picker
+    var fileBtn = $('pfPhotoBtn'), fileInput = $('pfPhotoInput');
+    if(fileBtn && fileInput) fileBtn.addEventListener('click', function(){ fileInput.click(); });
+    if(fileInput) fileInput.addEventListener('change', function(){ if(fileInput.files && fileInput.files[0]) handlePhotoFile(fileInput.files[0]); fileInput.value=''; });
+    var rmBtn = $('pfPhotoRemove');
+    if(rmBtn) rmBtn.addEventListener('click', function(){
+      pendingAvatar = '';
+      var av = $('pfAvatar'); if(av) av.textContent = initial(($('pfName')&&$('pfName').value)||(currentMe&&currentMe.name)||'G');
+      profileMsg('Photo removed — Save Changes chap dile apply hobe', true);
+    });
+    var saveBtn = $('pfSave');
+    if(saveBtn) saveBtn.addEventListener('click', saveProfile);
+    var pwdBtn = $('pwdSave');
+    if(pwdBtn) pwdBtn.addEventListener('click', savePassword);
+  }
+
+  function handlePhotoFile(file){
+    if(!/^image\//.test(file.type||'')){ profileMsg('Please choose an image file (JPG/PNG)', false); return; }
+    if(file.size > 5*1024*1024){ profileMsg('Image too large — max 5MB', false); return; }
+    var url;
+    try{ url = URL.createObjectURL(file); }catch(e){ profileMsg('Could not read this image', false); return; }
+    var img = new Image();
+    img.onload = function(){
+      try{
+        var w = img.naturalWidth||img.width||256, h = img.naturalHeight||img.height||256;
+        var scale = Math.min(1, 256/Math.max(w,h));
+        var cw = Math.max(1, Math.round(w*scale)), ch = Math.max(1, Math.round(h*scale));
+        var cv = document.createElement('canvas'); cv.width = cw; cv.height = ch;
+        cv.getContext('2d').drawImage(img, 0, 0, cw, ch);
+        pendingAvatar = cv.toDataURL('image/jpeg', 0.82);
+        var av = $('pfAvatar');
+        if(av) av.innerHTML = '<img src="'+pendingAvatar+'" alt="Profile photo" class="w-full h-full object-cover">';
+        profileMsg('New photo selected — Save Changes chap dile save hobe', true);
+      }catch(e){ profileMsg('Could not process this image', false); }
+      try{ URL.revokeObjectURL(url); }catch(x){}
+    };
+    img.onerror = function(){ try{ URL.revokeObjectURL(url); }catch(x){} profileMsg('Could not read this image', false); };
+    img.src = url;
+  }
+
+  async function saveProfile(){
+    if(savingProfile) return;
+    var nameEl = $('pfName'), phoneEl = $('pfPhone');
+    var name = nameEl ? nameEl.value.trim() : '';
+    var phone = phoneEl ? phoneEl.value.trim() : '';
+    if(!name){ profileMsg('Name cannot be empty', false); return; }
+    savingProfile = true;
+    var btn = $('pfSave'); if(btn){ btn.disabled = true; btn.classList.add('opacity-60'); }
+    try{
+      var body = { name: name, phone: phone };
+      if(pendingAvatar !== null) body.avatar = pendingAvatar;
+      var r = await fetch('/api/public/auth/profile', { method:'PUT', headers: Object.assign({'Content-Type':'application/json'}, headers()), body: JSON.stringify(body) });
+      var j = await r.json().catch(function(){ return null; });
+      if(!r.ok || !j || j.success === false) throw new Error((j && j.message) || 'Failed to save profile');
+      currentMe = j.data;
+      try{ localStorage.setItem('sm_user', JSON.stringify({ name: currentMe.name })); }catch(e){}
+      paintUser(currentMe);
+      renderProfile(currentMe, true);
+      var box = $('profileWrap');
+      if(box) box.scrollIntoView({ behavior:'smooth', block:'nearest' });
+      profileMsg('Profile updated successfully', true);
+    }catch(e){ profileMsg(e.message || 'Failed to save profile', false); }
+    savingProfile = false;
+    if(btn){ btn.disabled = false; btn.classList.remove('opacity-60'); }
+  }
+
+  async function savePassword(){
+    if(savingPwd) return;
+    var cur = $('pwdCur') ? $('pwdCur').value : '';
+    var nw = $('pwdNew') ? $('pwdNew').value : '';
+    var con = $('pwdCon') ? $('pwdCon').value : '';
+    if(!cur || !nw || !con){ pwdMsg('Fill all three password fields', false); return; }
+    if(nw !== con){ pwdMsg('New password and confirm do not match', false); return; }
+    if(nw.trim().length < 4){ pwdMsg('New password must be at least 4 characters', false); return; }
+    savingPwd = true;
+    var btn = $('pwdSave'); if(btn){ btn.disabled = true; btn.classList.add('opacity-60'); }
+    try{
+      var r = await fetch('/api/public/auth/password', { method:'PUT', headers: Object.assign({'Content-Type':'application/json'}, headers()), body: JSON.stringify({ currentPassword: cur, newPassword: nw }) });
+      var j = await r.json().catch(function(){ return null; });
+      if(!r.ok || !j || j.success === false) throw new Error((j && j.message) || 'Failed to change password');
+      if($('pwdCur')) $('pwdCur').value = '';
+      if($('pwdNew')) $('pwdNew').value = '';
+      if($('pwdCon')) $('pwdCon').value = '';
+      pwdMsg('Password changed successfully', true);
+    }catch(e){ pwdMsg(e.message || 'Failed to change password', false); }
+    savingPwd = false;
+    if(btn){ btn.disabled = false; btn.classList.remove('opacity-60'); }
+  }
+
+  async function boot(){
+    var me = null, orders = [], courseMap = {};
+    var loggedIn = !!token();
+    // verify logic: token thakleo /auth/me diye verify na howa porjonto guest
+    if(loggedIn){
+      try{
+        var r = await fetch('/api/public/auth/me',{headers:headers()});
+        if(r.status===401||r.status===404){ clearToken(); loggedIn=false; }
+        else if(r.ok){ var j=await r.json(); me = j.data||null; if(!me) loggedIn=false; }
+        else loggedIn=false;
+      }catch(e){ /* network fail -> guest view, retry next visit */ }
+    }
+    if(loggedIn){
+      try{
+        var ro = await fetch('/api/public/my/orders',{headers:headers()});
+        if(ro.status===401||ro.status===404){ clearToken(); loggedIn=false; me=null; orders=[]; }
+        else if(ro.ok){ var jo=await ro.json(); orders = jo.data||[]; }
+      }catch(e){}
+      try{
+        var rc = await fetch('/api/public/courses?limit=200');
+        if(rc.ok){ var jc=await rc.json(); (jc.data||[]).forEach(function(c){ courseMap[String(c.id)]=c; }); }
+      }catch(e){}
+    }
+    paintUser(loggedIn?me:null);
+    renderProfile(me, loggedIn);
+    // enrolled = from /api/public/my/courses (includes admin granted + paid orders)
+    var enrolled = [];
+    if(loggedIn){
+      try{
+        var rem = await fetch('/api/public/my/courses',{headers:headers()});
+        if(rem.ok){ var jem = await rem.json(); if(Array.isArray(jem.data)) enrolled = jem.data; }
+      }catch(e){}
+      if(!enrolled.length){
+        var seen = {};
+        orders.slice().forEach(function(o){
+          if(!['confirmed','completed'].includes(String(o.status).toLowerCase())) return;
+          (o.items||[]).forEach(function(it){
+            var cid = it.courseId!=null?String(it.courseId):'';
+            if(!cid||seen[cid]) return; seen[cid]=1;
+            var full = courseMap[cid];
+            enrolled.push(full||{id:it.courseId,title:it.title||'Course',batchName:'',categoryName:'',thumbnail:''});
+          });
+        });
+      }
+    }
+    renderContinue(enrolled, loggedIn);
+    renderMyCourses(enrolled, loggedIn);
+    // owned e-books = confirmed/completed order items (my-ebooks.html-er moto)
+    var ownedEbooks = [];
+    if(loggedIn){
+      try{
+        var ownedEbIds = [];
+        orders.slice().forEach(function(o){
+          if(!['confirmed','completed'].includes(String(o.status).toLowerCase())) return;
+          (o.items||[]).forEach(function(it){
+            var eid = it.ebookId != null ? String(it.ebookId) : '';
+            if(eid && ownedEbIds.indexOf(eid) === -1) ownedEbIds.push(eid);
+          });
+        });
+        if(ownedEbIds.length){
+          var ebMap = {};
+          try{
+            var re = await fetch('/api/public/ebooks?limit=200');
+            if(re.ok){ var je = await re.json(); (je.data||[]).forEach(function(b){ ebMap[String(b.id)] = b; }); }
+          }catch(e){}
+          ownedEbooks = ownedEbIds.map(function(id){ return ebMap[id] || { id: id, title: 'E-Book #'+id }; });
+        }
+      }catch(e){}
+    }
+    renderMyEbooks(ownedEbooks, loggedIn);
+    renderOrders(orders, loggedIn);
+  }
+
+  async function doLogout(){
+    try{ await fetch('/api/public/auth/logout',{method:'POST',headers:headers()}); }catch(e){}
+    clearToken();
+    location.href = 'index.html';
+  }
+  document.querySelectorAll('[data-dash-logout]').forEach(function(b){ b.addEventListener('click',doLogout); });
+  // E-Book download (dashboard grid)
+  document.addEventListener('click', function(e){
+    var d = e.target && e.target.closest ? e.target.closest('[data-eb-dl]') : null;
+    if(d){ e.preventDefault(); ebDownload(d.getAttribute('data-eb-dl')); }
+  });
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else boot();
+})();
+</script>
+<script src="assets/navbar.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

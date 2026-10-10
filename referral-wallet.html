@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Referral & Wallet - StudyMart</title>
+<script>try{var __sm_t=localStorage.getItem('sm_theme')||'light';if(__sm_t==='dark'){document.documentElement.classList.add('sm-dark');document.documentElement.style.colorScheme='dark';}}catch(e){}</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{font-family:'Inter',sans-serif}
+.scrollbar-hide::-webkit-scrollbar{display:none}
+.scrollbar-hide{-ms-overflow-style:none;scrollbar-width:none}
+</style>
+</head>
+<body class="bg-[#F5F7FB] text-slate-900 antialiased pb-[88px] lg:pb-0">
+
+<link rel="stylesheet" href="assets/navbar.css">
+<header class="sticky top-0 z-40 bg-white border-b border-slate-100 shadow-sm">
+  <div class="hidden lg:block border-b border-slate-100">
+    <div class="max-w-[1400px] mx-auto px-6 h-[68px] flex items-center gap-4">
+      <button data-sm-desk-menu-btn class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 transition flex-shrink-0" aria-label="Menu"><i class="fa-solid fa-bars text-[20px] text-[#0F2043]"></i></button>
+      <a href="index.html" class="flex items-center gap-2 flex-shrink-0">
+        <img data-sm-desk-logo src="" alt="Logo" class="hidden w-10 h-10 object-contain rounded-lg">
+        <div data-sm-desk-logo-fb class="w-10 h-10 flex items-center justify-center"><svg width="40" height="40" viewBox="0 0 44 44" fill="none"><path d="M22 6 C16 10 8 12 8 20 C8 28 16 30 22 34 C28 30 36 28 36 20 C36 12 28 10 22 6Z" fill="#1A56FF"/><path d="M12 28 L22 38 L32 28" stroke="#1A56FF" stroke-width="2.5" fill="none" opacity="0.9"/><g><path d="M22 2 L32 7 L22 12 L12 7 Z" fill="#0F2043"/><rect x="21" y="7" width="2" height="8" fill="#FACC15"/></g></svg></div>
+        <span class="text-[22px] font-extrabold tracking-tight leading-none"><span class="text-[#0F2043]">Study</span><span class="text-[#1A56FF]">Mart</span></span>
+      </a>
+      <nav class="flex items-center gap-6 text-[14px] font-semibold flex-shrink-0 ml-2">
+        <a data-sm-nav="home" href="index.html" class="sm-desk-nav-link" data-i18n="home">Home</a>
+        <a data-sm-nav="courses" href="courses.html" class="sm-desk-nav-link" data-i18n="courses">Courses</a>
+        <a data-sm-nav="ebooks" href="ebooks.html" class="sm-desk-nav-link" data-i18n="ebooks">Ebooks</a>
+        <a data-sm-nav="free" href="courses.html?q=" class="sm-desk-nav-link" data-i18n="free">Free Resources</a>
+        <a data-sm-nav="telegram" href="#" data-sm-telegram class="sm-desk-nav-link" data-i18n="telegram">Telegram</a>
+      </nav>
+      <div class="flex-1"></div>
+      <div class="sm-desk-search w-[280px] xl:w-[320px] flex-shrink-0"><i class="fa-solid fa-magnifying-glass text-slate-400 text-[14px]"></i><input data-sm-desk-search data-i18n-ph="searchPh" type="text" placeholder="Search courses, subjects, ebooks..."><button data-sm-desk-search-btn class="text-slate-400 hover:text-[#1A56FF]" aria-label="Search"><i class="fa-solid fa-arrow-right text-[12px]"></i></button></div>
+      <div class="sm-desk-drop flex-shrink-0"><button data-sm-desk-lang-btn class="sm-desk-pill"><i class="fa-solid fa-globe text-[15px] text-slate-500"></i><span data-i18n="lang">বাংলা/English</span></button><div data-sm-desk-lang-menu class="sm-desk-menu hidden"><button type="button" class="sm-mi" data-sm-lang-pick="bn">বাংলা (Bangla)</button><button type="button" class="sm-mi" data-sm-lang-pick="en">English</button></div></div>
+      <button data-sm-theme-btn class="sm-desk-pill flex-shrink-0"><i data-sm-theme-icon class="fa-solid fa-sun text-[15px] text-[#F59E0B]"></i><span data-i18n="theme">Theme</span></button>
+      <div class="sm-desk-drop flex-shrink-0"><button data-sm-desk-account-btn class="sm-desk-pill"><i class="fa-regular fa-user text-[15px] text-slate-600"></i><span data-i18n="account">Account</span></button><div data-sm-desk-account-menu class="sm-desk-menu hidden"></div></div>
+    </div>
+  </div>
+  <div id="smDeskDrawer" class="hidden"><div class="sm-backdrop"></div><div class="sm-panel"><div class="flex items-center justify-between mb-3"><span class="text-[18px] font-extrabold"><span class="text-[#0F2043]">Study</span><span class="text-[#1A56FF]">Mart</span></span><button data-sm-drawer-close class="w-9 h-9 rounded-lg hover:bg-slate-100"><i class="fa-solid fa-xmark"></i></button></div><nav class="flex flex-col gap-1 text-[14px] font-semibold"><a href="index.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Home</a><a href="courses.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Courses</a><a href="ebooks.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Ebooks</a><a href="my-courses.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">My Courses</a><a href="my-ebooks.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">My E-Books</a><a href="my-orders.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">My Orders</a><a href="referral-wallet.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Referral & Wallet</a><a href="my-profile.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Profile</a><a href="dashboard.html" data-account-link class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Dashboard</a><a href="cart.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Cart (<span data-sm-cart-count>0</span>)</a></nav></div></div>
+  <div class="lg:hidden max-w-[1420px] mx-auto px-4 sm:px-6 h-[58px] flex items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <a href="dashboard.html" class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-slate-100">
+        <i class="fa-solid fa-arrow-left text-[18px] text-[#0F2043]"></i>
+      </a>
+      <span class="text-[18px] font-extrabold tracking-tight"><span class="text-[#0F2043]">Referral</span> <span class="text-[#1A56FF]">& Wallet</span></span>
+    </div>
+    <a href="dashboard.html" class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-slate-100">
+      <i class="fa-solid fa-house text-[16px] text-[#0F2043]"></i>
+    </a>
+  </div>
+</header>
+
+<div class="max-w-[1420px] mx-auto flex">
+  <aside class="hidden lg:block w-[220px] flex-shrink-0 sticky top-[69px] h-[calc(100vh-69px)] bg-white border-r border-slate-100 overflow-y-auto">
+    <nav class="p-3 space-y-1">
+      <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-solid fa-house w-5 text-center text-[14px]"></i> Dashboard
+      </a>
+      <a href="courses.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-solid fa-book-open w-5 text-center text-[14px]"></i> Courses
+      </a>
+      <a href="ebooks.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-solid fa-file-lines w-5 text-center text-[14px]"></i> Ebooks
+      </a>
+      <a href="my-courses.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-regular fa-circle-play w-5 text-center text-[14px]"></i> My Courses
+      </a>
+      <a href="my-ebooks.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-solid fa-book w-5 text-center text-[14px]"></i> My E-Books
+      </a>
+      <a href="my-orders.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-solid fa-bag-shopping w-5 text-center text-[14px]"></i> My Orders
+      </a>
+      <a href="referral-wallet.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] bg-[#EEF2FF] text-[#1A56FF] font-semibold text-[13px]">
+        <i class="fa-solid fa-gift w-5 text-center text-[14px]"></i> Referral & Wallet
+      </a>
+      <a href="my-profile.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-regular fa-circle-user w-5 text-center text-[14px]"></i> Profile
+      </a>
+      <div class="pt-3 mt-3 border-t border-slate-100">
+        <button data-dash-logout class="w-full flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-red-50 text-slate-700 hover:text-red-600 font-medium text-[13px]">
+          <i class="fa-solid fa-arrow-right-from-bracket w-5 text-center text-[14px]"></i> Logout
+        </button>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="flex-1 min-w-0 px-3 sm:px-6 py-4 sm:py-6">
+    <div class="mb-4">
+      <h1 class="text-[20px] sm:text-[22px] font-extrabold text-[#0F2043]">Referral & Wallet</h1>
+      <p class="text-[12px] sm:text-[13px] text-slate-500 font-medium mt-0.5">Share your code, earn commission — buy courses with wallet or withdraw</p>
+    </div>
+
+    <!-- Referral & Wallet -->
+    <div id="referralWrap" class="max-w-[860px]">
+      <div id="refOffMsg" class="hidden bg-[#FFF7ED] border border-[#FDBA74] rounded-[14px] p-4 text-[13px] font-semibold text-[#9A3412]"></div>
+      <div id="refMain" class="hidden">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5" id="refStats"></div>
+        <div class="bg-white rounded-[14px] border border-slate-100 shadow-sm overflow-hidden mt-3">
+          <div class="flex gap-1.5 p-2.5 pb-0 overflow-x-auto scrollbar-hide" id="refTabs">
+            <button data-reftab="coupon" class="ref-tab px-4 py-2 rounded-[10px] text-[12px] font-bold whitespace-nowrap bg-[#0F2043] text-white">Referral Coupon</button>
+            <button data-reftab="history" class="ref-tab px-4 py-2 rounded-[10px] text-[12px] font-bold whitespace-nowrap bg-slate-100 text-slate-600">Commission History</button>
+            <button data-reftab="withdraw" class="ref-tab px-4 py-2 rounded-[10px] text-[12px] font-bold whitespace-nowrap bg-slate-100 text-slate-600">Withdraw</button>
+          </div>
+          <div class="p-4 sm:p-5">
+            <div id="refPane-coupon"></div>
+            <div id="refPane-history" class="hidden"></div>
+            <div id="refPane-withdraw" class="hidden"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  try{
+    var hasTok=function(){ try{return !!(localStorage.getItem('sm_user_token')||sessionStorage.getItem('sm_user_token'));}catch(x){return false;} };
+    if(!hasTok()) document.querySelectorAll('[data-account-link]').forEach(function(a){ a.href='auth.html?next='+encodeURIComponent('referral-wallet.html'); });
+  }catch(e){}
+  document.addEventListener('click',function(e){
+    var a=e.target&&e.target.closest?e.target.closest('[data-account-link]'):null;
+    if(!a) return;
+    var t=''; try{t=localStorage.getItem('sm_user_token')||sessionStorage.getItem('sm_user_token')||'';}catch(x){}
+    if(!t){ e.preventDefault(); location.href='auth.html?next='+encodeURIComponent('referral-wallet.html'); }
+  });
+})();
+</script>
+
+<script>
+/* ---------- Referral & Wallet (same engine as profile, standalone page) ---------- */
+(function(){
+  'use strict';
+  var esc = function(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); };
+  var $ = function(id){ return document.getElementById(id); };
+  function token(){ try{ return localStorage.getItem('sm_user_token')||sessionStorage.getItem('sm_user_token')||''; }catch(e){ return ''; } }
+  function clearToken(){ try{ localStorage.removeItem('sm_user_token'); sessionStorage.removeItem('sm_user_token'); }catch(e){} }
+  function headers(){ var t=token(); return t ? { 'Authorization':'Bearer '+t } : {}; }
+  function cur(n){ return '৳' + Number(n||0).toLocaleString('en-IN'); }
+  function fmtDate(iso){ try{ return new Date(iso).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}); }catch(e){ return ''; } }
+  var refSum = null;
+
+  document.querySelectorAll('[data-dash-logout]').forEach(function(b){ b.addEventListener('click', async function(){
+    try{ await fetch('/api/public/auth/logout',{method:'POST',headers:headers()}); }catch(e){}
+    clearToken();
+    location.href = 'index.html';
+  }); });
+
+  function statCard(label, val, dark){
+    return '<div class="rounded-[14px] overflow-hidden border '+(dark ? 'border-[#1A56FF] bg-gradient-to-br from-[#1A56FF] to-[#1445D6] text-white' : 'border-slate-100 bg-white text-[#0F2043]')+' shadow-sm p-3.5">'
+      + '<p class="text-[11px] font-bold '+(dark ? 'text-white/80' : 'text-slate-500')+'">'+label+'</p>'
+      + '<p class="text-[20px] font-extrabold mt-0.5">'+val+'</p></div>';
+  }
+
+  function paintStats(){
+    var box = $('refStats'); if(!box || !refSum) return;
+    var s = refSum.stats;
+    box.innerHTML = statCard('Wallet Balance', cur(refSum.wallet), true)
+      + statCard('Total Earned', cur(s.earned), false)
+      + statCard('Total Withdrawn', cur(s.withdrawn), false)
+      + statCard('Pending Withdrawal', cur(s.pendingWithdraw), false);
+  }
+
+  function paintCoupon(){
+    var box = $('refPane-coupon'); if(!box || !refSum) return;
+    box.innerHTML = '<h3 class="font-extrabold text-[14px] text-[#0F2043]">Your Referral Coupon</h3>'
+      + '<div class="flex items-center gap-2 mt-2.5">'
+      + '<div class="flex-1 bg-[#F8F9FD] border border-slate-200 rounded-[10px] px-4 py-3 text-center text-[22px] font-extrabold tracking-[0.3em] text-[#1A56FF]">'+esc(refSum.code)+'</div>'
+      + '<button id="refCopy" type="button" title="Copy" class="w-11 h-11 rounded-[10px] bg-[#EEF2FF] hover:bg-[#1A56FF] hover:text-white text-[#1A56FF] flex items-center justify-center flex-shrink-0 transition"><i class="fa-solid fa-copy text-[15px]"></i></button>'
+      + '</div>'
+      + '<div class="mt-3 bg-[#F0F7FF] border border-[#D7E3FF] rounded-[12px] p-4">'
+      + '<p class="text-[13px] font-extrabold text-[#0F2043]">How does it work?</p>'
+      + '<ul class="mt-1.5 space-y-1 text-[12px] text-slate-600 font-medium">'
+      + '<li>- Share your coupon code with friends</li>'
+      + '<li>- They get <b>'+refSum.friendOff+'% off</b> using this code</li>'
+      + '<li>- <b>'+refSum.commissionPct+'% commission</b> from their payment goes to your wallet</li>'
+      + '<li>- Use wallet balance to buy courses or withdraw it</li>'
+      + '</ul></div>'
+      + '<p class="mt-2.5 text-[11.5px] text-slate-500">So far <b>'+refSum.stats.referredBuyers+'</b> friends purchased • <b>'+refSum.stats.referralOrders+'</b> referral orders</p>';
+    var cp = $('refCopy');
+    if(cp) cp.addEventListener('click', function(){
+      var done = function(){ cp.innerHTML = '<i class="fa-solid fa-check text-[15px]"></i>'; setTimeout(function(){ cp.innerHTML = '<i class="fa-solid fa-copy text-[15px]"></i>'; }, 1500); };
+      try{
+        if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(refSum.code).then(done, done); }
+        else { var ta = document.createElement('textarea'); ta.value = refSum.code; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); }catch(e){} ta.remove(); done(); }
+      }catch(e){}
+    });
+  }
+
+  function txnLabel(t){
+    var map = { commission:['Commission','bg-[#E6F4EA] text-[#16A34A]'], withdraw:['Withdraw','bg-[#FFF7ED] text-[#C2410C]'], purchase:['Purchase','bg-[#EEF2FF] text-[#1A56FF]'], adjust:['Adjust','bg-[#EDE9FF] text-[#7C3AED]'], refund:['Refund','bg-slate-100 text-slate-600'], commission_reverse:['Commission Reversed','bg-red-50 text-red-600'], withdraw_approved:['Withdraw Approved','bg-[#E6F4EA] text-[#16A34A]'] };
+    return map[t] || [t, 'bg-slate-100 text-slate-600'];
+  }
+  async function paintHistory(){
+    var box = $('refPane-history'); if(!box) return;
+    box.innerHTML = '<p class="text-[12px] text-slate-400 text-center py-4"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Loading...</p>';
+    try{
+      var r = await fetch('/api/public/my/referral/transactions', { headers: headers() });
+      var j = await r.json();
+      if(!r.ok || !j.success) throw new Error((j && j.message) || 'Load failed');
+      // 'withdraw_approved' marker rows (amount 0) hide — approval status Withdraw tab-ei dekha jay
+      j.data = (j.data || []).filter(function(t){ return String((t && t.type) || '') !== 'withdraw_approved'; });
+      if(!j.data.length){ box.innerHTML = '<p class="text-[12px] text-slate-400 text-center py-6">No transactions yet — share your code to start earning</p>'; return; }
+      box.innerHTML = '<div class="space-y-2">' + j.data.map(function(t){
+        var lb = txnLabel(t.type);
+        var a = Number(t.amount) || 0;
+        var amtHtml = (a === 0)
+          ? '<span class="text-[13px] font-bold text-slate-400 whitespace-nowrap">'+cur(0)+'</span>'
+          : '<span class="text-[13px] font-extrabold '+(a > 0 ? 'text-[#16A34A]' : 'text-red-600')+' whitespace-nowrap">'+(a > 0 ? '+' : '')+cur(a)+'</span>';
+        return '<div class="flex items-center gap-2.5 border border-slate-100 rounded-[10px] px-3 py-2.5">'
+          + '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap '+(lb[1]||'bg-slate-100 text-slate-600')+'">'+esc(lb[0]||t.type)+'</span>'
+          + '<span class="flex-1 min-w-0 text-[12px] text-slate-600 truncate">'+esc(t.note||'')+' <span class="text-slate-400">• '+fmtDate(t.createdAt)+'</span></span>'
+          + amtHtml+'</div>';
+      }).join('') + '</div>';
+    }catch(e){ box.innerHTML = '<p class="text-[12px] text-red-600 text-center py-4">'+esc(e.message)+'</p>'; }
+  }
+
+  async function paintWithdraw(){
+    var box = $('refPane-withdraw'); if(!box || !refSum) return;
+    var minW = refSum.minWithdraw || 0;
+    box.innerHTML = '<div class="bg-[#F8F9FD] border border-slate-200 rounded-[12px] p-4">'
+      + '<p class="text-[13px] font-extrabold text-[#0F2043]">Withdraw Money <span class="text-[11px] font-semibold text-slate-500">(Minimum '+cur(minW)+')</span></p>'
+      + '<p class="text-[11.5px] text-slate-500 mt-1">Current balance: <b class="text-[#0F2043]">'+cur(refSum.wallet)+'</b></p>'
+      + '<div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-2.5">'
+      + '<div><label class="text-[11px] font-bold text-slate-600 uppercase">Amount (৳)</label><input id="wdAmt" type="number" min="1" placeholder="e.g. 500" class="mt-1 w-full border border-slate-200 rounded-[10px] px-3 py-2.5 text-[13px] outline-none focus:border-[#1A56FF]"></div>'
+      + '<div><label class="text-[11px] font-bold text-slate-600 uppercase">Method</label><select id="wdMethod" class="mt-1 w-full border border-slate-200 rounded-[10px] px-3 py-2.5 text-[13px] outline-none focus:border-[#1A56FF] bg-white"><option value="bkash">bKash</option><option value="nagad">Nagad</option><option value="rocket">Rocket</option></select></div>'
+      + '<div><label class="text-[11px] font-bold text-slate-600 uppercase">Account No</label><input id="wdAcc" placeholder="01XXXXXXXXX" class="mt-1 w-full border border-slate-200 rounded-[10px] px-3 py-2.5 text-[13px] outline-none focus:border-[#1A56FF]"></div>'
+      + '</div>'
+      + '<p id="wdMsg" class="hidden mt-2.5 text-[12px] font-semibold rounded-[10px] px-3 py-2"></p>'
+      + '<div class="flex justify-end mt-3"><button id="wdSend" type="button" class="px-5 py-2.5 rounded-[10px] bg-[#1A56FF] hover:bg-[#1445D6] text-white font-bold text-[13px]">Request Withdraw</button></div>'
+      + '</div>'
+      + '<div id="wdList" class="mt-3"><p class="text-[12px] text-slate-400 text-center py-3"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Loading...</p></div>';
+    var send = $('wdSend');
+    if(send) send.addEventListener('click', async function(){
+      var msg = $('wdMsg');
+      var showMsg = function(t, ok){ if(!msg) return; msg.textContent = t; msg.className = 'mt-2.5 text-[12px] font-semibold rounded-[10px] px-3 py-2 ' + (ok ? 'bg-[#E6F4EA] text-[#16A34A] border border-[#C8E9D5]' : 'bg-red-50 text-red-600 border border-red-100'); msg.classList.remove('hidden'); };
+      send.disabled = true;
+      try{
+        var r = await fetch('/api/public/my/referral/withdraw', { method: 'POST', headers: Object.assign({ 'Content-Type': 'application/json' }, headers()), body: JSON.stringify({ amount: Number($('wdAmt').value) || 0, method: $('wdMethod').value, account: $('wdAcc').value }) });
+        var j = await r.json().catch(function(){ return null; });
+        if(!r.ok || !j || j.success === false) throw new Error((j && j.message) || 'Request failed');
+        showMsg(j.message, true);
+        await loadSummary(true);
+        await paintWithdrawList();
+      }catch(e){ showMsg(e.message, false); }
+      send.disabled = false;
+    });
+    await paintWithdrawList();
+  }
+  async function paintWithdrawList(){
+    var box = $('wdList'); if(!box) return;
+    try{
+      var r = await fetch('/api/public/my/referral/withdrawals', { headers: headers() });
+      var j = await r.json();
+      if(!r.ok || !j.success) throw new Error((j && j.message) || 'Load failed');
+      if(!j.data.length){ box.innerHTML = '<p class="text-[12px] text-slate-400 text-center py-3">No withdrawal requests yet</p>'; return; }
+      var pill = { pending: 'bg-[#FEF3C7] text-[#92400E]', approved: 'bg-[#E6F4EA] text-[#16A34A]', rejected: 'bg-red-50 text-red-600' };
+      box.innerHTML = '<div class="space-y-2">' + j.data.map(function(w){
+        return '<div class="flex items-center gap-2.5 border border-slate-100 rounded-[10px] px-3 py-2.5">'
+          + '<span class="w-8 h-8 rounded-[9px] bg-[#FFF7ED] text-[#C2410C] flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-money-bill-transfer text-[13px]"></i></span>'
+          + '<span class="flex-1 min-w-0"><span class="block text-[13px] font-extrabold text-[#0F2043]">'+cur(w.amount)+' <span class="text-[11px] font-bold text-slate-500">• '+(w.method||'').toUpperCase()+' • '+esc(w.account||'')+'</span></span>'
+          + '<span class="block text-[10.5px] text-slate-400">'+fmtDate(w.createdAt)+(w.note ? ' • ' + esc(w.note) : '')+'</span></span>'
+          + '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap '+(pill[w.status]||'bg-slate-100 text-slate-600')+'">'+esc(w.status)+'</span></div>';
+      }).join('') + '</div>';
+    }catch(e){ box.innerHTML = '<p class="text-[12px] text-red-600 text-center py-3">'+esc(e.message)+'</p>'; }
+  }
+
+  document.addEventListener('click', function(e){
+    var t = e.target && e.target.closest ? e.target.closest('[data-reftab]') : null;
+    if(!t) return;
+    document.querySelectorAll('[data-reftab]').forEach(function(b){
+      var on = (b === t);
+      b.className = 'ref-tab px-4 py-2 rounded-[10px] text-[12px] font-bold whitespace-nowrap ' + (on ? 'bg-[#0F2043] text-white' : 'bg-slate-100 text-slate-600');
+    });
+    ['coupon', 'history', 'withdraw'].forEach(function(k){ var p = $('refPane-' + k); if(p) p.classList.toggle('hidden', k !== t.getAttribute('data-reftab')); });
+    if(t.getAttribute('data-reftab') === 'history') paintHistory();
+    if(t.getAttribute('data-reftab') === 'withdraw') paintWithdraw();
+  });
+
+  async function loadSummary(keepTab){
+    try{
+      if(!token()){
+        $('referralWrap').innerHTML = '<div class="bg-white rounded-[14px] border border-slate-100 shadow-sm p-8 text-center">'
+          + '<div class="w-12 h-12 rounded-full bg-[#EEF2FF] flex items-center justify-center mx-auto"><i class="fa-solid fa-gift text-[#1A56FF] text-[18px]"></i></div>'
+          + '<p class="text-[13px] font-bold text-[#0F2043] mt-3">Login to view Referral & Wallet</p>'
+          + '<a href="auth.html?next='+encodeURIComponent('referral-wallet.html')+'" class="inline-flex items-center gap-1.5 mt-4 px-5 py-2.5 rounded-[10px] bg-[#1A56FF] text-white font-bold text-[12.5px]">Login</a></div>';
+        return;
+      }
+      var r = await fetch('/api/public/my/referral/summary', { headers: headers() });
+      var j = await r.json().catch(function(){ return null; });
+      if(!r.ok || !j || !j.success) return;
+      if(!j.data.enabled){
+        var om = $('refOffMsg');
+        if(om){ om.textContent = 'Referral system is currently off — it will appear here once the admin enables it.'; om.classList.remove('hidden'); }
+        return;
+      }
+      refSum = j.data;
+      $('refMain').classList.remove('hidden');
+      paintStats();
+      paintCoupon();
+      if(!keepTab) paintWithdraw();
+    }catch(e){}
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ loadSummary(false); });
+  else loadSummary(false);
+})();
+</script>
+<script src="assets/navbar.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

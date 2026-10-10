@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile - StudyMart</title>
+<script>try{var __sm_t=localStorage.getItem('sm_theme')||'light';if(__sm_t==='dark'){document.documentElement.classList.add('sm-dark');document.documentElement.style.colorScheme='dark';}}catch(e){}</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{font-family:'Inter',sans-serif}
+.scrollbar-hide::-webkit-scrollbar{display:none}
+.scrollbar-hide{-ms-overflow-style:none;scrollbar-width:none}
+</style>
+</head>
+<body class="bg-[#F5F7FB] text-slate-900 antialiased pb-[88px] lg:pb-0">
+
+<link rel="stylesheet" href="assets/navbar.css">
+<header class="sticky top-0 z-40 bg-white border-b border-slate-100 shadow-sm">
+  <div class="hidden lg:block border-b border-slate-100">
+    <div class="max-w-[1400px] mx-auto px-6 h-[68px] flex items-center gap-4">
+      <button data-sm-desk-menu-btn class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 transition flex-shrink-0" aria-label="Menu"><i class="fa-solid fa-bars text-[20px] text-[#0F2043]"></i></button>
+      <a href="index.html" class="flex items-center gap-2 flex-shrink-0">
+        <img data-sm-desk-logo src="" alt="Logo" class="hidden w-10 h-10 object-contain rounded-lg">
+        <div data-sm-desk-logo-fb class="w-10 h-10 flex items-center justify-center"><svg width="40" height="40" viewBox="0 0 44 44" fill="none"><path d="M22 6 C16 10 8 12 8 20 C8 28 16 30 22 34 C28 30 36 28 36 20 C36 12 28 10 22 6Z" fill="#1A56FF"/><path d="M12 28 L22 38 L32 28" stroke="#1A56FF" stroke-width="2.5" fill="none" opacity="0.9"/><g><path d="M22 2 L32 7 L22 12 L12 7 Z" fill="#0F2043"/><rect x="21" y="7" width="2" height="8" fill="#FACC15"/></g></svg></div>
+        <span class="text-[22px] font-extrabold tracking-tight leading-none"><span class="text-[#0F2043]">Study</span><span class="text-[#1A56FF]">Mart</span></span>
+      </a>
+      <nav class="flex items-center gap-6 text-[14px] font-semibold flex-shrink-0 ml-2">
+        <a data-sm-nav="home" href="index.html" class="sm-desk-nav-link" data-i18n="home">Home</a>
+        <a data-sm-nav="courses" href="courses.html" class="sm-desk-nav-link" data-i18n="courses">Courses</a>
+        <a data-sm-nav="ebooks" href="ebooks.html" class="sm-desk-nav-link" data-i18n="ebooks">Ebooks</a>
+        <a data-sm-nav="free" href="courses.html?q=" class="sm-desk-nav-link" data-i18n="free">Free Resources</a>
+        <a data-sm-nav="telegram" href="#" data-sm-telegram class="sm-desk-nav-link" data-i18n="telegram">Telegram</a>
+      </nav>
+      <div class="flex-1"></div>
+      <div class="sm-desk-search w-[280px] xl:w-[320px] flex-shrink-0"><i class="fa-solid fa-magnifying-glass text-slate-400 text-[14px]"></i><input data-sm-desk-search data-i18n-ph="searchPh" type="text" placeholder="Search courses, subjects, ebooks..."><button data-sm-desk-search-btn class="text-slate-400 hover:text-[#1A56FF]" aria-label="Search"><i class="fa-solid fa-arrow-right text-[12px]"></i></button></div>
+      <div class="sm-desk-drop flex-shrink-0"><button data-sm-desk-lang-btn class="sm-desk-pill"><i class="fa-solid fa-globe text-[15px] text-slate-500"></i><span data-i18n="lang">বাংলা/English</span></button><div data-sm-desk-lang-menu class="sm-desk-menu hidden"><button type="button" class="sm-mi" data-sm-lang-pick="bn">বাংলা (Bangla)</button><button type="button" class="sm-mi" data-sm-lang-pick="en">English</button></div></div>
+      <button data-sm-theme-btn class="sm-desk-pill flex-shrink-0"><i data-sm-theme-icon class="fa-solid fa-sun text-[15px] text-[#F59E0B]"></i><span data-i18n="theme">Theme</span></button>
+      <div class="sm-desk-drop flex-shrink-0"><button data-sm-desk-account-btn class="sm-desk-pill"><i class="fa-regular fa-user text-[15px] text-slate-600"></i><span data-i18n="account">Account</span></button><div data-sm-desk-account-menu class="sm-desk-menu hidden"></div></div>
+    </div>
+  </div>
+  <div id="smDeskDrawer" class="hidden"><div class="sm-backdrop"></div><div class="sm-panel"><div class="flex items-center justify-between mb-3"><span class="text-[18px] font-extrabold"><span class="text-[#0F2043]">Study</span><span class="text-[#1A56FF]">Mart</span></span><button data-sm-drawer-close class="w-9 h-9 rounded-lg hover:bg-slate-100"><i class="fa-solid fa-xmark"></i></button></div><nav class="flex flex-col gap-1 text-[14px] font-semibold"><a href="index.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Home</a><a href="courses.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Courses</a><a href="ebooks.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Ebooks</a><a href="my-courses.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">My Courses</a><a href="my-ebooks.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">My E-Books</a><a href="my-orders.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">My Orders</a><a href="my-profile.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Profile</a><a href="dashboard.html" data-account-link class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Dashboard</a><a href="cart.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Cart (<span data-sm-cart-count>0</span>)</a></nav></div></div>
+  <div class="lg:hidden max-w-[1420px] mx-auto px-4 sm:px-6 h-[58px] flex items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <a href="dashboard.html" class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-slate-100">
+        <i class="fa-solid fa-arrow-left text-[18px] text-[#0F2043]"></i>
+      </a>
+      <span class="text-[18px] font-extrabold tracking-tight"><span class="text-[#0F2043]">My</span> <span class="text-[#1A56FF]">Profile</span></span>
+    </div>
+    <a href="dashboard.html" class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-slate-100">
+      <i class="fa-solid fa-house text-[16px] text-[#0F2043]"></i>
+    </a>
+  </div>
+</header>
+
+<div class="max-w-[1420px] mx-auto flex">
+  <aside class="hidden lg:block w-[220px] flex-shrink-0 sticky top-[69px] h-[calc(100vh-69px)] bg-white border-r border-slate-100 overflow-y-auto">
+    <nav class="p-3 space-y-1">
+      <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-solid fa-house w-5 text-center text-[14px]"></i> Dashboard
+      </a>
+      <a href="courses.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-solid fa-book-open w-5 text-center text-[14px]"></i> Courses
+      </a>
+      <a href="ebooks.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-solid fa-file-lines w-5 text-center text-[14px]"></i> Ebooks
+      </a>
+      <a href="my-courses.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-regular fa-circle-play w-5 text-center text-[14px]"></i> My Courses
+      </a>
+      <a href="my-ebooks.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-solid fa-book w-5 text-center text-[14px]"></i> My E-Books
+      </a>
+      <a href="my-orders.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-solid fa-bag-shopping w-5 text-center text-[14px]"></i> My Orders
+      </a>
+      <a href="referral-wallet.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-slate-50 text-slate-700 font-medium text-[13px]">
+        <i class="fa-solid fa-gift w-5 text-center text-[14px]"></i> Referral & Wallet
+      </a>
+      <a href="my-profile.html" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] bg-[#EEF2FF] text-[#1A56FF] font-semibold text-[13px]">
+        <i class="fa-regular fa-circle-user w-5 text-center text-[14px]"></i> Profile
+      </a>
+      <div class="pt-3 mt-3 border-t border-slate-100">
+        <button data-dash-logout class="w-full flex items-center gap-3 px-3 py-2.5 rounded-[10px] hover:bg-red-50 text-slate-700 hover:text-red-600 font-medium text-[13px]">
+          <i class="fa-solid fa-arrow-right-from-bracket w-5 text-center text-[14px]"></i> Logout
+        </button>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="flex-1 min-w-0 px-3 sm:px-6 py-4 sm:py-6">
+    <div class="mb-4">
+      <h1 class="text-[20px] sm:text-[22px] font-extrabold text-[#0F2043]">My Profile</h1>
+      <p class="text-[12px] sm:text-[13px] text-slate-500 font-medium mt-0.5">Photo / name / phone / password change koro</p>
+    </div>
+    <div id="profileWrap" class="bg-white rounded-[14px] border border-slate-100 shadow-sm overflow-hidden max-w-[860px]">
+      <p class="text-[13px] text-slate-400 text-center py-6"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Loading your profile...</p>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  try{
+    var hasTok=function(){ try{return !!(localStorage.getItem('sm_user_token')||sessionStorage.getItem('sm_user_token'));}catch(x){return false;} };
+    if(!hasTok()) document.querySelectorAll('[data-account-link]').forEach(function(a){ a.href='auth.html?next='+encodeURIComponent('my-profile.html'); });
+  }catch(e){}
+  document.addEventListener('click',function(e){
+    var a=e.target&&e.target.closest?e.target.closest('[data-account-link]'):null;
+    if(!a) return;
+    var t=''; try{t=localStorage.getItem('sm_user_token')||sessionStorage.getItem('sm_user_token')||'';}catch(x){}
+    if(!t){ e.preventDefault(); location.href='auth.html?next='+encodeURIComponent('my-profile.html'); }
+  });
+})();
+</script>
+
+<script>
+(function(){
+  'use strict';
+  var esc = function(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); };
+  var $ = function(id){ return document.getElementById(id); };
+  function token(){ try{ return localStorage.getItem('sm_user_token')||sessionStorage.getItem('sm_user_token')||''; }catch(e){ return ''; } }
+  function clearToken(){ try{ localStorage.removeItem('sm_user_token'); sessionStorage.removeItem('sm_user_token'); }catch(e){} }
+  function headers(){ var t=token(); return t ? { 'Authorization':'Bearer '+t } : {}; }
+  function fmtDate(iso){ try{ return new Date(iso).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}); }catch(e){ return ''; } }
+  function initial(n){ return String(n||'G').trim().charAt(0).toUpperCase()||'G'; }
+
+  function guestCTA(title, sub, btn){
+    return '<div class="text-center py-8 px-4">'
+      + '<div class="w-12 h-12 rounded-full bg-[#EEF2FF] flex items-center justify-center mx-auto"><i class="fa-regular fa-user text-[#1A56FF] text-[18px]"></i></div>'
+      + '<p class="text-[13px] font-bold text-[#0F2043] mt-3">'+title+'</p>'
+      + '<p class="text-[11.5px] text-slate-500 mt-1">'+sub+'</p>'
+      + '<a href="auth.html?next='+encodeURIComponent('my-profile.html')+'" class="inline-flex items-center gap-1.5 mt-4 px-5 py-2.5 rounded-[10px] bg-[#1A56FF] hover:bg-[#1445D6] text-white font-bold text-[12.5px]"><i class="fa-solid fa-right-to-bracket text-[11px]"></i> '+btn+'</a></div>';
+  }
+
+  var currentMe = null;
+  var pendingAvatar = null;
+  var savingProfile = false, savingPwd = false;
+
+  function profileMsg(text, ok){
+    var el = $('pfMsg'); if(!el) return;
+    el.textContent = text;
+    el.className = 'mt-3 text-[12px] font-semibold rounded-[10px] px-3 py-2 ' + (ok ? 'bg-[#E6F4EA] text-[#16A34A] border border-[#C8E9D5]' : 'bg-red-50 text-red-600 border border-red-100');
+    el.classList.remove('hidden');
+  }
+  function pwdMsg(text, ok){
+    var el = $('pwdMsg'); if(!el) return;
+    el.textContent = text;
+    el.className = 'mt-3 text-[12px] font-semibold rounded-[10px] px-3 py-2 ' + (ok ? 'bg-[#E6F4EA] text-[#16A34A] border border-[#C8E9D5]' : 'bg-red-50 text-red-600 border border-red-100');
+    el.classList.remove('hidden');
+  }
+  function displayEmail(me){
+    if(!me) return '';
+    if(me.email && me.email.indexOf('@mobile.studymart')===-1) return me.email;
+    return me.phone || me.email || '';
+  }
+
+  function renderProfile(me, loggedIn){
+    var box = $('profileWrap'); if(!box) return;
+    currentMe = loggedIn ? me : null;
+    pendingAvatar = null;
+    if(!loggedIn){ box.innerHTML = guestCTA('Login to view your profile','Login kore profile details, photo, password change korte parbe','Login'); return; }
+    var em = displayEmail(me) || '-';
+    var since = me.createdAt ? fmtDate(me.createdAt) : '';
+    var avUrl = me.avatar ? String(me.avatar) : '';
+    box.innerHTML =
+      '<div class="p-4 sm:p-5">'
+      + '<div class="flex flex-col sm:flex-row sm:items-center gap-4">'
+      + '<div class="relative flex-shrink-0 mx-auto sm:mx-0">'
+      + '<div id="pfAvatar" class="w-20 h-20 rounded-full bg-[#EDE9FF] border-2 border-[#DDD6FE] flex items-center justify-center text-[#4F46E5] font-extrabold text-[24px] overflow-hidden">'
+      + (avUrl ? '<img src="'+esc(avUrl)+'" alt="Profile photo" class="w-full h-full object-cover">' : esc(initial(me.name)))
+      + '</div>'
+      + '<button id="pfPhotoBtn" type="button" title="Change photo" class="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-[#1A56FF] hover:bg-[#1445D6] text-white flex items-center justify-center shadow border-2 border-white"><i class="fa-solid fa-camera text-[11px]"></i></button>'
+      + '<input id="pfPhotoInput" type="file" accept="image/*" class="hidden">'
+      + '</div>'
+      + '<div class="flex-1 min-w-0 text-center sm:text-left">'
+      + '<h3 class="font-extrabold text-[16px] text-[#0F2043] truncate">'+esc(me.name||'')+'</h3>'
+      + '<p class="text-[12px] text-slate-500 truncate mt-0.5"><i class="fa-regular fa-envelope mr-1"></i>'+esc(em)+'</p>'
+      + (since ? '<p class="text-[11px] text-slate-400 mt-0.5"><i class="fa-regular fa-calendar mr-1"></i>Member since '+esc(since)+'</p>' : '')
+      + '<div class="mt-2 flex items-center justify-center sm:justify-start gap-2">'
+      + (avUrl ? '<button id="pfPhotoRemove" type="button" class="text-[11px] font-bold text-red-600 hover:text-red-700"><i class="fa-solid fa-trash mr-1 text-[10px]"></i>Remove photo</button>' : '<span class="text-[11px] text-slate-400">Tap <i class="fa-solid fa-camera text-[10px]"></i> to add a profile photo</span>')
+      + '</div>'
+      + '</div>'
+      + '</div>'
+      + '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">'
+      + '<div><label class="text-[11px] font-bold text-slate-600 uppercase">Full Name</label>'
+      + '<input id="pfName" value="'+esc(me.name||'')+'" placeholder="Your name" class="mt-1 w-full border border-slate-200 rounded-[10px] px-3 py-2.5 text-[13px] outline-none focus:border-[#1A56FF]"></div>'
+      + '<div><label class="text-[11px] font-bold text-slate-600 uppercase">Email (login)</label>'
+      + '<input value="'+esc((me.email&&me.email.indexOf('@mobile.studymart')!==-1)?(me.phone||'Mobile account'):me.email||'')+'" disabled class="mt-1 w-full border border-slate-200 rounded-[10px] px-3 py-2.5 text-[13px] bg-slate-50 text-slate-500 cursor-not-allowed"></div>'
+      + '<div><label class="text-[11px] font-bold text-slate-600 uppercase">Mobile Number</label>'
+      + '<input id="pfPhone" value="'+esc(me.phone||'')+'" placeholder="01XXXXXXXXX" class="mt-1 w-full border border-slate-200 rounded-[10px] px-3 py-2.5 text-[13px] outline-none focus:border-[#1A56FF]"></div>'
+      + '<div><label class="text-[11px] font-bold text-slate-600 uppercase">Account Status</label>'
+      + '<div class="mt-1 w-full border border-slate-200 rounded-[10px] px-3 py-2.5 text-[13px] bg-slate-50 text-slate-600 font-semibold">'+esc(me.status||'active')+'</div></div>'
+      + '</div>'
+      + '<p id="pfMsg" class="hidden mt-3 text-[12px] font-semibold rounded-[10px] px-3 py-2"></p>'
+      + '<div class="flex justify-end mt-4"><button id="pfSave" type="button" class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-[10px] bg-[#1A56FF] hover:bg-[#1445D6] text-white font-bold text-[13px]"><i class="fa-solid fa-floppy-disk text-[12px]"></i> Save Changes</button></div>'
+      + '</div>'
+      + '<div id="secProfilePwd" class="border-t border-slate-100 p-4 sm:p-5 scroll-mt-20">'
+      + '<h4 class="font-extrabold text-[14px] text-[#0F2043]"><i class="fa-solid fa-key text-[#1A56FF] mr-1.5"></i>Change Password</h4>'
+      + '<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">'
+      + '<div><label class="text-[11px] font-bold text-slate-600 uppercase">Current Password</label>'
+      + '<input id="pwdCur" type="password" placeholder="••••••••" class="mt-1 w-full border border-slate-200 rounded-[10px] px-3 py-2.5 text-[13px] outline-none focus:border-[#1A56FF]"></div>'
+      + '<div><label class="text-[11px] font-bold text-slate-600 uppercase">New Password</label>'
+      + '<input id="pwdNew" type="password" placeholder="Min 4 characters" class="mt-1 w-full border border-slate-200 rounded-[10px] px-3 py-2.5 text-[13px] outline-none focus:border-[#1A56FF]"></div>'
+      + '<div><label class="text-[11px] font-bold text-slate-600 uppercase">Confirm New</label>'
+      + '<input id="pwdCon" type="password" placeholder="Repeat new password" class="mt-1 w-full border border-slate-200 rounded-[10px] px-3 py-2.5 text-[13px] outline-none focus:border-[#1A56FF]"></div>'
+      + '</div>'
+      + '<p id="pwdMsg" class="hidden mt-3 text-[12px] font-semibold rounded-[10px] px-3 py-2"></p>'
+      + '<div class="flex justify-end mt-4"><button id="pwdSave" type="button" class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-[10px] bg-[#0F2043] hover:bg-[#16294F] text-white font-bold text-[13px]"><i class="fa-solid fa-lock text-[12px]"></i> Update Password</button></div>'
+      + '</div>';
+    var fileBtn = $('pfPhotoBtn'), fileInput = $('pfPhotoInput');
+    if(fileBtn && fileInput) fileBtn.addEventListener('click', function(){ fileInput.click(); });
+    if(fileInput) fileInput.addEventListener('change', function(){ if(fileInput.files && fileInput.files[0]) handlePhotoFile(fileInput.files[0]); fileInput.value=''; });
+    var rmBtn = $('pfPhotoRemove');
+    if(rmBtn) rmBtn.addEventListener('click', function(){
+      pendingAvatar = '';
+      var av = $('pfAvatar'); if(av) av.textContent = initial(($('pfName')&&$('pfName').value)||(currentMe&&currentMe.name)||'G');
+      profileMsg('Photo removed — Save Changes chap dile apply hobe', true);
+    });
+    var saveBtn = $('pfSave');
+    if(saveBtn) saveBtn.addEventListener('click', saveProfile);
+    var pwdBtn = $('pwdSave');
+    if(pwdBtn) pwdBtn.addEventListener('click', savePassword);
+  }
+
+  function handlePhotoFile(file){
+    if(!/^image\//.test(file.type||'')){ profileMsg('Please choose an image file (JPG/PNG)', false); return; }
+    if(file.size > 5*1024*1024){ profileMsg('Image too large — max 5MB', false); return; }
+    var url;
+    try{ url = URL.createObjectURL(file); }catch(e){ profileMsg('Could not read this image', false); return; }
+    var img = new Image();
+    img.onload = function(){
+      try{
+        var w = img.naturalWidth||img.width||256, h = img.naturalHeight||img.height||256;
+        var scale = Math.min(1, 256/Math.max(w,h));
+        var cw = Math.max(1, Math.round(w*scale)), ch = Math.max(1, Math.round(h*scale));
+        var cv = document.createElement('canvas'); cv.width = cw; cv.height = ch;
+        cv.getContext('2d').drawImage(img, 0, 0, cw, ch);
+        pendingAvatar = cv.toDataURL('image/jpeg', 0.82);
+        var av = $('pfAvatar');
+        if(av) av.innerHTML = '<img src="'+pendingAvatar+'" alt="Profile photo" class="w-full h-full object-cover">';
+        profileMsg('New photo selected — Save Changes chap dile save hobe', true);
+      }catch(e){ profileMsg('Could not process this image', false); }
+      try{ URL.revokeObjectURL(url); }catch(x){}
+    };
+    img.onerror = function(){ try{ URL.revokeObjectURL(url); }catch(x){} profileMsg('Could not read this image', false); };
+    img.src = url;
+  }
+
+  async function saveProfile(){
+    if(savingProfile) return;
+    var nameEl = $('pfName'), phoneEl = $('pfPhone');
+    var name = nameEl ? nameEl.value.trim() : '';
+    var phone = phoneEl ? phoneEl.value.trim() : '';
+    if(!name){ profileMsg('Name cannot be empty', false); return; }
+    savingProfile = true;
+    var btn = $('pfSave'); if(btn){ btn.disabled = true; btn.classList.add('opacity-60'); }
+    try{
+      var body = { name: name, phone: phone };
+      if(pendingAvatar !== null) body.avatar = pendingAvatar;
+      var r = await fetch('/api/public/auth/profile', { method:'PUT', headers: Object.assign({'Content-Type':'application/json'}, headers()), body: JSON.stringify(body) });
+      var j = await r.json().catch(function(){ return null; });
+      if(!r.ok || !j || j.success === false) throw new Error((j && j.message) || 'Failed to save profile');
+      currentMe = j.data;
+      try{ localStorage.setItem('sm_user', JSON.stringify({ name: currentMe.name })); }catch(e){}
+      renderProfile(currentMe, true);
+      profileMsg('Profile updated successfully', true);
+    }catch(e){ profileMsg(e.message || 'Failed to save profile', false); }
+    savingProfile = false;
+    if(btn){ btn.disabled = false; btn.classList.remove('opacity-60'); }
+  }
+
+  async function savePassword(){
+    if(savingPwd) return;
+    var cur = $('pwdCur') ? $('pwdCur').value : '';
+    var nw = $('pwdNew') ? $('pwdNew').value : '';
+    var con = $('pwdCon') ? $('pwdCon').value : '';
+    if(!cur || !nw || !con){ pwdMsg('Fill all three password fields', false); return; }
+    if(nw !== con){ pwdMsg('New password and confirm do not match', false); return; }
+    if(nw.trim().length < 4){ pwdMsg('New password must be at least 4 characters', false); return; }
+    savingPwd = true;
+    var btn = $('pwdSave'); if(btn){ btn.disabled = true; btn.classList.add('opacity-60'); }
+    try{
+      var r = await fetch('/api/public/auth/password', { method:'PUT', headers: Object.assign({'Content-Type':'application/json'}, headers()), body: JSON.stringify({ currentPassword: cur, newPassword: nw }) });
+      var j = await r.json().catch(function(){ return null; });
+      if(!r.ok || !j || j.success === false) throw new Error((j && j.message) || 'Failed to change password');
+      if($('pwdCur')) $('pwdCur').value = '';
+      if($('pwdNew')) $('pwdNew').value = '';
+      if($('pwdCon')) $('pwdCon').value = '';
+      pwdMsg('Password changed successfully', true);
+    }catch(e){ pwdMsg(e.message || 'Failed to change password', false); }
+    savingPwd = false;
+    if(btn){ btn.disabled = false; btn.classList.remove('opacity-60'); }
+  }
+
+  async function boot(){
+    var loggedIn = !!token(), me = null;
+    if(loggedIn){
+      try{
+        var r = await fetch('/api/public/auth/me',{headers:headers()});
+        if(r.status===401||r.status===404){ clearToken(); loggedIn=false; }
+        else if(r.ok){ var j=await r.json(); me = j.data||null; if(!me) loggedIn=false; }
+        else loggedIn=false;
+      }catch(e){}
+    }
+    renderProfile(me, loggedIn);
+  }
+
+  document.querySelectorAll('[data-dash-logout]').forEach(function(b){ b.addEventListener('click', async function(){
+    try{ await fetch('/api/public/auth/logout',{method:'POST',headers:headers()}); }catch(e){}
+    clearToken();
+    location.href = 'index.html';
+  }); });
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else boot();
+})();
+</script>
+<script src="assets/navbar.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

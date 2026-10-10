@@ -1,0 +1,339 @@
+/* StudyMart - Desktop navbar (pic-like). Phone view untouched (lg:hidden mobile stays). */
+.sm-desk-nav-link { position: relative; padding: 6px 2px; color: #334155; transition: color .15s; white-space: nowrap; }
+.sm-desk-nav-link:hover { color: #1A56FF; }
+.sm-desk-nav-link.sm-active { color: #1A56FF; }
+.sm-desk-nav-link.sm-active::after { content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 2.5px; border-radius: 9999px; background: #1A56FF; }
+
+.sm-desk-pill { display: inline-flex; align-items: center; gap: 7px; border: 1px solid #E2E8F0; background: #fff; border-radius: 10px; padding: 8px 14px; font-size: 13px; font-weight: 600; color: #0F2043; transition: border-color .15s, background .15s; white-space: nowrap; }
+.sm-desk-pill:hover { border-color: #1A56FF; background: #F8FAFF; }
+.sm-desk-search { display: flex; align-items: center; gap: 8px; border: 1px solid #E2E8F0; background: #fff; border-radius: 10px; padding: 8px 12px; min-width: 0; transition: border-color .15s, box-shadow .15s; }
+.sm-desk-search:focus-within { border-color: #1A56FF; box-shadow: 0 0 0 3px rgba(26,86,255,.1); }
+.sm-desk-search input { flex: 1; min-width: 0; outline: none; border: 0; font-size: 13px; background: transparent; color: #0F2043; }
+.sm-desk-search input::placeholder { color: #94A3B8; }
+
+/* ===== Live search suggestions (matching courses + ebooks) ===== */
+.sm-desk-search { position: relative; }
+.sm-search-suggest { position: absolute; left: 0; right: 0; top: calc(100% + 8px); background: #fff; border: 1px solid #E2E8F0; border-radius: 12px; box-shadow: 0 16px 40px rgba(15,32,67,.16); overflow: hidden; z-index: 80; max-height: 340px; overflow-y: auto; }
+.sm-sug-group { padding: 7px 12px 3px; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #94A3B8; }
+.sm-sug-row { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; padding: 8px 12px; cursor: pointer; }
+.sm-sug-row:hover, .sm-sug-row.sug-active { background: #F1F5FF; }
+.sm-sug-thumb { width: 34px; height: 34px; border-radius: 9px; overflow: hidden; flex-shrink: 0; background: #EEF2FF; display: flex; align-items: center; justify-content: center; color: #1A56FF; font-size: 14px; }
+.sm-sug-thumb img { width: 100%; height: 100%; object-fit: contain; }
+.sm-sug-meta { flex: 1; min-width: 0; }
+.sm-sug-title { font-size: 12.5px; font-weight: 700; color: #0F2043; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sm-sug-sub { font-size: 11px; color: #64748B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sm-sug-price { font-size: 12px; font-weight: 800; color: #1A56FF; flex-shrink: 0; }
+.sm-sug-price.free { color: #16A34A; }
+.sm-sug-all { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; padding: 10px; font-size: 12.5px; font-weight: 800; color: #1A56FF; background: #F8FAFF; border-top: 1px solid #EDF1F7; cursor: pointer; }
+.sm-sug-all:hover { background: #EEF2FF; }
+.sm-sug-empty { padding: 14px; text-align: center; font-size: 12.5px; color: #64748B; }
+html.sm-dark .sm-search-suggest { background: #16213D; border-color: #2A3A63; }
+html.sm-dark .sm-sug-title { color: #E2E8F0; }
+html.sm-dark .sm-sug-row:hover, html.sm-dark .sm-sug-row.sug-active { background: #1E2C52; }
+html.sm-dark .sm-sug-all { background: #1E2C52; border-color: #2A3A63; }
+
+.sm-desk-drop { position: relative; }.sm-desk-menu { position: absolute; right: 0; top: calc(100% + 8px); min-width: 190px; background: #fff; border: 1px solid #E2E8F0; border-radius: 12px; box-shadow: 0 16px 40px rgba(15,32,67,.14); padding: 6px; z-index: 80; }
+.sm-desk-menu a, .sm-desk-menu button.sm-mi { display: flex; align-items: center; gap: 9px; width: 100%; text-align: left; padding: 9px 11px; border-radius: 9px; font-size: 13px; font-weight: 600; color: #334155; }
+.sm-desk-menu a:hover, .sm-desk-menu button.sm-mi:hover { background: #F1F5FF; color: #1A56FF; }
+
+/* ===== Compact responsive desktop bar (no Language pill, icon-only Telegram) ===== */
+.sm-desk-bar{ gap:.6rem !important; flex-wrap:nowrap !important; }
+.sm-desk-bar .sm-desk-logo-txt{ font-size:20px !important; }
+.sm-desk-links{ gap:.9rem !important; font-size:13px !important; margin-left:auto !important; margin-right:auto !important; }
+/* spacer div Flex-1 hide -> links exactly middle e thakbe (logo left, search/buttons right) */
+.sm-desk-bar > .flex-1{ display:none !important; }
+.sm-desk-searchflex{ flex:1 1 auto !important; width:auto !important; min-width:110px !important; max-width:300px !important; }
+.sm-desk-searchflex input{ min-width:0 !important; }
+.sm-desk-tg-icon{ width:36px; height:36px; border-radius:9999px; background:#E6F0FF; display:inline-flex; align-items:center; justify-content:center; color:#1A56FF; flex-shrink:0; transition:background .15s; }
+.sm-desk-tg-icon:hover{ background:#D6E4FF; }
+/* Cart icon next to Theme (badge count auto-syncs via [data-sm-cart-count]) */
+a.sm-desk-cart{ position:relative; }
+.sm-desk-cart-badge{ position:absolute; top:-6px; right:-6px; min-width:18px; height:18px; padding:0 4px; background:#EF4444; color:#fff; font-size:10px; font-weight:800; border-radius:9999px; display:flex; align-items:center; justify-content:center; border:2px solid #fff; line-height:1; }
+html.sm-dark .sm-desk-cart-badge{ border-color:#0F1A33; }
+@media (min-width:1280px){
+  .sm-desk-bar{ gap:1rem !important; }
+  .sm-desk-bar .sm-desk-logo-txt{ font-size:22px !important; }
+  .sm-desk-links{ gap:1.5rem !important; font-size:14px !important; }
+  .sm-desk-searchflex{ max-width:340px !important; }
+}
+@media (min-width:1024px) and (max-width:1139px){
+  .sm-desk-pill{ padding:7px 9px !important; font-size:12px !important; gap:6px !important; }
+  .sm-desk-search{ padding:7px 10px !important; }
+  .sm-desk-links{ gap:.7rem !important; font-size:12.5px !important; }
+  .sm-desk-searchflex{ min-width:90px !important; }
+}
+
+/* ===== Phone nav — image-style labeled icon buttons (desktop untouched) ===== */
+.sm-mob-nav { display: flex; align-items: center; gap: 1px; flex-shrink: 0; }
+.sm-mob-nav a, .sm-mob-nav button { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-width: 31px; padding: 2px 3px; color: #475569; background: none; border: 0; cursor: pointer; }
+.sm-mob-nav a:hover, .sm-mob-nav button:hover { color: #1A56FF; }
+.sm-mob-nav a.sm-active { color: #1A56FF; }
+.sm-mob-nav i { font-size: 17px; line-height: 1; }
+.sm-mob-nav .t { font-size: 8px; font-weight: 600; line-height: 1.25; white-space: nowrap; }
+/* Colorful icons — labels stay slate */
+.sm-mob-nav a[data-sm-nav="courses"] > i { color: #1A56FF; }
+.sm-mob-nav a[data-sm-nav="ebooks"] > i { color: #7C3AED; }
+.sm-mob-nav button[data-sm-mob-search-btn] > i { color: #0F2043; }
+.sm-mob-nav a[data-sm-telegram] > i { color: #229ED9; }
+.sm-mob-nav a[href="cart.html"] > i { color: #faa937; }
+.sm-mob-nav a[data-account-link] > i { color: #EC4899; }
+.sm-mob-nav .cbadge { position: absolute; top: -4px; right: -1px; min-width: 14px; height: 14px; padding: 0 3px; background: #1A56FF; color: #fff; font-size: 8.5px; font-weight: 800; border-radius: 9999px; display: flex; align-items: center; justify-content: center; }
+@media (min-width:640px) {
+  .sm-mob-nav { gap: 10px; }
+  .sm-mob-nav a, .sm-mob-nav button { min-width: 42px; }
+  .sm-mob-nav i { font-size: 20px; }
+  .sm-mob-nav .t { font-size: 9.5px; }
+  .sm-mob-nav .cbadge { min-width: 17px; height: 17px; font-size: 10px; top: -5px; }
+}
+html.sm-dark .sm-mob-nav a, html.sm-dark .sm-mob-nav button { color: #CBD5E1; }
+html.sm-dark .sm-mob-nav a:hover, html.sm-dark .sm-mob-nav button:hover, html.sm-dark .sm-mob-nav a.sm-active { color: #7AA2FF; }
+html.sm-dark .sm-mob-nav a[data-sm-nav="courses"] > i { color: #7AA2FF; }
+html.sm-dark .sm-mob-nav a[data-sm-nav="ebooks"] > i { color: #A78BFA; }
+html.sm-dark .sm-mob-nav button[data-sm-mob-search-btn] > i { color: #E2E8F0 !important; }
+html.sm-dark .sm-mob-nav a[data-sm-telegram] > i { color: #4FC3F7; }
+html.sm-dark .sm-mob-nav a[href="cart.html"] > i { color: #faa937 !important; }
+html.sm-dark .sm-mob-nav a[data-account-link] > i { color: #F472B6; }
+
+/* Desktop side drawer (hamburger) */
+#smDeskDrawer { position: fixed; inset: 0; z-index: 90; }
+#smDeskDrawer .sm-backdrop { position: absolute; inset: 0; background: rgba(15,32,67,.45); }
+#smDeskDrawer .sm-panel { position: absolute; left: 0; top: 0; bottom: 0; width: 300px; max-width: 85vw; background: #fff; box-shadow: 8px 0 40px rgba(0,0,0,.15); padding: 18px 14px; overflow-y: auto; }
+
+/* ===== Logged-in hamburger menu (screenshot style) ===== */
+.sm-auth-menu { display: flex; flex-direction: column; gap: 2px; }
+.sm-auth-link { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; padding: 11px 14px; border-radius: 12px; font-size: 14px; font-weight: 500; color: #334155; background: transparent; border: 0; cursor: pointer; transition: background .15s, color .15s; }
+.sm-auth-link i { width: 20px; text-align: center; font-size: 16px; color: #0F2043; flex-shrink: 0; }
+.sm-auth-link span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sm-auth-link:hover { background: #F1F5F9; }
+.sm-auth-link.sm-auth-active { background: #EAF0FF; color: #1A56FF; font-weight: 700; }
+.sm-auth-link.sm-auth-active i { color: #1A56FF; }
+.sm-auth-div { border-top: 1px solid #EEF2F7; margin: 6px 2px; }
+#mobileMenu .sm-auth-menu { padding: 10px 8px 14px; }
+
+/* ---- Homepage category sections: sticky header-er niche lukabe na ---- */
+#secCategories, #secEbookCategory { scroll-margin-top: 76px; }
+
+/* ---- Full dark theme (toggle persists via localStorage sm_theme) ---- */
+html.sm-dark { color-scheme: dark; }
+html.sm-dark body { background: #0B1226 !important; color: #E2E8F0 !important; }
+html.sm-dark header { background: #0F1A33 !important; border-color: #1E2A4A !important; }
+html.sm-dark header .border-slate-100,
+html.sm-dark header .border-slate-200 { border-color: #1E2A4A !important; }
+html.sm-dark #mobileMenu { background: #0F1A33 !important; border-color: #1E2A4A !important; }
+html.sm-dark #mobileMenu a { color: #CBD5E1 !important; }
+html.sm-dark #mobileMenu a:hover { background: #1E2C52 !important; color: #fff !important; }
+
+/* desktop bar */
+html.sm-dark .sm-desk-nav-link { color: #CBD5E1 !important; }
+html.sm-dark .sm-desk-nav-link.sm-active, html.sm-dark .sm-desk-nav-link:hover { color: #7AA2FF !important; }
+html.sm-dark .sm-desk-pill, html.sm-dark .sm-desk-search { background: #16213D !important; border-color: #2A3A63 !important; color: #E2E8F0 !important; }
+html.sm-dark .sm-desk-search input { color: #E2E8F0 !important; }
+html.sm-dark .sm-desk-search input::placeholder { color: #64748B !important; }
+html.sm-dark .sm-desk-menu { background: #16213D !important; border-color: #2A3A63 !important; }
+html.sm-dark .sm-desk-menu a, html.sm-dark .sm-desk-menu button.sm-mi { color: #CBD5E1 !important; }
+html.sm-dark .sm-desk-menu a:hover, html.sm-dark .sm-desk-menu button.sm-mi:hover { background: #1E2C52 !important; color: #fff !important; }
+html.sm-dark #smDeskDrawer .sm-panel { background: #0F1A33 !important; color: #E2E8F0 !important; }
+html.sm-dark #smDeskDrawer .sm-panel a { color: #CBD5E1 !important; }
+html.sm-dark #smDeskDrawer .sm-panel a:hover { background: #1E2C52 !important; color: #fff !important; }
+html.sm-dark .sm-auth-link { color: #CBD5E1 !important; }
+html.sm-dark .sm-auth-link i { color: #CBD5E1 !important; }
+html.sm-dark .sm-auth-link:hover { background: #1E2C52 !important; color: #fff !important; }
+html.sm-dark .sm-auth-link.sm-auth-active { background: #1E2C52 !important; color: #7AA2FF !important; }
+html.sm-dark .sm-auth-link.sm-auth-active i { color: #7AA2FF !important; }
+html.sm-dark .sm-auth-div { border-color: #22315A !important; }
+html.sm-dark #mobileMenu .sm-auth-link { color: #CBD5E1 !important; }
+html.sm-dark #mobileMenu .sm-auth-link:hover { background: #1E2C52 !important; }
+html.sm-dark .sm-desk-tg-icon { background: #1E2C52 !important; color: #7AA2FF !important; }
+
+/* phone header icons + logo text (hardcoded navy) */
+html.sm-dark header .fa-bars,
+html.sm-dark header .fa-magnifying-glass,
+html.sm-dark header .fa-user,
+html.sm-dark header .fa-cart-shopping,
+html.sm-dark header .fa-bell,
+html.sm-dark header .fa-xmark { color: #E2E8F0 !important; }
+html.sm-dark header a[href="index.html"] span span:first-child,
+html.sm-dark header span.text-\[\#0F2043\],
+html.sm-dark header .text-\[\#0F2043\] { color: #F1F5F9 !important; }
+html.sm-dark header .hover\:bg-slate-100:hover { background: #1E2C52 !important; }
+
+/* hero + sections */
+html.sm-dark .hero-bg { background: linear-gradient(135deg, #141B3D 0%, #16213D 45%, #1A1440 100%) !important; border-color: #2A3A63 !important; }
+/* Hero "Browse Ebooks" button — dark mode e properly visible */
+html.sm-dark #secHero .hero-ebook-btn { background-color: rgba(122,162,255,.10) !important; border-color: #3A4F85 !important; color: #E2E8F0 !important; box-shadow: 0 4px 16px rgba(0,0,0,.35) !important; }
+html.sm-dark #secHero .hero-ebook-btn:hover { background-color: rgba(122,162,255,.18) !important; border-color: #7AA2FF !important; color: #fff !important; }
+html.sm-dark #secHero .hero-ebook-btn i { color: #7AA2FF !important; }
+html.sm-dark main { background: transparent !important; }
+html.sm-dark footer { background: #0F1A33 !important; border-color: #1E2A4A !important; }
+html.sm-dark footer .border-slate-200 { border-color: #1E2A4A !important; }
+
+/* generic surfaces: white cards, light backgrounds */
+html.sm-dark .bg-white { background-color: #131E3A !important; }
+html.sm-dark .bg-\[\#F8F9FD\],
+html.sm-dark .bg-\[\#F5F7FB\],
+html.sm-dark .bg-\[\#F3F4F8\],
+html.sm-dark .bg-slate-50 { background-color: #0B1226 !important; }
+html.sm-dark .bg-slate-100 { background-color: #1E2C52 !important; }
+html.sm-dark .bg-\[\#F8FAFF\] { background-color: #16213D !important; }
+html.sm-dark .bg-\[\#F0F4FF\],
+html.sm-dark .bg-\[\#E6F0FF\],
+html.sm-dark .bg-\[\#EEF2FF\],
+html.sm-dark .bg-\[\#EDE9FF\] { background-color: #1E2C52 !important; }
+html.sm-dark .bg-\[\#E0F2FE\] { background-color: #1E2C52 !important; }
+html.sm-dark .bg-\[\#E6F4EA\] { background-color: #143325 !important; }
+html.sm-dark .bg-\[\#FFF2E6\] { background-color: #3A2A14 !important; }
+
+/* borders */
+html.sm-dark .border-slate-100,
+html.sm-dark .border-slate-200,
+html.sm-dark .border-\[\#E8E8FF\],
+html.sm-dark .divide-slate-100 > * + * { border-color: #22315A !important; }
+html.sm-dark .divide-slate-100 { --tw-divide-opacity: 1; }
+html.sm-dark .shadow-sm,
+html.sm-dark .shadow-\[0_2px_10px_rgba\(0\2c 0\2c 0\2c 0\.04\)\],
+html.sm-dark .shadow-\[0_2px_12px_rgba\(0\2c 0\2c 0\2c 0\.06\)\],
+html.sm-dark .shadow-\[0_2px_14px_rgba\(0\2c 0\2c 0\2c 0\.05\)\] { box-shadow: 0 2px 14px rgba(0,0,0,.45) !important; }
+
+/* text colors */
+html.sm-dark .text-slate-900,
+html.sm-dark .text-\[\#0F2043\] { color: #F1F5F9 !important; }
+html.sm-dark .text-slate-800,
+html.sm-dark .text-slate-700 { color: #CBD5E1 !important; }
+html.sm-dark .text-slate-600 { color: #94A3B8 !important; }
+html.sm-dark .text-slate-500 { color: #7D8DB0 !important; }
+html.sm-dark .text-slate-400 { color: #5B6B8C !important; }
+html.sm-dark .hover\:text-\[\#1A56FF\]:hover { color: #7AA2FF !important; }
+
+/* keep brand blue readable, keep badges */
+html.sm-dark .text-\[\#1A56FF\] { color: #7AA2FF !important; }
+html.sm-dark .text-\[\#4F46E5\] { color: #A5B4FC !important; }
+html.sm-dark .text-\[\#16A34A\] { color: #4ADE80 !important; }
+html.sm-dark .text-\[\#0EA5E9\] { color: #38BDF8 !important; }
+html.sm-dark a.bg-\[\#1A56FF\],
+html.sm-dark button.bg-\[\#1A56FF\] { background-color: #1A56FF !important; color: #fff !important; }
+
+/* hover states on light cards */
+html.sm-dark .hover\:bg-slate-50:hover { background-color: #1E2C52 !important; }
+html.sm-dark .hover\:bg-slate-100:hover { background-color: #24345E !important; }
+
+/* inputs */
+html.sm-dark input,
+html.sm-dark textarea,
+html.sm-dark select { background-color: #16213D !important; border-color: #2A3A63 !important; color: #E2E8F0 !important; }
+html.sm-dark input::placeholder,
+html.sm-dark textarea::placeholder { color: #5B6B8C !important; }
+html.sm-dark input:focus { border-color: #1A56FF !important; }
+
+/* How-to-buy dark navy block stays, but outer card + video placeholder */
+html.sm-dark #secHowToBuy .bg-white { background-color: #131E3A !important; }
+html.sm-dark #hbDesc { color: #94A3B8 !important; }
+
+/* dashboard / cart / auth / modals (JS-rendered too) */
+html.sm-dark #smCartBox,
+html.sm-dark #smCartModal .bg-white { background-color: #131E3A !important; }
+html.sm-dark [data-sm-auth] .bg-white,
+html.sm-dark [data-sm-course-detail] .bg-white,
+html.sm-dark [data-sm-courses] .bg-white,
+html.sm-dark [data-sm-myorders] .border { background-color: #131E3A !important; }
+html.sm-dark [data-sm-course-detail] .bg-\[\#F8F9FD\] { background-color: #16213D !important; }
+html.sm-dark #smToast { background: #1E2C52 !important; color: #fff !important; }
+
+/* fixed mobile buy bar (course/ebook) */
+html.sm-dark .fixed.bottom-0.bg-white { background-color: #0F1A33 !important; border-color: #1E2A4A !important; }
+
+/* footer social + scroll-top buttons */
+html.sm-dark footer a.bg-white,
+html.sm-dark footer button.bg-white { background-color: #16213D !important; border-color: #2A3A63 !important; color: #CBD5E1 !important; }
+
+/* red/green status pills stay readable */
+html.sm-dark .bg-red-50 { background-color: #3A1620 !important; }
+html.sm-dark .text-red-600 { color: #FCA5A5 !important; }
+html.sm-dark main, html.sm-dark footer { filter: none; }
+
+/* auth page (standalone gradient + card) */
+html.sm-dark body { background: #0B1226 !important; }
+html.sm-dark .auth-input { background: #16213D !important; border-color: #2A3A63 !important; color: #E2E8F0 !important; }
+html.sm-dark .auth-input:focus { background: #131E3A !important; }
+html.sm-dark .from-white { --tw-gradient-from: #131E3A !important; --tw-gradient-to: #131E3A !important; }
+html.sm-dark .to-\[\#F4F7FE\] { --tw-gradient-to: #16213D !important; }
+html.sm-dark .bg-\[\#F1F5F9\] { background-color: #1E2C52 !important; }
+html.sm-dark .tab-idle { color: #94A3B8 !important; }
+html.sm-dark .tab-idle:hover { color: #fff !important; }
+
+/* courses.html: custom category card classes (JS-rendered too) */
+html.sm-dark .cat-academic,
+html.sm-dark .skill-prog { background: #1B2350 !important; border-color: #2A3A63 !important; }
+html.sm-dark .cat-revision,
+html.sm-dark .skill-graphic { background: #143325 !important; border-color: #1E4D33 !important; }
+html.sm-dark .cat-admission { background: #3A2A14 !important; border-color: #5C451A !important; }
+html.sm-dark .skill-digital { background: #16294F !important; border-color: #2A3A63 !important; }
+html.sm-dark .skill-lang { background: #3A1B33 !important; border-color: #5C2A4D !important; }
+html.sm-dark .skill-others { background: #16213D !important; border-color: #2A3A63 !important; }
+
+/* courses.html: count pills + icon colors inside category cards */
+html.sm-dark .bg-\[\#DDD6FE\] { background-color: #2A3560 !important; }
+html.sm-dark .bg-\[\#C8E9D5\] { background-color: #143325 !important; }
+html.sm-dark .bg-\[\#FFE4C7\] { background-color: #3A2A14 !important; }
+html.sm-dark .text-\[\#3B5BFE\] { color: #8FA2FF !important; }
+html.sm-dark .text-\[\#15803D\] { color: #4ADE80 !important; }
+html.sm-dark .text-\[\#C2410C\] { color: #FBBF24 !important; }
+html.sm-dark .text-\[\#F59E0B\] { color: #FBBF24 !important; }
+
+/* courses.html: tailwind opacity-variant utilities */
+html.sm-dark .bg-white\/90 { background-color: rgba(19,30,58,.92) !important; }
+html.sm-dark .border-slate-100\/90 { border-color: #22315A !important; }
+html.sm-dark .border-slate-200\/90 { border-color: #22315A !important; }
+html.sm-dark .border-black\/5 { border-color: rgba(255,255,255,.08) !important; }
+
+/* courses.html: carousel dots */
+html.sm-dark #batchSections .bg-slate-200 { background-color: #2A3A63 !important; }
+
+/* courses.html: floating cart badge white ring */
+html.sm-dark a[href="cart.html"] .border-white { border-color: #0F1A33 !important; }
+
+/* ===== Nav Bar Telegram multi-link dropdown (no chevron icon — text click-e menu) ===== */
+.sm-tg-drop { position: relative; }
+.sm-tg-drop > button { background: none; border: 0; cursor: pointer; font: inherit; }
+.sm-tg-menu { position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); min-width: 210px; max-width: 260px; background: #fff; border: 1px solid #E2E8F0; border-radius: 12px; box-shadow: 0 16px 40px rgba(15,32,67,.16); padding: 6px; z-index: 80; }
+.sm-tg-menu::before { content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%) rotate(45deg); width: 10px; height: 10px; background: #fff; border-left: 1px solid #E2E8F0; border-top: 1px solid #E2E8F0; }
+.sm-tg-menu a { display: flex; align-items: center; gap: 9px; padding: 9px 11px; border-radius: 9px; font-size: 13px; font-weight: 600; color: #334155; white-space: nowrap; overflow: hidden; }
+.sm-tg-menu a span { overflow: hidden; text-overflow: ellipsis; }
+.sm-tg-menu a i { color: #229ED9; font-size: 15px; flex-shrink: 0; }
+.sm-tg-menu a:hover { background: #F1F5FF; color: #1A56FF; }
+html.sm-dark .sm-tg-menu { background: #16213D !important; border-color: #2A3A63 !important; }
+html.sm-dark .sm-tg-menu::before { background: #16213D !important; border-color: #2A3A63 !important; }
+html.sm-dark .sm-tg-menu a { color: #CBD5E1 !important; }
+html.sm-dark .sm-tg-menu a:hover { background: #1E2C52 !important; color: #fff !important; }
+html.sm-dark .sm-tg-menu a i { color: #4FC3F7 !important; }
+
+/* ===== Telegram popup sheet (phone view — desktop dropdown-er moto halka popup) ===== */
+.sm-tg-sheet { position: fixed; inset: 0; z-index: 100; }
+.sm-tg-sheet.hidden { display: none; }
+.sm-tg-sheet-backdrop { position: absolute; inset: 0; background: rgba(15,32,67,.5); }
+.sm-tg-sheet-card { position: absolute; top: 8px; left: 12px; right: 12px; background: #fff; border-radius: 18px; padding: 8px 10px 12px; box-shadow: 0 24px 60px rgba(15,32,67,.3); animation: smTgSheetIn .22s ease; }
+.sm-tg-sheet-handle { width: 40px; height: 4px; border-radius: 9999px; background: #E2E8F0; margin: 2px auto 8px; }
+.sm-tg-sheet-head { display: flex; align-items: center; gap: 10px; padding: 4px 4px 10px; }
+.sm-tg-sheet-ico { width: 38px; height: 38px; border-radius: 12px; background: #E8F4FD; color: #229ED9; display: flex; align-items: center; justify-content: center; font-size: 19px; flex-shrink: 0; }
+.sm-tg-sheet-headtxt { flex: 1; min-width: 0; }
+.sm-tg-sheet-title { font-size: 15px; font-weight: 800; color: #0F2043; line-height: 1.2; }
+.sm-tg-sheet-sub { font-size: 11.5px; color: #64748B; margin-top: 1px; }
+.sm-tg-sheet-x { width: 30px; height: 30px; border-radius: 9999px; background: #F1F5F9; color: #64748B; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+.sm-tg-sheet-list { display: flex; flex-direction: column; gap: 4px; }
+.sm-tg-sheet-list a { display: flex; align-items: center; gap: 10px; padding: 12px; border-radius: 12px; font-size: 13.5px; font-weight: 700; color: #0F2043; background: #F8FAFC; }
+.sm-tg-sheet-list a > i:first-child { color: #229ED9; font-size: 17px; flex-shrink: 0; }
+.sm-tg-sheet-list a span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sm-tg-sheet-go { color: #94A3B8; font-size: 12px; flex-shrink: 0; }
+.sm-tg-sheet-list a:hover { background: #F1F5FF; color: #1A56FF; }
+@media (min-width: 1024px) {
+  .sm-tg-sheet-card { left: 50%; right: auto; bottom: auto; top: 50%; transform: translate(-50%,-50%); width: 340px; }
+  .sm-tg-sheet-handle { display: none; }
+}
+@keyframes smTgSheetIn { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+html.sm-dark .sm-tg-sheet-card { background: #16213D !important; }
+html.sm-dark .sm-tg-sheet-title { color: #fff !important; }
+html.sm-dark .sm-tg-sheet-sub { color: #94A3B8 !important; }
+html.sm-dark .sm-tg-sheet-x { background: #1E2C52 !important; color: #CBD5E1 !important; }
+html.sm-dark .sm-tg-sheet-handle { background: #2A3A63 !important; }
+html.sm-dark .sm-tg-sheet-list a { background: #1E2C52 !important; color: #E2E8F0 !important; }
+html.sm-dark .sm-tg-sheet-list a:hover { color: #fff !important; }
+html.sm-dark .sm-tg-sheet-list a > i:first-child { color: #4FC3F7 !important; }

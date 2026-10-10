@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Courses - StudyMart</title>
+<script>try{var __sm_t=localStorage.getItem('sm_theme')||'light';if(__sm_t==='dark'){document.documentElement.classList.add('sm-dark');document.documentElement.style.colorScheme='dark';}}catch(e){}</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{font-family:'Inter',sans-serif}
+.scrollbar-hide::-webkit-scrollbar{display:none}
+.scrollbar-hide{-ms-overflow-style:none;scrollbar-width:none}
+.course-scroll{scroll-snap-type:x mandatory}
+.course-scroll>div{scroll-snap-align:start}
+.cat-academic{background:#EDE9FF;border:1px solid #E0D8FF}
+.cat-revision{background:#E6F4EA;border:1px solid #C8E9D5}
+.cat-admission{background:#FFF2E6;border:1px solid #FFDCC2}
+.skill-prog{background:#EDE9FF;border:1px solid #DDD6FE}
+.skill-graphic{background:#E6F4EA;border:1px solid #C8E9D5}
+.skill-digital{background:#E6F0FF;border:1px solid #C7D9FF}
+.skill-lang{background:#FCE7F3;border:1px solid #F9C6E0}
+.skill-others{background:#F1F5F9;border:1px solid #E2E8F0}
+</style>
+</head>
+<body class="bg-[#F8F9FD] text-slate-900 antialiased">
+
+<!-- Header: phone unchanged + desktop pic-like -->
+<link rel="stylesheet" href="assets/navbar.css">
+<header class="sticky top-0 z-50 bg-white border-b border-slate-100 shadow-sm">
+  <div class="hidden lg:block border-b border-slate-100">
+    <div class="max-w-[1400px] mx-auto px-6 h-[68px] flex items-center gap-4">
+      <button data-sm-desk-menu-btn class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 transition flex-shrink-0" aria-label="Menu"><i class="fa-solid fa-bars text-[20px] text-[#0F2043]"></i></button>
+      <a href="index.html" class="flex items-center gap-2 flex-shrink-0">
+        <img data-sm-desk-logo src="" alt="Logo" class="hidden w-10 h-10 object-contain rounded-lg">
+        <div data-sm-desk-logo-fb class="w-10 h-10 flex items-center justify-center"><svg width="40" height="40" viewBox="0 0 44 44" fill="none"><path d="M22 6 C16 10 8 12 8 20 C8 28 16 30 22 34 C28 30 36 28 36 20 C36 12 28 10 22 6Z" fill="#1A56FF"/><path d="M12 28 L22 38 L32 28" stroke="#1A56FF" stroke-width="2.5" fill="none" opacity="0.9"/><g><path d="M22 2 L32 7 L22 12 L12 7 Z" fill="#0F2043"/><rect x="21" y="7" width="2" height="8" fill="#FACC15"/></g></svg></div>
+        <span class="text-[22px] font-extrabold tracking-tight leading-none"><span class="text-[#0F2043]">Study</span><span class="text-[#1A56FF]">Mart</span></span>
+      </a>
+      <nav class="flex items-center gap-6 text-[14px] font-semibold flex-shrink-0 ml-2">
+        <a data-sm-nav="home" href="index.html" class="sm-desk-nav-link" data-i18n="home">Home</a>
+        <a data-sm-nav="courses" href="courses.html" class="sm-desk-nav-link" data-i18n="courses">Courses</a>
+        <a data-sm-nav="ebooks" href="ebooks.html" class="sm-desk-nav-link" data-i18n="ebooks">Ebooks</a>
+        <a data-sm-nav="free" href="courses.html?q=" class="sm-desk-nav-link" data-i18n="free">Free Resources</a>
+        <a data-sm-nav="telegram" href="#" data-sm-telegram class="sm-desk-nav-link" data-i18n="telegram">Telegram</a>
+      </nav>
+      <div class="flex-1"></div>
+      <div class="sm-desk-search w-[280px] xl:w-[320px] flex-shrink-0"><i class="fa-solid fa-magnifying-glass text-slate-400 text-[14px]"></i><input data-sm-desk-search data-i18n-ph="searchPh" type="text" placeholder="Search courses, subjects, ebooks..."><button data-sm-desk-search-btn class="text-slate-400 hover:text-[#1A56FF]" aria-label="Search"><i class="fa-solid fa-arrow-right text-[12px]"></i></button></div>
+      <div class="sm-desk-drop flex-shrink-0"><button data-sm-desk-lang-btn class="sm-desk-pill"><i class="fa-solid fa-globe text-[15px] text-slate-500"></i><span data-i18n="lang">বাংলা/English</span></button><div data-sm-desk-lang-menu class="sm-desk-menu hidden"><button type="button" class="sm-mi" data-sm-lang-pick="bn">বাংলা (Bangla)</button><button type="button" class="sm-mi" data-sm-lang-pick="en">English</button></div></div>
+      <button data-sm-theme-btn class="sm-desk-pill flex-shrink-0"><i data-sm-theme-icon class="fa-solid fa-sun text-[15px] text-[#F59E0B]"></i><span data-i18n="theme">Theme</span></button>
+      <div class="sm-desk-drop flex-shrink-0"><button data-sm-desk-account-btn class="sm-desk-pill"><i class="fa-regular fa-user text-[15px] text-slate-600"></i><span data-i18n="account">Account</span></button><div data-sm-desk-account-menu class="sm-desk-menu hidden"></div></div>
+    </div>
+  </div>
+  <div id="smDeskDrawer" class="hidden"><div class="sm-backdrop"></div><div class="sm-panel"><div class="flex items-center justify-between mb-3"><span class="text-[18px] font-extrabold"><span class="text-[#0F2043]">Study</span><span class="text-[#1A56FF]">Mart</span></span><button data-sm-drawer-close class="w-9 h-9 rounded-lg hover:bg-slate-100"><i class="fa-solid fa-xmark"></i></button></div><nav class="flex flex-col gap-1 text-[14px] font-semibold"><a href="index.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Home</a><a href="courses.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Courses</a><a href="ebooks.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Ebooks</a><a href="courses.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Free Resources</a><a href="#" data-sm-telegram class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Telegram</a><a href="dashboard.html" data-account-link class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Dashboard</a><a href="cart.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Cart (<span data-sm-cart-count>0</span>)</a></nav></div></div>
+  <!-- phone bar (image-style labeled icon nav) -->
+  <div class="lg:hidden max-w-[1280px] mx-auto px-2.5 sm:px-6 h-[58px] sm:h-[62px] flex items-center justify-between gap-1">
+    <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
+      <button id="menuBtn" class="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 lg:hidden flex-shrink-0" aria-label="Menu">
+        <i class="fa-solid fa-bars text-[18px] sm:text-[22px] text-[#0F2043]"></i>
+      </button>
+      <a href="index.html" class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+        <img id="siteLogoImg" src="" alt="Logo" class="hidden w-8 h-8 sm:w-11 sm:h-11 object-contain rounded-lg flex-shrink-0">
+        <div id="siteLogoFallback" class="w-8 h-8 sm:w-11 sm:h-11 flex items-center justify-center flex-shrink-0">
+          <svg width="100%" height="100%" viewBox="0 0 44 44" fill="none">
+            <path d="M22 6 C16 10 8 12 8 20 C8 28 16 30 22 34 C28 30 36 28 36 20 C36 12 28 10 22 6Z" fill="url(#g1)" />
+            <path d="M12 28 L22 38 L32 28" stroke="#1A56FF" stroke-width="2.5" fill="none" opacity="0.9"/>
+            <g><path d="M22 2 L32 7 L22 12 L12 7 Z" fill="#0F2043"/><rect x="21" y="7" width="2" height="8" fill="#FACC15"/></g>
+            <defs><linearGradient id="g1" x1="8" y1="6" x2="36" y2="34" gradientUnits="userSpaceOnUse"><stop stop-color="#1A56FF"/><stop offset="1" stop-color="#7C3AED"/></linearGradient></defs>
+          </svg>
+        </div>
+        <span id="siteNameDisplay" class="text-[15px] sm:text-[22px] font-extrabold tracking-tight leading-none"><span class="text-[#0F2043]">Study</span><span class="text-[#1A56FF]">Mart</span></span>
+      </a>
+    </div>
+
+    <nav data-sm-mob-nav class="sm-mob-nav" aria-label="Mobile">
+      <a data-sm-nav="courses" href="courses.html" aria-label="Courses"><i class="fa-solid fa-book-open"></i><span class="t">Courses</span></a>
+      <a data-sm-nav="ebooks" href="ebooks.html" aria-label="Ebook"><i class="fa-solid fa-file-lines"></i><span class="t">Ebook</span></a>
+      <button data-sm-mob-search-btn aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i><span class="t">Search</span></button>
+      <a href="#" data-sm-telegram aria-label="Telegram"><i class="fa-brands fa-telegram"></i><span class="t">Telegram</span></a>
+      <a href="cart.html" aria-label="Cart"><i class="fa-solid fa-cart-shopping"></i><span class="t">Cart</span><span data-sm-cart-count class="cbadge">0</span></a>
+      <a href="dashboard.html" data-account-link aria-label="Dashboard"><i class="fa-regular fa-circle-user"></i><span class="t">Dashboard</span></a>
+    </nav>
+  </div>
+  <div id="mobileMenu" class="hidden border-t bg-white absolute w-full left-0 shadow-lg lg:hidden">
+    <nav class="px-4 py-3 flex flex-col gap-1 text-[14px] font-medium">
+      <a href="index.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Home</a>
+      <a href="courses.html" class="px-3 py-2.5 rounded-xl bg-[#EEF2FF] text-[#1A56FF]">Courses</a>
+      <a href="#" data-sm-mob-search-btn class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Search</a>
+      <a href="dashboard.html" data-account-link class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Dashboard</a>
+    </nav>
+  </div>
+</header>
+
+<main class="max-w-[1280px] mx-auto px-2.5 sm:px-6 lg:px-8 pb-20">
+
+  <!-- Per-batch summary sections (dynamic, same design) -->
+  <div id="batchSections"></div>
+
+  <!-- Search/filter results (shown only when ?q / ?batch / ?category is present, e.g. navbar search) -->
+  <div id="courseResults" class="hidden mt-6 sm:mt-7">
+    <div data-sm-courses data-sm-limit="40">
+      <p class="text-[13px] text-slate-400 text-center py-8"><i class="fa-solid fa-spinner fa-spin mr-1"></i> Loading courses...</p>
+    </div>
+  </div>
+  <script>
+  (function(){try{var q=new URLSearchParams(location.search);if(q.get('q')||q.get('batch')||q.get('category')){var el=document.getElementById('courseResults');if(el)el.classList.remove('hidden');}}catch(e){}})();
+  </script>
+
+  <!-- <section class="mt-6 sm:mt-7 grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <div class="bg-white rounded-[16px] border border-slate-100 shadow-sm p-4 sm:p-5">
+      <h2 class="text-[16px] font-extrabold text-[#0F2043] mb-3">All Batches</h2>
+      <div data-sm-batches class="grid grid-cols-2 gap-3"></div>
+    </div>
+    <div class="bg-white rounded-[16px] border border-slate-100 shadow-sm p-4 sm:p-5">
+      <h2 class="text-[16px] font-extrabold text-[#0F2043] mb-3">Categories</h2>
+      <div data-sm-categories class="flex flex-wrap gap-2"></div>
+      <div data-sm-stats class="grid grid-cols-2 gap-3 mt-5"></div>
+    </div>
+  </section> -->
+
+
+</main>
+
+<!-- Footer removed: only homepage (index.html) shows footer -->
+
+<!-- Mobile bottom nav removed -->
+<script>
+(function(){
+  try{
+    // Smart Account routing: guest -> auth page, logged-in -> dashboard
+    var hasTok=function(){ try{return !!(localStorage.getItem('sm_user_token')||sessionStorage.getItem('sm_user_token'));}catch(x){return false;} };
+    if(!hasTok()) document.querySelectorAll('[data-account-link]').forEach(function(a){ a.href='auth.html?next='+encodeURIComponent('dashboard.html'); });
+  }catch(e){}
+  // click-time re-check (token may change without reload)
+  document.addEventListener('click',function(e){
+    var a=e.target&&e.target.closest?e.target.closest('[data-account-link]'):null;
+    if(!a) return;
+    var t=''; try{t=localStorage.getItem('sm_user_token')||sessionStorage.getItem('sm_user_token')||'';}catch(x){}
+    if(!t){ e.preventDefault(); location.href='auth.html?next='+encodeURIComponent('dashboard.html'); }
+  });
+})();
+</script>
+
+<script>
+document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('mobileMenu').classList.toggle('hidden'));
+
+/* ===== Dynamic batches + per-batch category summary (same design, live data) ===== */
+function dynEsc(s){return String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function batchIcon(b){
+  const n=(b.name||'').toLowerCase();
+  if(n.includes('skill')) return 'fa-briefcase';
+  if(n.includes('ssc')) return 'fa-book-open';
+  return 'fa-graduation-cap';
+}
+const CAT_STYLES=[
+  {box:'cat-academic',icon:'fa-layer-group',iconCls:'text-[#3B5BFE]',pill:'bg-[#DDD6FE] text-[#4F46E5]',hover:'hover:bg-[#1A56FF]'},
+  {box:'cat-revision',icon:'fa-bullseye',iconCls:'text-[#16A34A]',pill:'bg-[#C8E9D5] text-[#15803D]',hover:'hover:bg-[#16A34A]'},
+  {box:'cat-admission',icon:'fa-building-columns',iconCls:'text-[#F59E0B]',pill:'bg-[#FFE4C7] text-[#C2410C]',hover:'hover:bg-[#F59E0B]'}
+];
+function catStyle(name,idx){
+  const n=(name||'').toLowerCase();
+  if(n.includes('academic')) return CAT_STYLES[0];
+  if(n.includes('revision')) return CAT_STYLES[1];
+  if(n.includes('admission')) return CAT_STYLES[2];
+  return CAT_STYLES[idx%3];
+}
+function twoLine(name){
+  const parts=String(name||'').split(' ');
+  if(parts.length>1) return dynEsc(parts.slice(0,-1).join(' '))+'<br>'+dynEsc(parts[parts.length-1]);
+  return dynEsc(name);
+}
+async function loadCoursePage(){
+  const pillsEl=document.getElementById('batchPills');
+  const secsEl=document.getElementById('batchSections');
+  try{
+    const unwrap=j=>Array.isArray(j)?j:(j&&Array.isArray(j.data)?j.data:[]);
+    // instant: server-injected catalog (zero network), then background revalidate
+    try {
+      var __cc = window.__SM_BOOTSTRAP__ && window.__SM_BOOTSTRAP__.catalog;
+      if (__cc && Array.isArray(__cc.batches) && Array.isArray(__cc.courses)) {
+        paintAll(__cc.batches, __cc.categories || [], __cc.courses);
+        var __ck = 'cat:' + __cc.batches.length + ':' + (__cc.categories || []).length + ':' + __cc.courses.length;
+        if(pillsEl) pillsEl._smKey = __ck; if(secsEl) secsEl._smKey = __ck;
+      }
+    } catch (e) {}
+    // fetch homepage for Category Tabs order/cols (so admin Position & Column affects courses.html too)
+    try{
+      const hj = await fetch('/api/public/homepage').then(r=>r.json());
+      if(hj && hj.success && hj.data) window.__SM_HP__ = hj.data;
+    }catch(e){}
+    const [batches,cats,courses]=await Promise.all([
+      fetch('/api/batches').then(r=>r.json()).then(unwrap),
+      fetch('/api/categories').then(r=>r.json()).then(unwrap),
+      fetch('/api/courses').then(r=>r.json()).then(unwrap)
+    ]);
+    var __k = 'cat:' + batches.length + ':' + (cats || []).length + ':' + courses.length + ':' + JSON.stringify((courses || []).slice(0, 20).map(c => c.id));
+    var __need = (pillsEl ? pillsEl._smKey !== __k : false) || (secsEl ? secsEl._smKey !== __k : true);
+    if (__need) paintAll(batches, cats, courses);
+    if(pillsEl) pillsEl._smKey = __k; if(secsEl) secsEl._smKey = __k;
+  }catch(e){
+    if (pillsEl && !pillsEl._smKey) pillsEl.innerHTML='<p class="col-span-full text-[13px] text-red-400 text-center py-4">Failed to load batches</p>';
+  }
+}
+
+function paintAll(batches, cats, courses){
+  const pillsEl=document.getElementById('batchPills');
+  const secsEl=document.getElementById('batchSections');
+  if(!secsEl) return;
+    const activeBatches=(Array.isArray(batches)?batches:[]).filter(b=>b.status!=='inactive'&&b.status!=='archived').sort((a,b)=>((Number(a.order)||999)-(Number(b.order)||999))||(Number(a.id)-Number(b.id)));
+    const catById={};const catSlugById={};(Array.isArray(cats)?cats:[]).forEach(c=>{catById[c.id]=c.name||'General';catSlugById[c.id]=String(c.slug||c.name||'General').toLowerCase()});
+
+    // --- Top pills removed ---
+
+    // helper: per-batch category order/cols from Admin → Category Tabs (batch.html / courses.html both)
+    function cfgForBatch(batch){
+      try{
+        var hp = (window.__SM_BOOTSTRAP__ && window.__SM_BOOTSTRAP__.homePage) || window.__SM_HP__ || null;
+        var ct = hp && hp.sections ? hp.sections.categoryTabs : null;
+        if(ct){
+          var ord = Array.isArray(ct.tabOrder) && ct.tabOrder.length ? ct.tabOrder.map(function(s){ return String(s).toLowerCase(); }) : ['academic','admission','revision'];
+          var cols = Math.min(6, Math.max(1, parseInt(ct.cols,10) || 5));
+          var per = ct.perBatch || {};
+          var bid = String(batch && batch.id || ''), bslug = String(batch && batch.slug || '').toLowerCase();
+          var custom = (bid && per['c:'+bid]) || (bslug && per['c:'+bslug]) || (bid && per[bid]) || null;
+          if(Array.isArray(custom) && custom.length) ord = custom.map(function(s){ return String(s).toLowerCase(); });
+          return { order: ord, cols: cols };
+        }
+      }catch(e){}
+      return { order: ['academic','admission','revision'], cols: 5 };
+    }
+
+    // --- Per-batch summary sections ---
+    secsEl.innerHTML=activeBatches.map((b,bi)=>{
+      const slug=dynEsc(b.slug||b.id);
+      const list=(Array.isArray(courses)?courses:[]).filter(c=>String(c.batchId)===String(b.id)&&c.status!=='inactive');
+      const groups={};const slugByName={};let order=[];
+      list.forEach(c=>{
+        const cn=catById[c.categoryId]||c.categoryName||'General';
+        const cs=String(c.categorySlug||catSlugById[c.categoryId]||cn).toLowerCase();
+        if(!groups[cn]){groups[cn]=0;order.push(cn);slugByName[cn]=cs}groups[cn]++});
+      // apply Admin order (Position & Column) — same as batch.html
+      const cfg = cfgForBatch(b);
+      order.sort(function(a,b){
+        var sa = String(slugByName[a]||a).toLowerCase(), sb = String(slugByName[b]||b).toLowerCase();
+        var ia = cfg.order.indexOf(sa), ib = cfg.order.indexOf(sb);
+        if(ia===-1 && ib===-1) return a.localeCompare(b);
+        if(ia===-1) return 1;
+        if(ib===-1) return -1;
+        return ia-ib;
+      });
+      const cols = Math.max(1,Math.min(order.length||1, 5));
+      const mCols = Math.max(1,Math.min(order.length||1, 4));
+
+
+      const cards=order.length?order.map((cn,ci)=>{
+        const st=catStyle(cn,ci);
+        const catParam=encodeURIComponent(slugByName[cn]||String(cn).toLowerCase());
+        return `<a href="batch.html?batch=${slug}&category=${catParam}" class="group ${st.box} rounded-[10px] sm:rounded-[18px] p-1.5 sm:p-5 flex flex-col items-center justify-center text-center transition-all duration-200 active:scale-[0.98] hover:shadow-lg hover:-translate-y-1 hover:ring-2 hover:ring-[#1A56FF]/20 w-full min-h-[76px] sm:min-h-[140px]">
+          <div class="w-7 h-7 sm:w-12 sm:h-12 rounded-xl bg-white flex items-center justify-center shadow-sm ring-1 ring-black/5 group-hover:scale-110 transition-transform">
+            <i class="fa-solid ${st.icon} ${st.iconCls} text-[12px] sm:text-[22px]"></i>
+          </div>
+          <h3 class="mt-1 sm:mt-2 font-extrabold text-[9px] sm:text-[14px] leading-snug text-[#0F2043] line-clamp-2">
+            ${dynEsc(cn)}
+          </h3>
+        </a>`;
+      }).join(''):`<p class="col-span-full text-[12px] text-slate-400 py-4 text-center">No courses in this batch yet</p>`;
+
+      const containerClass = `grid grid-cols-${mCols} sm:grid-cols-${cols} gap-2 sm:gap-4`;
+
+      return `<section id="batch-${slug}" class="${bi===0?'mt-3 sm:mt-5':'mt-3 sm:mt-4'} bg-white rounded-[16px] border border-slate-100/90 shadow-xs p-2.5 sm:p-4">
+        <div class="flex items-center justify-between mb-2 sm:mb-3">
+          <div class="flex items-center gap-2 sm:gap-2.5">
+            <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-[#EEF2FF] flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid ${batchIcon(b)} text-[#3B5BFE] text-[13px] sm:text-[16px]"></i>
+            </div>
+            <h2 class="text-[15px] sm:text-[19px] font-extrabold text-[#0F2043]">${dynEsc(b.name||'Batch')}</h2>
+          </div>
+          <a href="batch.html?batch=${slug}" class="text-[#1A56FF] font-bold text-[11px] sm:text-[13px] flex items-center gap-1 hover:underline">View All <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+        </div>
+        <div id="row-${slug}" class="${containerClass}">${cards}</div>
+      </section>`;
+    }).join('');
+}
+document.addEventListener('DOMContentLoaded',loadCoursePage);
+</script>
+<script src="assets/navbar.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
