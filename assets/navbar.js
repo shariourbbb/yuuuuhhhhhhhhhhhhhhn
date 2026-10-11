@@ -87,17 +87,11 @@
     });
   }
 
-  /* Navbar Courses/Ebooks -> homepage category sections (Boss requirement):
-     Courses => Courses Category (#secCategories), Ebooks => E-Book Category (#secEbookCategory).
+  /* Navbar Courses/Ebooks -> dedicated pages:
+     Courses => courses.html, Ebooks => ebooks.html.
      Sob page-er header/phone nav-e data-sm-nav attr ache — ekhan thekei centrally rewrite,
      prottek HTML file edit kora lage na. */
-  var SM_SEC_LINKS = { courses: 'index.html#secCategories', ebooks: 'index.html#secEbookCategory' };
-  function smIsHomePage() {
-    try {
-      var p = (location.pathname.split('/').pop() || 'index.html').split('?')[0].toLowerCase();
-      return p === '' || p === '/' || p === 'index.html';
-    } catch (e) { return false; }
-  }
+  var SM_SEC_LINKS = { courses: 'courses.html', ebooks: 'ebooks.html' };
   function bindSectionLinks() {
     try {
       Object.keys(SM_SEC_LINKS).forEach(function (k) {
@@ -105,21 +99,6 @@
           a.setAttribute('href', SM_SEC_LINKS[k]);
         });
       });
-      if (!document._smSecLinkBound) {
-        document._smSecLinkBound = true;
-        // Homepage-e thakle click-e smooth scroll (navigate na kore)
-        document.addEventListener('click', function (e) {
-          var a = e.target && e.target.closest ? e.target.closest('a[data-sm-nav="courses"],a[data-sm-nav="ebooks"]') : null;
-          if (!a || !smIsHomePage()) return;
-          var id = a.getAttribute('data-sm-nav') === 'courses' ? 'secCategories' : 'secEbookCategory';
-          var el = document.getElementById(id);
-          if (!el) return;
-          e.preventDefault();
-          try { history.replaceState(null, '', '#' + id); } catch (x) {}
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          markActive();
-        });
-      }
     } catch (e) {}
   }
 
@@ -456,8 +435,8 @@
         '<i class="fa-solid ' + icon + '"></i><span>' + label + '</span></a>';
     }
     return row('dashboard', 'dashboard.html', 'fa-house', 'Dashboard') +
-      row('courses', 'index.html#secCategories', 'fa-book-open', 'Courses') +
-      row('ebooks', 'index.html#secEbookCategory', 'fa-book', 'Ebooks') +
+      row('courses', 'courses.html', 'fa-book-open', 'Courses') +
+      row('ebooks', 'ebooks.html', 'fa-book', 'Ebooks') +
       row('my-courses', 'my-courses.html', 'fa-circle-play', 'My Courses') +
       row('my-ebooks', 'my-ebooks.html', 'fa-book', 'My E-Books') +
       row('my-orders', 'my-orders.html', 'fa-bag-shopping', 'My Orders') +
@@ -468,8 +447,8 @@
   }
   function smGuestMobileHTML() {
     return '<a href="index.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Home</a>' +
-      '<a href="index.html#secCategories" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Courses</a>' +
-      '<a href="index.html#secEbookCategory" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Ebooks</a>' +
+      '<a href="courses.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Courses</a>' +
+      '<a href="ebooks.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Ebooks</a>' +
       '<a href="#" data-sm-telegram class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Telegram</a>' +
       '<a href="dashboard.html" data-account-link class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Dashboard</a>' +
       '<a href="cart.html" class="px-3 py-2.5 rounded-xl hover:bg-slate-50">Cart (<span data-sm-cart-count>0</span>)</a>';
@@ -532,16 +511,14 @@
         a.setAttribute('data-sm-quicklinks', '');
         var __qh = '';
         try { __qh = String(location.hash || '').toLowerCase(); } catch (e) {}
-        var active = (page === href)
-          || (href.indexOf('#secCategories') > -1 && __qh === '#seccategories')
-          || (href.indexOf('#secEbookCategory') > -1 && __qh === '#secebookcategory');
+        var active = (page === href) || (page === '' && href === 'index.html');
         a.className = 'w-9 h-9 items-center justify-center rounded-full transition flex-shrink-0 lg:hidden ' +
           (active ? 'bg-[#E6F0FF] inline-flex' : 'hover:bg-slate-100 inline-flex');
         a.innerHTML = '<i class="fa-solid ' + icon + ' text-[18px] ' + (active ? 'text-[#1A56FF]' : 'text-[#0F2043]') + '"></i>';
         return a;
       };
-      var coursesBtn = function () { return mk('index.html#secCategories', 'fa-book-open', 'Courses'); };
-      var ebooksBtn = function () { return mk('index.html#secEbookCategory', 'fa-book', 'Ebooks'); };
+      var coursesBtn = function () { return mk('courses.html', 'fa-book-open', 'Courses'); };
+      var ebooksBtn = function () { return mk('ebooks.html', 'fa-book', 'Ebooks'); };
       var placed = false;
       // 1) pages with a cart icon button: insert before it — Courses first, then Ebooks (search → Courses → Ebooks → Cart)
       document.querySelectorAll('a[href="cart.html"]').forEach(function (cart) {
